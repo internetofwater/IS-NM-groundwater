@@ -1,0 +1,33 @@
+---
+title: "Navigation Bar"
+output: 
+  flexdashboard::flex_dashboard:
+    navbar:
+      - { title: "About", href: "https://example.com/about", align: left }
+---
+
+Row
+-------------------------------------
+
+### Table
+
+```{r}
+DT::datatable(mtcars, options = list(
+  bPaginate = FALSE
+))
+```
+
+Row
+-------------------------------------
+    
+### Value Box
+    
+```{r}
+
+```
+    
+### Chart 3
+
+```{r, fig.width=5, fig.height=5}
+plot(airmiles)
+```
