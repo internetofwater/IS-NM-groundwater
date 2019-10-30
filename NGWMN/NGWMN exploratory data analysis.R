@@ -1,0 +1,63 @@
+#NGWMN Data
+
+pacman::p_load(tidyverse, sf, maps, sp)
+
+getwd()
+#water level info
+NGWMN.gwl <- read.csv("./NGWMN/Raw/WATERLEVEL.csv"); head(NGWMN.gwl)
+
+#site info
+NGWMN.site <- read.csv("./NGWMN/Raw/SITE_INFO.csv"); head(NGWMN.site)
+
+#exploratory
+summary(NGWMN.gwl$Original.Direction)
+summary(NGWMN.gwl$Original.Parameter)
+
+NGWMN.gwl.skinny <- NGWMN.gwl %>%
+  select(AgencyCd, SiteNo, Time, Depth.to.Water.Below.Land.Surface.in.ft., 
+         Water.level.in.feet.relative.to.NAVD88, Observation.Method, Accuracy.Value)
+
+NGWMN.site.skinny <- NGWMN.site %>%
+  select(AgencyCd, SiteNo, SiteName, DecLatVa, DecLongVa, HorzDatum, HorzMethod,
+         HorzAcy, AltVa, AltDatumCd, AltMethod, AltAcy, CountyCd, CountyNm,
+         SiteType, WellDepth, LocalAquiferCd, LocalAquiferName)
+unique(NGWMN.site.skinny$SiteNo) #58 site names
+
+#combine gwl info with site info
+NGWMN.combined <- 
+  left_join(NGWMN.gwl.skinny, NGWMN.site.skinny, by=c("AgencyCd","SiteNo"))
+
+summary(NGWMN.combined$Depth.to.Water.Below.Land.Surface.in.ft.)
+
+ggplot(NGWMN.combined, (aes(x=SiteNo, y=Depth.to.Water.Below.Land.Surface.in.ft.))) +
+  geom_point() +
+  labs(x= "Site No.", y = "Water level below ground surface (ft)")
+
+#create spatial dataset of combined df
+NGWMN.combined.spatial <- st_as_sf(NGWMN.combined,
+                                      coords=c("DecLongVa", "DecLatVa"), crs = 4269)
+unique(NGWMN.combined.spatial$geometry) #only 56 unique geometries - 2 sites with same location?
+proj <- st_crs(NGWMN.combined.spatial) #lat and long are in 4269
+
+states <- st_as_sf(map(database = "state", plot = TRUE, fill = TRUE, col = "white"))
+NM.map <- states %>% filter(ID == "new mexico")
+NM.map<- st_set_crs(NM.map, proj) #transform to match spatial datafram
+st_crs(NM.map) 
+
+
+#plot
+NGWMNsites.map <- ggplot() +
+  geom_sf(data = NM.map, fill = "white") +
+  geom_sf(data = gwlsites.combined.spatial, 
+          aes(color = Depth.to.Water.Below.Land.Surface.in.ft.), 
+          alpha = 0.5, size = 1) +
+  scale_color_viridis_c(direction =-1) +
+  labs(color = "Water level below ground surface") +
+  theme(legend.position = "top")
+print(NGWMNsites.map)
+
+
+-----------##Joining datasets##----------------
+
+
+
