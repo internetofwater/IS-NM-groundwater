@@ -3,6 +3,8 @@ library(tidyverse)
 library(sf)
 library(maps)
 
+#re-do with different getNWIS function OR go through manually to see if you can't get more
+#site info data
 
 ###GW level info
 USGS.gwl <- readNWISdata(service = "gwlevels", stateCd= "NM", parameterCd = "72019")
@@ -29,6 +31,7 @@ USGS.sites <- whatNWISsites(stateCd="NM", service="gwlevels")
 #produced site numbers with lat and long info
 USGS.sites <- USGS.sites %>%
   filter(site_tp_cd == "GW") %>% #filter for just GW
+  #provide link for site type coded so we know what I filtered out
   select(agency_cd, site_no, station_nm, site_tp_cd, dec_lat_va, dec_long_va)
 
 
