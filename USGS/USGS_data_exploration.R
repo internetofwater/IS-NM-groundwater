@@ -2,6 +2,7 @@ library(dataRetrieval)
 library(tidyverse)
 library(sf)
 library(maps)
+library(readxl)
 
 #re-do with different getNWIS function OR go through manually to see if you can't get more
 #site info data
@@ -9,9 +10,8 @@ library(maps)
 ###GW level info
 USGS.gwl <- readNWISdata(service = "gwlevels", stateCd= "NM", parameterCd = "72019")
 #produced sites with lev_va (water level in feet below land surface)
-summary(USGS.gwl$site_no)
 USGS.gwl$site_no <- as.factor(USGS.gwl$site_no)
-sum(is.na(USGS.gwl$lev_dt)) #all observations have a date, very few (about 4000) have a time/timestamp
+ #all observations have a date, very few (about 4000) have a time/timestamp
 USGS.gwl$site_tp_cd <- as.factor(USGS.gwl$site_tp_cd)
 summary(USGS.gwl$site_tp_cd)
 #to simplify, get rid of all groundwater types except for wells
@@ -31,14 +31,29 @@ USGS.sites <- whatNWISsites(stateCd="NM", service="gwlevels")
 #produced site numbers with lat and long info
 USGS.sites <- USGS.sites %>%
   filter(site_tp_cd == "GW") %>% #filter for just GW
-  #provide link for site type coded so we know what I filtered out
+  #link for more info on site type codes: https://help.waterdata.usgs.gov/code/site_tp_query?fmt=html
   select(agency_cd, site_no, station_nm, site_tp_cd, dec_lat_va, dec_long_va)
 
+filepath <- "C:/Users/19524/Documents/DUKE/Independent Study - LP/IS-NM-groundwater/USGS/"
+fileName <- "USGS_manual_data_collection.xlsx"
+
+#following produces 8901 observations when pulling from USGS website
+USGS.sites2 <- read_excel(paste0(filepath, fileName), sheet="Sheet2")
+USGS.sites2$site_no <- as.character(USGS.sites2$site_no)
+
+#combine both site collection methods to get fuller data frame with more variables
+sites.combined <- 
+  left_join(USGS.sites, USGS.sites2, 
+            by=c("agency_cd", "site_no", "station_nm", "site_tp_cd", 
+                 "dec_lat_va", "dec_long_va"))
+  
+
+#--------joining gwl with site-----------
 
 #join site level dataset with gwl dataset
 USGS.combined <- 
-  left_join(gwl, NMsites, by = c("agency_cd","site_no", "site_tp_cd")) #%>%
-  #filter(lev_va < 2000) #filtered only so that it can be better mapped, shouldn't keep this filter
+  left_join(USGS.gwl, sites.combined, by = c("agency_cd","site_no", "site_tp_cd"))
+  
 
 summary(USGS.combined$lev_va) 
 #range of water levels is rather big...will be hard to visualize effectively
@@ -65,17 +80,27 @@ USGS.combined.map <- ggplot() +
   theme(legend.position = "top")
 print(USGS.combined.map)
 
-#---------##prep for joining##-----------
+#---------##prep for joining USGS with other databases##-----------
 
 #rename columns so that they match with NGWMN colnames
-#need to convert lev_dt, lev_tm, lev_tz_cd_reported and combine for UTC time (many don't have time of day values)
-#sl_lev_va could match with "Water.level.in.feet.relative.to.NAVD.88 BUT we don't know the vertical datum (sl_datum_cd)
-#no equivalent to lev_status_cd, lev_dt_acy_cd, lev_src_cd, lev_age_cd,
-#not necessary: lev_tz_cd, colocated, queryTime,
-names(USGS.combined.spatial) <- 
-  c("AgencyCd", "SiteNo", "SiteType", "lev_dt", "lev_tm", "lev_tz_cd_reported",
-    "Depth.to.Water.Below.Land.Surface.in.ft", "sl_lev_va", "sl_datum_cd", 
-    "lev_status_cd", "Data.Provided.by", "lev_dt_acy_cd", "Accuracy.Value", 
-    "lev_src_cd", "Observation.Method", "lev_age_cd", "Time", "lev_tz_cd", 
-    "SiteName", "colocated", "queryTime", "geometry")
 
+#sl_lev_va matched with "Water.level.in.feet.relative.to.NAVD.88 BUT we don't know the vertical datum (sl_datum_cd)
+
+
+names(USGS.combined) <- 
+  c("AgencyCd", "SiteNo", "SiteType", "Date", "Time", "lev_tz_cd_reported",
+    "Depth.to.Water.Below.Land.Surface.in.ft", 
+    "Water.level.in.feet.relative.to.NAVD88", "AltDatumCd", 
+    "lev_status_cd", "Data.Provided.by", "lev_dt_acy_cd", "Accuracy.Value", 
+    "lev_src_cd", "Observation.Method", "Comment", "DateTime", "lev_tz_cd", 
+    "SiteName", "DecLatVa", "DecLongVa", "lat_va", "long_va", "HorzMethod", 
+    "HorzAcy", "coord_datum_cd", "HorzDatum", "district_cd", "state_cd", 
+    "CountyCd", "country_cd", "land_net_ds", "map_nm", "map_scale_fc", "AltVa",
+    "AltMethod", "AltAcy", "AltDatumCd", "huc_cd", "basic_cd", "topo_cd", "construction_dt",
+    "inventory_dt", "drain_area_va", "contrib_drain_area_va", "tz_cd", 
+    "local_time_fg", "reliability_cd", "gw_file_cd", "NatAquiferCd", 
+    "LocalAquiferCd", "aqfr_type_cd", "WellDepth", "hole_depth_va", "depth_src_cd",
+    "project_no")
+
+#all columns that relate to NGWMN have been renamed using the NGWMN column names.
+#The columns that don't relat to NGWMN have been kept as is.

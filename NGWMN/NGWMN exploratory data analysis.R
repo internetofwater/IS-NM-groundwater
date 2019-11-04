@@ -10,25 +10,36 @@ NGWMN.gwl <- read.csv("./NGWMN/Raw/WATERLEVEL.csv"); head(NGWMN.gwl)
 NGWMN.site <- read.csv("./NGWMN/Raw/SITE_INFO.csv"); head(NGWMN.site)
 
 #exploratory
-summary(NGWMN.gwl$Original.Direction)
-summary(NGWMN.gwl$Original.Parameter)
+summary(NGWMN.gwl$Original.Direction) #not sure what this is
+summary(NGWMN.gwl$Original.Parameter) #parameter must be gwl?
+summary(NGWMN.gwl$Original.Value) 
+summary(NGWMN.gwl$Depth.to.Water.Below.Land.Surface.in.ft.) 
+#Depth.to.Water...is the same as Original.Value
 
 NGWMN.gwl.skinny <- NGWMN.gwl %>%
   select(AgencyCd, SiteNo, Time, Depth.to.Water.Below.Land.Surface.in.ft., 
-         Water.level.in.feet.relative.to.NAVD88, Observation.Method, Accuracy.Value)
+         Water.level.in.feet.relative.to.NAVD88, Observation.Method, Accuracy.Value,
+         Data.Provided.by, Comment)
+NGWMN.gwl.skinny <- NGWMN.gwl.skinny %>% rename_at("Time",~"DateTime")
+NGWMN.gwl.skinny$DateTime <- as.POSIXct(NGWMN.gwl.skinny$DateTime)
+
+
+NGWMN.gwl.skinny$Date <- as.Date(NGWMN.gwl.skinny$DateTime) 
+NGWMN.gwl.skinny$Time <- format(as.POSIXct(NGWMN.gwl.skinny$DateTime), format = "%H:%M:%S") 
 
 NGWMN.site.skinny <- NGWMN.site %>%
   select(AgencyCd, SiteNo, SiteName, DecLatVa, DecLongVa, HorzDatum, HorzMethod,
          HorzAcy, AltVa, AltDatumCd, AltMethod, AltAcy, CountyCd, CountyNm,
-         SiteType, WellDepth, LocalAquiferCd, LocalAquiferName)
+         SiteType, WellDepth, NatAquiferCd, NatAqfrDesc, LocalAquiferCd, LocalAquiferName)
 unique(NGWMN.site.skinny$SiteNo) #58 site names
 
 #combine gwl info with site info
 NGWMN.combined <- 
   left_join(NGWMN.gwl.skinny, NGWMN.site.skinny, by=c("AgencyCd","SiteNo"))
-
+class(NGWMN.combined$Date)
 summary(NGWMN.combined$Depth.to.Water.Below.Land.Surface.in.ft.)
 
+#plot depth to see range
 ggplot(NGWMN.combined, (aes(x=SiteNo, y=Depth.to.Water.Below.Land.Surface.in.ft.))) +
   geom_point() +
   labs(x= "Site No.", y = "Water level below ground surface (ft)")
@@ -58,6 +69,7 @@ print(NGWMNsites.map)
 
 
 -----------##Joining datasets##----------------
+
 
 
 
