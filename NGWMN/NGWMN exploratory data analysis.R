@@ -70,6 +70,16 @@ print(NGWMNsites.map)
 
 -----------##Joining datasets##----------------
 
-
-
-
+NGWMN.USGS.combined <- 
+  inner_join(NGWMN.combined, USGS.combined, 
+             by = c("AgencyCd", "SiteNo", "SiteType", "Date", "Time", 
+                    "Depth.to.Water.Below.Land.Surface.in.ft.", 
+                    "Water.level.in.feet.relative.to.NAVD88",
+                    "Data.Provided.by", "Accuracy.Value", "Observation.Method", 
+                    "Comment", "DateTime", "SiteName", "DecLatVa", "DecLongVa",
+                    "HorzMethod", "HorzAcy", "HorzDatum", "CountyCd", "AltVa",
+                    "AltMethod", "AltAcy", "AltDatumCd", "NatAquiferCd", 
+                    "LocalAquiferCd", "WellDepth"))
+  
+129181+27574
+56+29

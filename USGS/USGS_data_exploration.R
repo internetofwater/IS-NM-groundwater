@@ -53,6 +53,7 @@ sites.combined <-
 #join site level dataset with gwl dataset
 USGS.combined <- 
   left_join(USGS.gwl, sites.combined, by = c("agency_cd","site_no", "site_tp_cd"))
+
   
 
 summary(USGS.combined$lev_va) 
@@ -88,19 +89,24 @@ print(USGS.combined.map)
 
 
 names(USGS.combined) <- 
-  c("AgencyCd", "SiteNo", "SiteType", "Date", "Time", "lev_tz_cd_reported",
-    "Depth.to.Water.Below.Land.Surface.in.ft", 
-    "Water.level.in.feet.relative.to.NAVD88", "AltDatumCd", 
-    "lev_status_cd", "Data.Provided.by", "lev_dt_acy_cd", "Accuracy.Value", 
-    "lev_src_cd", "Observation.Method", "Comment", "DateTime", "lev_tz_cd", 
-    "SiteName", "DecLatVa", "DecLongVa", "lat_va", "long_va", "HorzMethod", 
-    "HorzAcy", "coord_datum_cd", "HorzDatum", "district_cd", "state_cd", 
-    "CountyCd", "country_cd", "land_net_ds", "map_nm", "map_scale_fc", "AltVa",
-    "AltMethod", "AltAcy", "AltDatumCd", "huc_cd", "basic_cd", "topo_cd", "construction_dt",
-    "inventory_dt", "drain_area_va", "contrib_drain_area_va", "tz_cd", 
-    "local_time_fg", "reliability_cd", "gw_file_cd", "NatAquiferCd", 
-    "LocalAquiferCd", "aqfr_type_cd", "WellDepth", "hole_depth_va", "depth_src_cd",
-    "project_no")
+  c("AgencyCd", "SiteNo", "SiteType", "Date", "Time", "lev_tz_cd_reported.USGS",
+    "Depth.to.Water.Below.Land.Surface.in.ft.", 
+    "Water.level.in.feet.relative.to.NAVD88", "sl_datum_cd", 
+    "lev_status_cd.USGS", "Data.Provided.by", "lev_dt_acy_cd.USGS", "Accuracy.Value", 
+    "lev_src_cd.USGS", "Observation.Method", "Comment", "DateTime", "lev_tz_cd.USGS", 
+    "SiteName", "DecLatVa", "DecLongVa", "lat_va.USGS", "long_va.USGS", "HorzMethod", 
+    "HorzAcy", "coord_datum_cd.USGS", "HorzDatum", "district_cd.USGS", "state_cd.USGS", 
+    "CountyCd", "country_cd.USGS", "land_net_ds.USGS", "map_nm.USGS", "map_scale_fc.USGS", "AltVa",
+    "AltMethod", "AltAcy", "AltDatumCd", "huc_cd.USGS", "basic_cd.USGS", "topo_cd.USGS", "construction_dt.USGS",
+    "inventory_dt.USGS", "drain_area_va.USGS", "contrib_drain_area_va.USGS", "tz_cd.USGS", 
+    "local_time_fg.USGS", "reliability_cd.USGS", "gw_file_cd.USGS", "NatAquiferCd", 
+    "LocalAquiferCd", "aqfr_type_cd.USGS", "WellDepth", "hole_depth_va.USGS", "depth_src_cd.USGS",
+    "project_no.USGS")
+USGS.combined$Date <- as.Date(USGS.combined$Date)
+USGS.combined$AltAcy <- as.factor(USGS.combined$AltAcy)
+
 
 #all columns that relate to NGWMN have been renamed using the NGWMN column names.
-#The columns that don't relat to NGWMN have been kept as is.
+#The columns that don't relate to NGWMN have been kept as is.
+
+
