@@ -5,9 +5,11 @@ pacman::p_load(tidyverse, sf, maps, sp)
 getwd()
 #water level info
 NGWMN.gwl <- read.csv("./NGWMN/Raw/WATERLEVEL.csv"); head(NGWMN.gwl)
-
-#site info
-NGWMN.site <- read.csv("./NGWMN/Raw/SITE_INFO.csv"); head(NGWMN.site)
+#taking out unused/irrelevant columns
+NGWMN.gwl.skinny <- NGWMN.gwl %>%
+  select(AgencyCd, SiteNo, Time, Depth.to.Water.Below.Land.Surface.in.ft., 
+         Water.level.in.feet.relative.to.NAVD88, Observation.Method, Accuracy.Value,
+         Data.Provided.by, Comment)
 
 #exploratory
 summary(NGWMN.gwl$Original.Direction) #not sure what this is
@@ -16,22 +18,24 @@ summary(NGWMN.gwl$Original.Value)
 summary(NGWMN.gwl$Depth.to.Water.Below.Land.Surface.in.ft.) 
 #Depth.to.Water...is the same as Original.Value
 
-NGWMN.gwl.skinny <- NGWMN.gwl %>%
-  select(AgencyCd, SiteNo, Time, Depth.to.Water.Below.Land.Surface.in.ft., 
-         Water.level.in.feet.relative.to.NAVD88, Observation.Method, Accuracy.Value,
-         Data.Provided.by, Comment)
+
+#fixing time components
 NGWMN.gwl.skinny <- NGWMN.gwl.skinny %>% rename_at("Time",~"DateTime")
 NGWMN.gwl.skinny$DateTime <- as.POSIXct(NGWMN.gwl.skinny$DateTime)
-
-
 NGWMN.gwl.skinny$Date <- as.Date(NGWMN.gwl.skinny$DateTime) 
 NGWMN.gwl.skinny$Time <- format(as.POSIXct(NGWMN.gwl.skinny$DateTime), format = "%H:%M:%S") 
 
+#site info
+NGWMN.site <- read.csv("./NGWMN/Raw/SITE_INFO.csv"); head(NGWMN.site)
+#taking out unused/irrelevant columns
 NGWMN.site.skinny <- NGWMN.site %>%
-  select(AgencyCd, SiteNo, SiteName, DecLatVa, DecLongVa, HorzDatum, HorzMethod,
-         HorzAcy, AltVa, AltDatumCd, AltMethod, AltAcy, CountyCd, CountyNm,
+  select(AgencyCd, SiteNo, AgencyNm, SiteName, DecLatVa, DecLongVa, HorzDatum, HorzMethod,
+         HorzAcy, AltVa, AltDatumCd, AltMethod, AltAcy, StateCd, StateNm, CountyCd, CountyNm,
          SiteType, WellDepth, NatAquiferCd, NatAqfrDesc, LocalAquiferCd, LocalAquiferName)
 unique(NGWMN.site.skinny$SiteNo) #58 site names
+
+
+#---------to plot--------------#
 
 #combine gwl info with site info
 NGWMN.combined <- 
@@ -81,5 +85,4 @@ NGWMN.USGS.combined <-
                     "AltMethod", "AltAcy", "AltDatumCd", "NatAquiferCd", 
                     "LocalAquiferCd", "WellDepth"))
   
-129181+27574
-56+29
+#how do I organize, but still make it easy for others to copy and replicate this code?
