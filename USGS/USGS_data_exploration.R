@@ -82,17 +82,8 @@ USGS.combined.map <- ggplot() +
   theme(legend.position = "top")
 print(USGS.combined.map)
 
-#---------##prep for joining USGS with other databases##-----------
-
-#rename columns so that they match with NGWMN colnames
 
 #sl_lev_va matched with "Water.level.in.feet.relative.to.NAVD.88 BUT we don't know the vertical datum (sl_datum_cd)
 
-
-
-
-
-#all columns that relate to NGWMN have been renamed using the NGWMN column names.
-#The columns that don't relate to NGWMN have been kept as is.
 
 

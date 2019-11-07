@@ -27,7 +27,7 @@ gwl.joined.skinny <- gwl.joined %>%
 
 #--------joining site info dfs-----------#
 
-#USGS = sites.combined, NGWMN = NGWMN.site.skinny
+#USGS = sites.combined, NGWMN = NGWMN.site.skinny, NMBGMR = NMBGMR.site
 
 str(USGS.site1)
 str(NGWMN.site.skinny)                         
@@ -48,6 +48,8 @@ names(USGS.site) <-
     "project_no.USGS", "AgencyNm")
 
 sites.joined <- rbind.fill(NGWMN.site.skinny, USGS.site)
+
+sites.joined <- rbind.fill(sites.joined, NMBGMR.site)
 
 
 
