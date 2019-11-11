@@ -3,6 +3,7 @@ library(tidyverse)
 library(sf)
 library(maps)
 library(readxl)
+library(plyr)
 
 #re-do with different getNWIS function OR go through manually to see if you can't get more
 #site info data
@@ -18,29 +19,28 @@ USGS.gwl$lev_dt <- as.Date(USGS.gwl$lev_dt)
 
 
 ###site level info
-USGS.site1 <- whatNWISsites(stateCd="NM", service="gwlevels")
+USGS.site <- whatNWISsites(stateCd="NM", service="gwlevels")
 #produced site numbers with lat and long info
-USGS.site1 <- USGS.site1 %>%
+USGS.sitenumbers <- USGS.site %>%
   select(agency_cd, site_no, station_nm, site_tp_cd, dec_lat_va, dec_long_va)
 
-filepath <- "C:/Users/19524/Documents/DUKE/Independent Study - LP/IS-NM-groundwater/USGS/"
-fileName <- "USGS_manual_data_collection.xlsx"
+USGS.sitenumbers.top <- USGS.sitenumbers %>% top_n(30000)
+USGS.sitenumbers.top <- USGS.sitenumbers.top$site_no
+USGS.sitenumbers.bottom <- USGS.sitenumbers %>%top_n(-8339)
+USGS.sitenumbers.bottom <- USGS.sitenumbers.bottom$site_no
 
+USGS.site.top <- readNWISsite(USGS.sitenumbers.top)
+USGS.site.bottom <- readNWISsite(USGS.sitenumbers.bottom)
+USGS.site <- rbind(USGS.site.top, USGS.site.bottom)
 
 #link for more info on site type codes: https://help.waterdata.usgs.gov/code/site_tp_query?fmt=html
 
-#following produces 8901 observations when pulling from USGS website
-USGS.site2 <- read_excel(paste0(filepath, fileName), sheet="Sheet2")
-USGS.site2$site_no <- as.character(USGS.site2$site_no)
 
-#combine both site collection methods to get fuller data frame with more variables
-USGS.site <- 
-  left_join(USGS.site1, USGS.site2, 
-            by=c("agency_cd", "site_no", "station_nm", "site_tp_cd", 
-                 "dec_lat_va", "dec_long_va"))
 USGS.site$site_no <- as.factor(USGS.site$site_no)
 USGS.site <- USGS.site %>%
   mutate(AgencyNm = "U.S. Geological Survey")
+length(unique(USGS.site$site_no))
+USGS.site <- unique(USGS.site)
 
 str(USGS.site)
 
@@ -65,7 +65,7 @@ USGS.combined.spatial <- st_as_sf(USGS.combined,
                                      coords = c("dec_long_va", "dec_lat_va"), crs = 4326)
 
 #create map of NM
-states <- st_as_sf(map(database = "state", plot = TRUE, fill = TRUE, col = "white"))
+states <- st_as_sf(map(database = "state", plot=TRUE, fill = TRUE, col = "white"))
 NM.map <- states %>% filter(ID == "new mexico")
 NMmap <- ggplot(NM.map) +
   geom_sf(fill="white")
