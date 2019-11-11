@@ -5,8 +5,6 @@ library(maps)
 library(readxl)
 library(plyr)
 
-#re-do with different getNWIS function OR go through manually to see if you can't get more
-#site info data
 
 ###GW level info
 USGS.gwl <- readNWISdata(service = "gwlevels", stateCd= "NM", parameterCd = "72019")
@@ -16,6 +14,8 @@ USGS.gwl$site_no <- as.factor(USGS.gwl$site_no)
 USGS.gwl$site_tp_cd <- as.factor(USGS.gwl$site_tp_cd)
 summary(USGS.gwl$site_tp_cd)
 USGS.gwl$lev_dt <- as.Date(USGS.gwl$lev_dt)
+
+write.csv(USGS.gwl, file = "./USGS/USGS.gwl.csv")
 
 
 ###site level info
@@ -39,11 +39,11 @@ USGS.site <- rbind(USGS.site.top, USGS.site.bottom)
 USGS.site$site_no <- as.factor(USGS.site$site_no)
 USGS.site <- USGS.site %>%
   mutate(AgencyNm = "U.S. Geological Survey")
-length(unique(USGS.site$site_no))
-USGS.site <- unique(USGS.site)
+length(unique(USGS.site$site_no)) #perhaps two duplicates?
+
 
 str(USGS.site)
-
+write.csv(USGS.site, file="./USGS/USGS.site.csv")
  
 #--------to plot-----------#
 

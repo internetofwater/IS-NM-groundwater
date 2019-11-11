@@ -21,9 +21,12 @@ summary(NGWMN.gwl$Depth.to.Water.Below.Land.Surface.in.ft.)
 
 #fixing time components
 NGWMN.gwl.skinny <- NGWMN.gwl.skinny %>% rename_at("Time",~"DateTime")
-NGWMN.gwl.skinny$DateTime <- as.POSIXct(NGWMN.gwl.skinny$DateTime)
 NGWMN.gwl.skinny$Date <- as.Date(NGWMN.gwl.skinny$DateTime) 
-NGWMN.gwl.skinny$Time <- format(as.POSIXct(NGWMN.gwl.skinny$DateTime), format = "%H:%M:%S") 
+#fix time component so that all time values are not 00:00 - see Lauren's email
+NGWMN.gwl.skinny$DateTime <- as.POSIXct(NGWMN.gwl.skinny$DateTime)
+NGWMN.gwl.skinny$Time <- format(as.POSIXct(NGWMN.gwl.skinny$DateTime), format = "%H:%M:%S")
+
+write.csv(NGWMN.gwl.skinny, file="./NGWMN/NGWMN.gwl.skinny.csv") 
 
 #site info
 NGWMN.site <- read.csv("./NGWMN/Raw/SITE_INFO.csv"); head(NGWMN.site)
@@ -33,6 +36,7 @@ NGWMN.site.skinny <- NGWMN.site %>%
          HorzAcy, AltVa, AltDatumCd, AltMethod, AltAcy, StateCd, StateNm, CountyCd, CountyNm,
          SiteType, WellDepth, NatAquiferCd, NatAqfrDesc, LocalAquiferCd, LocalAquiferName)
 unique(NGWMN.site.skinny$SiteNo) #58 site names
+write.csv(NGWMN.site.skinny, file="./NGWMN/NGWMN.site.skinny.csv")
 
 
 #---------to plot--------------#

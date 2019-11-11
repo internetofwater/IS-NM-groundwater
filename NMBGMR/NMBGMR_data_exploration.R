@@ -1,7 +1,13 @@
-pacman::p_load(sf, maps, plyr, readxl, tidyverse)
-#library(sp); library(rgdal); library(maptools); library(gplots); library(rgeos); library(raster)
-#library(stringr); library(PBSmapping); library(spData); library(sf)
-
+#pacman::p_load(sf, plyr, readxl, tidyverse)
+#library(sf)
+#library(maps)
+#library(plyr)
+#library(readxl)
+#library(tidyverse)
+library(sp); library(rgdal); library(maptools); library(gplots); library(rgeos); library(raster)
+library(stringr); library(PBSmapping); library(spData); library(sf); library(plyr); library(maps)
+library(ggplot2); 
+#tidyverse messes up maps function because purrr masks part of it
 
 
 #read in both files that had data that was downloaded from the website on 11/4/19
@@ -25,16 +31,22 @@ NMBGMR.site <- NMBGMR.site %>%
   dplyr::select(-ObjectID.NMBGMR) %>%
   mutate(AgencyCd="NMBGMR", AgencyNm = "New Mexico Bureau of Geology and Mineral Resources")
 
+write.csv(NMBGMR.site, file="./NMBGMR/NMBGMR.site.csv")
 
 NMBGMR.site.spatial <-  st_as_sf(NMBGMR.site, 
              coords = c("DecLongVa", "DecLatVa"), crs = 4326)
 NM.county <- st_as_sf(map(database = "county",'new mexico', plot=TRUE, fill = TRUE, col = "white"))
-st_crs(NM.county) #projection is 4326, matches with spatial df
+st_crs(NM.county) #projection is 4326
 
+#attempting to grab counties and insert for each data point
+class(NMBGMR.site.spatial)
+countynames <- over(NMBGMR.site.spatial$geometry, NM.county$geometry)
 
+#spatial merge Lauren's county solution
+well.county <- st_join(NM.county, NMBGMR.site.spatial) 
+well.county$ID <- str_remove_all(well.county$ID, "new mexico,")
+well.county$CountyNm <- well.county$ID
 
-#spatial merge
-well.county <- st_join(NM.county, NMBGMR.site.spatial, left=TRUE) 
 
 #finish by renamin ID name and getting rid of "new mexico" from id name and mapping
 
@@ -47,3 +59,6 @@ NMBGMR.site.map <- ggplot() +
   labs(color = "Water Depth") +
   theme(legend.position = "top")
 print(NMBGMR.site.map)
+
+ggplot() +
+  geom_sf(data=well.county, fill="red")
