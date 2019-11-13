@@ -78,3 +78,6 @@ write.csv(sites.joined.skinny, file="./Processed/sites.joined.skinny.csv")
 gwl.sites.joined <- left_join(gwl.joined.skinny, sites.joined.skinny, 
                               by = c("SiteNo", "AgencyCd"))
 
+write.csv(gwl.sites.joined, file = "./Processed/gwl.sites.joined.csv")
+
+

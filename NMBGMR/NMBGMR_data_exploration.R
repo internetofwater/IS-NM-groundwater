@@ -1,9 +1,4 @@
-#pacman::p_load(sf, plyr, readxl, tidyverse)
-#library(sf)
-#library(maps)
-#library(plyr)
-#library(readxl)
-#library(tidyverse)
+
 library(sp); library(rgdal); library(maptools); library(gplots); library(rgeos); library(raster)
 library(stringr); library(PBSmapping); library(spData); library(sf); library(plyr); library(maps)
 library(ggplot2); 
@@ -13,6 +8,8 @@ library(ggplot2);
 #read in both files that had data that was downloaded from the website on 11/4/19
 allprojects <- read.csv("./NMBGMR/All Projects.csv")
 collabwaterlevel <- read.csv("./NMBGMR/Collaborative Water Level Network.csv")
+siteinfo <- read.csv("./")
+##START HERE AND ADD IN MORE SITES
 str(collabwaterlevel) #evaluate the structure
 names(allprojects)
 names(collabwaterlevel)
@@ -37,10 +34,18 @@ NMBGMR.site.spatial <-  st_as_sf(NMBGMR.site,
              coords = c("DecLongVa", "DecLatVa"), crs = 4326)
 NM.county <- st_as_sf(map(database = "county",'new mexico', plot=TRUE, fill = TRUE, col = "white"))
 st_crs(NM.county) #projection is 4326
+st_crs(NMBGMR.site.spatial)
+nrow(NM.county)
+NM.county$num <- seq(1,nrow(NM.county),1)
+NMBGMR.site.spatial$order <- seq(1,nrow(NMBGMR.site.spatial),1)
 
 #attempting to grab counties and insert for each data point
 class(NMBGMR.site.spatial)
-countynames <- over(NMBGMR.site.spatial$geometry, NM.county$geometry)
+test <- st_intersects(NMBGMR.site.spatial, NM.county)
+test.table <- as.data.frame(test)
+
+sapply(st_intersects(NM.county,NMBGMR.site.spatial), function(z) if (length(z)==0) NA_integer_ else z[1])
+countynames <- sp::over(NM.county, NMBGMR.site.spatial)
 
 #spatial merge Lauren's county solution
 well.county <- st_join(NM.county, NMBGMR.site.spatial) 
