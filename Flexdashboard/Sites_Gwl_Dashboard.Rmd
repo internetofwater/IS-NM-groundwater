@@ -1,0 +1,60 @@
+---
+title: "Untitled"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(maps)
+library(leaflet)
+getwd()
+all.sites.gwl <- read.csv("../Processed/gwl.sites.joined.csv")
+all.sites.gwl <- all.sites.gwl %>% dplyr::select(-X)
+
+all.sites.gwl.static <- all.sites.gwl %>%
+  group_by(SiteNo) %>%
+  summarise(Long = median(DecLongVa),
+            Lat = median(DecLatVa),
+            DTW = mean(Depth.to.Water.Below.Land.Surface.in.ft.)
+            )
+
+all.sites.gwl.spatial <- st_as_sf(all.sites.gwl, coords = c("DecLongVa", "DecLatVa"), crs = 4326)
+
+
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+NM.map <- map("state", "new mexico", fill = TRUE, plot = TRUE, col="white")
+leaflet(data = all.sites.gwl) %>% 
+  addTiles()%>%
+  addCircleMarkers(~DecLongVa, ~DecLatVa,
+                   stroke = FALSE, 
+                   fillOpacity = 0.3,
+                   popup = ~as.character(`SiteNo`))
+
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+
+```
+
+### Chart C
+
+```{r}
+
+```
+
