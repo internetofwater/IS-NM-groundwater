@@ -5,36 +5,35 @@ library(ggplot2);
 #tidyverse messes up maps function because purrr masks part of it
 
 
-#read in both files that had data that was downloaded from the website on 11/4/19
-allprojects <- read.csv("./NMBGMR/All Projects.csv")
-collabwaterlevel <- read.csv("./NMBGMR/Collaborative Water Level Network.csv")
-siteinfo <- read.csv("./")
-##START HERE AND ADD IN MORE SITES
-str(collabwaterlevel) #evaluate the structure
-names(allprojects)
-names(collabwaterlevel)
-NMBGMR.site <- rbind.fill(allprojects, collabwaterlevel) #rbind both dfs
-length(unique(NMBGMR.site$ï..PointID)) #there are some point IDs that overlap...not sure what to do about that
+
+NMBGMR.site <- read.csv("./NMBGMR/NMBGMR_SiteInfo.csv") #6091 sites
+names(NMBGMR.site)
 
 #do not know the coordinate reference system they used
 
 names(NMBGMR.site) <- c("SiteNo", "SiteID.NMBGMR", "Easting", 
                          "Northing", "AltVa", "OSEWellID", "HoleDepth",
-                         "WellDepth", "FormationZone.NMBGMR", "ObjectID.NMBGMR",
-                         "DecLongVa", "DecLatVa", "ProjectName.NMBGMR", 
-                         "MonitoringStatus.NMBGMR")
+                         "WellDepth", "FormationZone.NMBGMR", "Geometry", 
+                        "ObjectID.NMBGMR","DecLongVa", "DecLatVa", "wkid")
 
 NMBGMR.site <- NMBGMR.site %>%
-  dplyr::select(-ObjectID.NMBGMR) %>%
+  dplyr::select(-ObjectID.NMBGMR, -Geometry, -wkid) %>%
   mutate(AgencyCd="NMBGMR", AgencyNm = "New Mexico Bureau of Geology and Mineral Resources")
+
+
 
 write.csv(NMBGMR.site, file="./NMBGMR/NMBGMR.site.csv")
 
 NMBGMR.site.spatial <-  st_as_sf(NMBGMR.site, 
              coords = c("DecLongVa", "DecLatVa"), crs = 4326)
+
+#map of NM counties
 NM.county <- st_as_sf(map(database = "county",'new mexico', plot=TRUE, fill = TRUE, col = "white"))
+
+#make sure projections are the same
 st_crs(NM.county) #projection is 4326
 st_crs(NMBGMR.site.spatial)
+
 nrow(NM.county)
 NM.county$num <- seq(1,nrow(NM.county),1)
 NMBGMR.site.spatial$order <- seq(1,nrow(NMBGMR.site.spatial),1)
