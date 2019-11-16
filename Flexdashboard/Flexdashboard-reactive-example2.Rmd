@@ -1,0 +1,61 @@
+---
+title: "Untitled"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(ggplot2)
+library(plotly)
+```
+
+```{r}
+f <- structure(list(Date = structure(c(1505779200, 1506377400, 1505779800, 
+1505780100, 1506377400), class = c("POSIXct", "POSIXt"), tzone = "UTC"), 
+    Cat = c("A", "B", "A", "B", "C"), val = 1:5), class = "data.frame", row.names = c(NA, 5L))
+```
+
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+  selectInput("P","Filter",choices = c("","T"))
+  #dateRangeInput("s2","Date",min = as.POSIXct(min(f$Date)),max = as.POSIXct(max(f$Date)))
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+
+### Chart B
+
+```{r}
+output$g1 <- renderPlotly({
+    req(input$P)
+    if (input$P == "T") {
+        f1 <- f
+    }
+    if (input$P == "T") {
+        ggplotly(ggplot(f1, aes(x = Date, y = val, color = Cat)) + geom_line(size =  .2)+theme(legend.position = "none"))}
+})
+
+plotlyOutput("g1")
+```
+
+### Table
+
+```{r}
+verbatimTextOutput("brush")
+output$brush <- renderPrint({
+    d <- event_data("plotly_selected")
+    if (is.null(d)) "Click and drag events (i.e., select/lasso) appear here (double-click to clear)" else d
+  })
+
+```

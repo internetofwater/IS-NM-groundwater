@@ -22,7 +22,7 @@ NMBGMR.site <- NMBGMR.site %>%
 
 
 
-write.csv(NMBGMR.site, file="./NMBGMR/NMBGMR.site.csv")
+
 
 NMBGMR.site.spatial <-  st_as_sf(NMBGMR.site, 
              coords = c("DecLongVa", "DecLatVa"), crs = 4326)
@@ -34,35 +34,25 @@ NM.county <- st_as_sf(map(database = "county",'new mexico', plot=TRUE, fill = TR
 st_crs(NM.county) #projection is 4326
 st_crs(NMBGMR.site.spatial)
 
-nrow(NM.county)
-NM.county$num <- seq(1,nrow(NM.county),1)
-NMBGMR.site.spatial$order <- seq(1,nrow(NMBGMR.site.spatial),1)
+intersect <- st_intersection(NMBGMR.site.spatial, NM.county)
+intersect$CountyNm <- gsub("new mexico,", "", intersect$ID)
+intersect$CountyNm <- stringr::str_to_title(intersect$CountyNm) %>%
+                      paste0(" County") %>%
+                      as.factor()
 
-#attempting to grab counties and insert for each data point
-class(NMBGMR.site.spatial)
-test <- st_intersects(NMBGMR.site.spatial, NM.county)
-test.table <- as.data.frame(test)
+NMBGMR.site <- intersect %>% select(-ID)
 
-sapply(st_intersects(NM.county,NMBGMR.site.spatial), function(z) if (length(z)==0) NA_integer_ else z[1])
-countynames <- sp::over(NM.county, NMBGMR.site.spatial)
-
-#spatial merge Lauren's county solution
-well.county <- st_join(NM.county, NMBGMR.site.spatial) 
-well.county$ID <- str_remove_all(well.county$ID, "new mexico,")
-well.county$CountyNm <- well.county$ID
+write.csv(NMBGMR.site, file="./NMBGMR/NMBGMR.site.csv")
 
 
-#finish by renamin ID name and getting rid of "new mexico" from id name and mapping
+#------------------plotting-------------#
 
 #plot well sites and levels over map of NM
 NMBGMR.site.map <- ggplot() +
-  geom_sf(data = NM.county, fill = "white") +
-  geom_sf(data = NMBGMR.site.spatial, aes(color = WellDepth), 
-          alpha = 0.5, size = 1) +
-  scale_color_viridis_c(direction=-1) +
-  labs(color = "Water Depth") +
-  theme(legend.position = "top")
+  geom_sf(data=NM.county, fill="white") +
+  geom_sf(data = test, aes(color = ID, fill=ID), 
+          alpha = 0.5, size = 1)
+  
 print(NMBGMR.site.map)
 
-ggplot() +
-  geom_sf(data=well.county, fill="red")
+

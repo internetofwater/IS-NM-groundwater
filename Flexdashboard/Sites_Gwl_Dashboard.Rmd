@@ -2,7 +2,7 @@
 title: "Untitled"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: columns
+    orientation: rows
     vertical_layout: fill
 editor_options: 
   chunk_output_type: console
@@ -30,7 +30,7 @@ all.sites.gwl.spatial <- st_as_sf(all.sites.gwl, coords = c("DecLongVa", "DecLat
 
 ```
 
-Column {data-width=650}
+Row {data-height=650}
 -----------------------------------------------------------------------
 
 ### Chart A
@@ -46,7 +46,7 @@ leaflet(data = all.sites.gwl) %>%
 
 ```
 
-Column {data-width=350}
+Row {data-height=350}
 -----------------------------------------------------------------------
 
 ### Chart B
