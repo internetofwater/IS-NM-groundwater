@@ -1,47 +1,45 @@
 ##NMBGMR loop to get water level data for each site
 library(tidyverse)
-library(httr)
+library(httr) #for http error
 library(lubridate)
+library(varhandle) #to unfactor factors to turn into numeric
 
 NMBGMR.site <- read.csv("./NMBGMR/NMBGMR_SiteInfo.csv")
-as.numeric.factor <- function(x) {as.numeric(levels(x))[x]}
 
 
 #double check that PointID is the thing I want for the unique number.
 siteNo.list <- NMBGMR.site$PointID
+#siteNo <- "BC-0030"
 
 baseURL <- 'https://maps.nmt.edu/maps/data/export_hydrograph/'
 fileType <- '.csv'
-
 i=1
 projectsURL = paste0(baseURL,siteNo.list[i],fileType)
 
 #create gw.meta table from first 7 rows
 gw.meta <- read.csv(projectsURL, nrows=7, header=FALSE, as.is=TRUE) %>% as.data.frame()
 headers <- c("PointID", gw.meta$V1)
-values <- c(siteNo.list[i], gw.meta$V2)
+values <- c("skeleton", gw.meta$V2)
 
 #create data frame
 gw.meta <- as.data.frame(matrix(nrow=0,ncol=8))
 colnames(gw.meta) <- headers
 gw.meta[1,] <- values
 
-#create gw.levels table from after the first 7 hows
+#create gw.levels table from after the first 7 rows
 gw.lev <- read.csv(projectsURL, 
-                   skip=7, header=FALSE) %>% as.data.frame()
-colnames(gw.lev) <- as.character(unlist(gw.lev[1,])) 
+                   skip=7, header=FALSE, na.strings="") %>% as.data.frame()
 gw.lev <- gw.lev[-1,]
-gw.lev$PointID <- siteNo.list[i]
+gw.lev$PointID <- "skeleton"
 colnames(gw.lev) <- c("DateMeasured", "Depth2WaterBGS", "ManualDepth2WaterBGS",
                       "Status", "MeasurementMethod", "DataSource", "MeasuringAgency",
                       "Notes", "PointID")
 gw.lev$Date <- (substr(gw.lev$DateMeasured, start=1, stop=10))
 gw.lev$Date <- as_date(gw.lev$Date)
-gw.lev$DepthToWaterBGS <- as.numeric.factor(gw.lev$DepthToWaterBGS)
 
-#FIX THIS!
-gw.lev$`Manual DepthToWaterBGS` <- as.numeric.factor(gw.lev$`Manual DepthToWaterBGS`)
-gw.lev$`Manual DepthToWaterBGS` <- as.numeric(gw.lev$`Manual DepthToWaterBGS`)
+gw.lev$Depth2WaterBGS <- unfactor(gw.lev$Depth2WaterBGS)
+gw.lev$ManualDepth2WaterBGS <- unfactor(gw.lev$ManualDepth2WaterBGS)
+
 gw.lev<- gw.lev %>% as.data.frame()
 gw.lev <- gw.lev[!with(gw.lev,is.na(Depth2WaterBGS) & is.na(ManualDepth2WaterBGS)),]
 
@@ -49,52 +47,53 @@ gw.lev <- gw.lev[!with(gw.lev,is.na(Depth2WaterBGS) & is.na(ManualDepth2WaterBGS
 gw.avg <- gw.lev %>% dplyr::group_by(PointID, Date, MeasurementMethod, DataSource, 
                              MeasuringAgency) %>%
                      summarise(DTW = median(Depth2WaterBGS, na.rm =TRUE),
-                               Manual.DTW = median(`ManualDepth2WaterBGS`, na.rm=TRUE))
-
-plot(gw.avg$Date, gw.avg$DTW, type='l')
+                               Manual.DTW = median(`ManualDepth2WaterBGS`, na.rm=TRUE)) 
 
 
 
-for (siteNo.list[i]) {
-  if(http-error(projectsURL) = TRUE) {
-    gw.meta[1,] <- c(siteNo.list[i], "NA", "NA", "NA", "NA", "NA", "NA", "NA")
-    gw.avg
+for (siteNo in siteNo.list) {
+  #siteNo <- "BC-0030"
+  projectsURL <- paste0(baseURL,siteNo,fileType)
+  if(http_error(projectsURL) == TRUE) {
+    meta <- c(siteNo, "NA", "NA", "NA", "NA", "NA", "NA", "NA")
+    lev <- c(siteNo, "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA")
+    
+  } else if(http_error(projectsURL) == FALSE) {
+    meta <- read.csv(projectsURL, nrows=7, header=FALSE, as.is=TRUE) %>% as.data.frame()
+    meta <- c(siteNo, meta$V2)   
+    
+    lev <- read.csv(projectsURL, 
+                       skip=7, header=FALSE, na.strings="") %>% as.data.frame()
+    lev <- lev[-1,]
+    lev$PointID <- siteNo
+    colnames(lev) <- c("DateMeasured", "Depth2WaterBGS", "ManualDepth2WaterBGS",
+                          "Status", "MeasurementMethod", "DataSource", "MeasuringAgency",
+                          "Notes", "PointID")
+    lev$Date <- (substr(lev$DateMeasured, start=1, stop=10))
+    lev$Date <- as_date(lev$Date)
+    
+    lev$Depth2WaterBGS <- unfactor(lev$Depth2WaterBGS)
+    lev$ManualDepth2WaterBGS <- unfactor(lev$ManualDepth2WaterBGS)
+    
+    lev<- lev %>% as.data.frame()
+    lev <- lev[!with(lev,is.na(Depth2WaterBGS) & is.na(ManualDepth2WaterBGS)),]
+    
+    #consolidate measurements by date
+    avg <- lev %>% dplyr::group_by(PointID, Date, MeasurementMethod, DataSource, 
+                                         MeasuringAgency) %>%
+      summarise(DTW = median(Depth2WaterBGS, na.rm =TRUE),
+                Manual.DTW = median(`ManualDepth2WaterBGS`, na.rm=TRUE))
     
   }
-  
-  if(http-error(projectsURL) = FALSE) {
-    
-  }
-  
+  metadata <- rbind(gw.meta, meta)
+  gwldata <- rbind(gw.avg, avg)
+  print(siteNo)
 }
   
   
   
   
   
-  
-  
-for (file) { 
-  if(http error = TRUE){
-    values(PointID, Na, NA, ...)
-  }}
-
-
-for (pointID)
-  if(http)
-    )
-  
-
-dat <- read.csv(url(projectsURL))
-  
-for (i in 2:length(siteNo.list)){
-  projectsURL = paste0(baseURL,"BC-0030",fileType)
-  foo <- read.csv(url(projectsURL))
-  foo <- foo %>% mutate_all(as.character)
-  
-  dat <- rbind(dat, foo)
-  print(siteNo.list[i])
-}
 
   
   
