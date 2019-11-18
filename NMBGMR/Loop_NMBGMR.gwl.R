@@ -85,8 +85,8 @@ for (siteNo in siteNo.list) {
                 Manual.DTW = median(`ManualDepth2WaterBGS`, na.rm=TRUE))
     
   }
-  metadata <- rbind(gw.meta, meta)
-  gwldata <- rbind(gw.avg, avg)
+  gw.meta <- rbind(gw.meta, meta)
+  gw.avg <- rbind(gw.avg, avg)
   print(siteNo)
 }
   
