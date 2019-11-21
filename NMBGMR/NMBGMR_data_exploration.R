@@ -20,12 +20,17 @@ NMBGMR.site <- NMBGMR.site %>%
   dplyr::select(-ObjectID.NMBGMR, -Geometry, -wkid) %>%
   mutate(AgencyCd="NMBGMR", AgencyNm = "New Mexico Bureau of Geology and Mineral Resources")
 
+utmcoor <- SpatialPoints(cbind(NMBGMR.site$Easting,NMBGMR.site$Northing), proj4string=CRS("+proj=utm +zone=13"))
+longlatcoor<-spTransform(utmcoor,CRS("+proj=longlat"))
 
+#not right for lat
+NMBGMR.site$DecLongVa <- coordinates(longlatcoor)[,1]
+NMBGMR.site$DecLatVa <- coordinates(longlatcoor)[,2]
 
-
-
+#separate from SpatialPoints chunk above 
 NMBGMR.site.spatial <-  st_as_sf(NMBGMR.site, 
              coords = c("DecLongVa", "DecLatVa"), crs = 4326)
+
 
 #map of NM counties
 NM.county <- st_as_sf(map(database = "county",'new mexico', plot=TRUE, fill = TRUE, col = "white"))
@@ -43,6 +48,11 @@ intersect$CountyNm <- stringr::str_to_title(intersect$CountyNm) %>%
 NMBGMR.site <- intersect %>% select(-ID)
 
 write.csv(NMBGMR.site, file="./NMBGMR/NMBGMR.site.csv")
+
+#once I figure out how to get correct lat long info, then save as this so that geometry column stays
+#intact
+st_write(WQ.countypop.joined, "./Data/Processed/WQ.countypop.joined.csv", 
+         layer_options = "GEOMETRY=AS_XY")
 
 
 #------------------plotting-------------#
