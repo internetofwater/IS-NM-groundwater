@@ -9,6 +9,7 @@ NMBGMR.site <- read.csv("./NMBGMR/NMBGMR_SiteInfo.csv")
 
 #double check that PointID is the thing I want for the unique number.
 siteNo.list <- unique(NMBGMR.site$PointID)
+#siteNo <- siteNo.list[i]
 #siteNo <- "BC-0030"
 
 baseURL <- 'https://maps.nmt.edu/maps/data/export_hydrograph/'
@@ -25,13 +26,13 @@ values <- c("skeleton", gw.meta$V2)
 gw.meta <- as.data.frame(matrix(nrow=0,ncol=8))
 colnames(gw.meta) <- headers
 gw.meta[1,] <- values
-gw.meta$PointID <- as.factor(gw.meta$PointID)
+
 
 #create gw.levels table from after the first 7 rows
 gw.lev <- read.csv(projectsURL, 
                    skip=7, header=FALSE, na.strings="", as.is=TRUE) %>% as.data.frame()
 gw.lev <- gw.lev[-1,]
-gw.lev$PointID <- as.factor("skeleton")
+gw.lev$PointID <- "skeleton"
 
 colnames(gw.lev) <- c("DateMeasured", "Depth2WaterBGS", "ManualDepth2WaterBGS",
                       "Status", "MeasurementMethod", "DataSource", "MeasuringAgency",
@@ -50,26 +51,26 @@ gw.avg <- gw.lev %>% dplyr::group_by(PointID, Date, MeasurementMethod, DataSourc
                                Manual.DTW = median(`ManualDepth2WaterBGS`, na.rm=TRUE)) 
 
 
-for (i in siteNo.list[1:10]) {
-  print(i)
+for (siteNo in siteNo.list[1:10]) {
+  print(siteNo)
 }
 
 
-for (i in siteNo.list[1:10]) {
+for (siteNo in siteNo.list[1:1000]) {
   #siteNo <- "BC-0030"
-  projectsURL <- paste0(baseURL,siteNo.list[i],fileType)
+  projectsURL <- paste0(baseURL,siteNo,fileType)
   if(http_error(projectsURL) == TRUE) {
-    meta <- c(siteNo.list[i], "NA", "NA", "NA", "NA", "NA", "NA", "NA")
-    lev <- c(siteNo.list[i], "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA")
+    meta <- c(siteNo, "NA", "NA", "NA", "NA", "NA", "NA", "NA")
+    lev <- c(siteNo, "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA")
     
   } else if(http_error(projectsURL) == FALSE) {
     meta <- read.csv(projectsURL, nrows=7, header=FALSE, as.is=TRUE) %>% as.data.frame()
-    meta <- c(siteNo.list[i], meta$V2)   
+    meta <- c(siteNo, meta$V2)   
     
     lev <- read.csv(projectsURL, 
                        skip=7, header=FALSE, na.strings="", as.is=TRUE) %>% as.data.frame()
     lev <- lev[-1,]
-    lev$PointID <- siteNo.list[i]
+    lev$PointID <- siteNo
     colnames(lev) <- c("DateMeasured", "Depth2WaterBGS", "ManualDepth2WaterBGS",
                           "Status", "MeasurementMethod", "DataSource", "MeasuringAgency",
                           "Notes", "PointID")
@@ -90,7 +91,7 @@ for (i in siteNo.list[1:10]) {
   }
   gw.meta <- rbind(gw.meta, meta)
   gw.avg <- rbind(gw.avg, avg)
-  print(siteNo.list[i])
+  print(siteNo)
 }
   
   
