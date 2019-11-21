@@ -50,8 +50,12 @@ gw.avg <- gw.lev %>% dplyr::group_by(PointID, Date, MeasurementMethod, DataSourc
                                Manual.DTW = median(`ManualDepth2WaterBGS`, na.rm=TRUE)) 
 
 
+for (i in siteNo.list[1:10]) {
+  print(i)
+}
 
-for (i in siteNo.list[1]) {
+
+for (i in siteNo.list[1:10]) {
   #siteNo <- "BC-0030"
   projectsURL <- paste0(baseURL,siteNo.list[i],fileType)
   if(http_error(projectsURL) == TRUE) {
@@ -91,8 +95,6 @@ for (i in siteNo.list[1]) {
   
   
   
-for (i in siteNo.list[1:10]) {
-  print(i)
-}
+
   
 
