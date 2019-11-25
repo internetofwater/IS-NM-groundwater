@@ -1,0 +1,71 @@
+---
+title: "Flex Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(shiny)
+library(leaflet)
+library(highcharter)
+
+latitude<-c(35.94077, 35.83770, 35.84545, 35.81584, 35.79387, 36.05600)
+longitude<-c(-78.58010, -78.78084, -78.72444, -78.62568, -78.64262,-78.67600)
+amounts1<-c(27, 44, 34, 46, 25, 15)
+amounts2<-c(34, 52, 35, 78, 14, 24)
+ids<-c("a", "b", "c", "d", "e", "f")
+df<-data.frame(ids,amounts1,amounts2,latitude,longitude)
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+```{r}
+output$map <- renderLeaflet({
+
+  leaflet() %>%
+    addTiles() %>%
+    addMarkers(data = df, lng = longitude, lat = latitude, 
+               layerId = ~ids)
+
+})
+
+leafletOutput('map')  
+
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+```{r}
+
+click_marker <- eventReactive(input$map_marker_click, {
+
+  x <- input$map_marker_click
+
+  return(x$id)
+
+})
+
+data_for_chart <- reactive({
+
+  return(df[df$ids == click_marker(), ])
+
+})
+
+output$chart <- renderHighchart({
+
+  highchart() %>%
+    hc_chart(type = 'column') %>%
+    hc_add_series(data = c(data_for_chart()$amounts1, 
+                           data_for_chart()$amounts2))
+
+})
+
+highchartOutput('chart')
+
+```

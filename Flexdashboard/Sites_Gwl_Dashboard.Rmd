@@ -18,6 +18,7 @@ library(sf)
 library(plotly)
 library(mapview)
 library(shiny)
+library(highcharter)
 
 theme_set(theme_classic())
 getwd()
@@ -30,6 +31,7 @@ sites.joined.skinny <- sites.joined.skinny %>% dplyr::select(-X)
 sites.summary.static <- read.csv("../Processed/sites.summary.static.csv", as.is = TRUE)
 sites.summary.static$firstMeas <- as.Date(sites.summary.static$firstMeas)
 sites.summary.static$lastMeas <- as.Date(sites.summary.static$lastMeas)
+sites.summary.static <-  sites.summary.static %>% filter(Count > "10")
 
 #gwl data
 gwl.joined.skinny <- read.csv("../Processed/gwl.joined.skinny.csv")
@@ -78,20 +80,20 @@ Row {data-height=650}
 ### Chart A
 
 ```{r}
-#NM.map <- map("state", "new mexico", fill = TRUE, plot = TRUE, col="white")
-renderLeaflet({leaflet(data = sites.summary.static) %>% 
+
+output$map <- renderLeaflet({
+  leaflet(data = sites.summary.static) %>% 
  addTiles()%>%
  addCircleMarkers(~DecLongVa, ~DecLatVa,
                   stroke = FALSE, 
                   fillOpacity = 0.3,
-                  popup = ~as.character(`SiteNo`))
+                  popup = ~as.character(`SiteNo`),
+                  layerId = ~SiteNo)
 })
 
-#mapviewOptions(basemaps = c('Esri.WorldShadedRelief','OpenStreetMap','Esri.WorldImagery'))
-#renderPlot({mapview(all.sites.gwl.spatial)
-#})
 
 
+leafletOutput('map')
 
 ```
 
@@ -122,7 +124,22 @@ ggplotly(site1ex.plot)
 ### Chart C
 
 ```{r}
-ggplot(sites.summary.static, aes(x=DecLongVa, y=DecLatVa, color = WellDepth)) +
-  geom_point()
+actionButton("goButton", "Go!")
+click_marker <- eventReactive(input$map_marker_click, {input$map_marker_click
+
+  return(x$SiteNo)
+
+})
+
+n <- eventReactive(input$goButton, {input$SiteNo}, ignoreNULL = FALSE)
+n
+
+output$well <- renderPlot({
+  ggplot(data_for_plot(), aes(x=Date, y = Depth.to.Water.Below.Land.Surface.in.ft.)) +
+    geom_point()
+
+})
+
+plotOutput('well')
 ```
 

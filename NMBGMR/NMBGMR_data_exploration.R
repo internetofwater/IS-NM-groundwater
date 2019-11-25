@@ -30,6 +30,7 @@ NMBGMR.site$DecLatVa <- coordinates(longlatcoor)[,2]
 #separate from SpatialPoints chunk above 
 NMBGMR.site.spatial <-  st_as_sf(NMBGMR.site, 
              coords = c("DecLongVa", "DecLatVa"), crs = 4326)
+#NM coordinates 6528?, not what they used though
 
 
 #map of NM counties
