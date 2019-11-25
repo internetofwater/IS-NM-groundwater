@@ -6,29 +6,74 @@ output:
     vertical_layout: fill
 editor_options: 
   chunk_output_type: console
+runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
-library(flexdashboard)
 library(tidyverse)
+library(flexdashboard)
 library(maps)
 library(leaflet)
 library(sf)
+library(plotly)
+library(mapview)
+library(shiny)
+
+theme_set(theme_classic())
 getwd()
+
+
 all.sites.gwl <- read.csv("../Processed/gwl.sites.joined.csv")
 all.sites.gwl <- all.sites.gwl %>% dplyr::select(-X)
+all.sites.gwl$Date <- as.Date(all.sites.gwl$Date)
 
 all.sites.gwl.static <- all.sites.gwl %>%
-  group_by(SiteNo) %>%
-  summarise(Long = median(DecLongVa),
-            Lat = median(DecLatVa),
-            DTW = mean(Depth.to.Water.Below.Land.Surface.in.ft.)
-            )
+  dplyr::group_by(AgencyCd, SiteNo, DecLongVa, DecLatVa) %>%
+  dplyr::summarise(
+            firstMeas = min(Date),
+            lastMeas = max(Date), 
+            Count = length(SiteNo),
+            WellDepth = median(WellDepth)
+    
+  )
 
-all.sites.gwl.spatial <- st_as_sf(all.sites.gwl, coords = c("DecLongVa", "DecLatVa"), crs = 4326)
+all.sites.gwl.spatial <- st_as_sf(all.sites.gwl.static, coords = c("DecLongVa", "DecLatVa"), crs = 4326)
+
+
+
 
 
 ```
+
+Sidebar {.sidebar}
+=======================================================================
+Identify desired attributes to narrow down sites on map
+
+```{r}
+#Agency selection
+checkboxGroupInput("AgencyCd", label = "Agency",
+            choices = c("USGS", "NMBGMR", "NGWMN", "OSE", "ABQ"), selected = "USGS")
+
+#Well Depth
+sliderInput("WellDepth", "Well Depth (ft)",
+            min = 3, max = 7218, value = c(3,5000), step = 1)
+
+# Number of measurements per well
+sliderInput("Count", "Number of measurements per well",
+            min = 1, max = 13000, value = c(1,10), step = 1)
+
+#Date of last measurement
+dateRangeInput("lastMeas", "Date of last measurement", start = NULL, end = NULL, 
+               min = "1900-05-01",max = "2019-11-08", format = "yyyy-mm-dd", 
+               startview = "month", weekstart = 0, language = "en", 
+               separator = " to ", width = NULL, autoclose = TRUE)
+
+
+```
+
+Dashboard
+=======================================================================
+
 
 Row {data-height=650}
 -----------------------------------------------------------------------
@@ -36,13 +81,20 @@ Row {data-height=650}
 ### Chart A
 
 ```{r}
-NM.map <- map("state", "new mexico", fill = TRUE, plot = TRUE, col="white")
-leaflet(data = all.sites.gwl) %>% 
-  addTiles()%>%
-  addCircleMarkers(~DecLongVa, ~DecLatVa,
-                   stroke = FALSE, 
-                   fillOpacity = 0.3,
-                   popup = ~as.character(`SiteNo`))
+#NM.map <- map("state", "new mexico", fill = TRUE, plot = TRUE, col="white")
+renderLeaflet({leaflet(data = all.sites.gwl.static) %>% 
+ addTiles()%>%
+ addCircleMarkers(~DecLongVa, ~DecLatVa,
+                  stroke = FALSE, 
+                  fillOpacity = 0.3,
+                  popup = ~as.character(`SiteNo`))
+})
+
+#mapviewOptions(basemaps = c('Esri.WorldShadedRelief','OpenStreetMap','Esri.WorldImagery'))
+#renderPlot({mapview(all.sites.gwl.spatial)
+#})
+
+
 
 ```
 
@@ -53,11 +105,28 @@ Row {data-height=350}
 
 ```{r}
 
+site1ex <- all.sites.gwl %>%
+  filter(SiteNo == "314810106513601") 
+site1ex <- site1ex %>% 
+  dplyr::group_by(Date)
+
+site1ex.plot <- site1ex %>%
+  ggplot(aes(x=Date, y = Depth.to.Water.Below.Land.Surface.in.ft.)) +
+  geom_point() +
+  geom_line() +
+  scale_y_reverse() +
+  labs(y="Depth to Water (ft)", title = paste0("Well Depth:", 
+                                               site1ex$WellDepth[1], "ft"))
+            
+print(site1ex.plot) 
+
+ggplotly(site1ex.plot)
 ```
 
 ### Chart C
 
 ```{r}
-
+ggplot(all.sites.gwl.static, aes(x=DecLongVa, y=DecLatVa, color = WellDepth)) +
+  geom_point()
 ```
 

@@ -12,15 +12,41 @@ runtime: shiny
 # load data in 'global' chunk so it can be shared by all users of the dashboard
 library(datasets)
 mtcars2 <- mtcars[, c("mpg", "cyl", "wt")]
+
+library(tidyverse)
+library(flexdashboard)
+library(maps)
+library(leaflet)
+library(sf)
+library(plotly)
+library(mapview)
+library(shiny)
+
+theme_set(theme_classic())
+getwd()
+
+
+all.sites.gwl <- read.csv("../Processed/gwl.sites.joined.csv")
+all.sites.gwl <- all.sites.gwl %>% dplyr::select(-X)
+all.sites.gwl$Date <- as.Date(all.sites.gwl$Date)
+
+all.sites.gwl.static <- all.sites.gwl %>%
+  dplyr::group_by(AgencyCd, SiteNo, DecLongVa, DecLatVa) %>%
+  dplyr::summarise(
+            firstMeas = min(Date),
+            lastMeas = max(Date), 
+            Count = length(SiteNo),
+            WellDepth = median(WellDepth))
+
 ```
 
 
 ```{r}
 # Reactive that returns the whole dataset if there is no brush
 selectedData <- reactive({
-  data <- brushedPoints(mtcars2, input$plot1_brush)
+  data <- brushedPoints(all.sites.gwl.static, input$plot1_brush)
   if (nrow(data) == 0)
-    data <- mtcars2
+    data <- all.sites.gwl.static
   data
 })
 ```
@@ -31,10 +57,10 @@ Column {data-width=650}
 ### Miles Per Gallon vs. Weight {data-width=600}
 
 ```{r}
-library(ggplot2)
 plotOutput("plot1", brush = brushOpts(id = "plot1_brush"))
 output$plot1 <- renderPlot({
-  ggplot(mtcars2, aes(wt, mpg)) + geom_point()
+  ggplot(all.sites.gwl.static, aes(x=DecLongVa, y=DecLatVa, color = WellDepth)) +
+  geom_point()
 })
 ```
 
@@ -42,8 +68,11 @@ output$plot1 <- renderPlot({
 
 ```{r}
 renderPlot({
-  ggplot(selectedData(), aes(factor(cyl), mpg))  + geom_boxplot()
+  ggplot(selectedData(), aes(Date, Depth.to.Water.Below.Land.Surface.in.ft.)) + 
+    geom_point() +
+    geom_line()
 })
+
 ```
 
 Column {data-width=350}
