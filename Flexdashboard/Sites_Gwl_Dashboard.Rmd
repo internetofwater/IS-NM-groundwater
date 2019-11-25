@@ -22,22 +22,17 @@ library(shiny)
 theme_set(theme_classic())
 getwd()
 
+#meta data
+sites.joined.skinny <- read.csv("../Processed/sites.joined.skinny.csv")
+sites.joined.skinny <- sites.joined.skinny %>% dplyr::select(-X)
 
-all.sites.gwl <- read.csv("../Processed/gwl.sites.joined.csv")
-all.sites.gwl <- all.sites.gwl %>% dplyr::select(-X)
-all.sites.gwl$Date <- as.Date(all.sites.gwl$Date)
+#static df with count and date measurements
+sites.summary.static <- read.csv("../Processed/sites.summary.static.csv", as.is = TRUE)
+sites.summary.static$firstMeas <- as.Date(sites.summary.static$firstMeas)
+sites.summary.static$lastMeas <- as.Date(sites.summary.static$lastMeas)
 
-all.sites.gwl.static <- all.sites.gwl %>%
-  dplyr::group_by(AgencyCd, SiteNo, DecLongVa, DecLatVa) %>%
-  dplyr::summarise(
-            firstMeas = min(Date),
-            lastMeas = max(Date), 
-            Count = length(SiteNo),
-            WellDepth = median(WellDepth)
-    
-  )
-
-all.sites.gwl.spatial <- st_as_sf(all.sites.gwl.static, coords = c("DecLongVa", "DecLatVa"), crs = 4326)
+#gwl data
+gwl.joined.skinny <- read.csv("../Processed/gwl.joined.skinny.csv")
 
 
 
@@ -68,6 +63,8 @@ dateRangeInput("lastMeas", "Date of last measurement", start = NULL, end = NULL,
                startview = "month", weekstart = 0, language = "en", 
                separator = " to ", width = NULL, autoclose = TRUE)
 
+#county drop down
+
 
 ```
 
@@ -82,7 +79,7 @@ Row {data-height=650}
 
 ```{r}
 #NM.map <- map("state", "new mexico", fill = TRUE, plot = TRUE, col="white")
-renderLeaflet({leaflet(data = all.sites.gwl.static) %>% 
+renderLeaflet({leaflet(data = sites.summary.static) %>% 
  addTiles()%>%
  addCircleMarkers(~DecLongVa, ~DecLatVa,
                   stroke = FALSE, 
@@ -105,7 +102,7 @@ Row {data-height=350}
 
 ```{r}
 
-site1ex <- all.sites.gwl %>%
+site1ex <- gwl.joined.skinny %>%
   filter(SiteNo == "314810106513601") 
 site1ex <- site1ex %>% 
   dplyr::group_by(Date)
@@ -115,8 +112,7 @@ site1ex.plot <- site1ex %>%
   geom_point() +
   geom_line() +
   scale_y_reverse() +
-  labs(y="Depth to Water (ft)", title = paste0("Well Depth:", 
-                                               site1ex$WellDepth[1], "ft"))
+  labs(y="Depth to Water (ft)")
             
 print(site1ex.plot) 
 
@@ -126,7 +122,7 @@ ggplotly(site1ex.plot)
 ### Chart C
 
 ```{r}
-ggplot(all.sites.gwl.static, aes(x=DecLongVa, y=DecLatVa, color = WellDepth)) +
+ggplot(sites.summary.static, aes(x=DecLongVa, y=DecLatVa, color = WellDepth)) +
   geom_point()
 ```
 
