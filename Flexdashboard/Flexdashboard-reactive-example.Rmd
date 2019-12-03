@@ -41,6 +41,8 @@ all.sites.gwl.static <- all.sites.gwl %>%
 ```
 
 
+Dashboard
+=======================================================================
 ```{r}
 # Reactive that returns the whole dataset if there is no brush
 selectedData <- reactive({
@@ -51,34 +53,36 @@ selectedData <- reactive({
 })
 ```
 
-Column {data-width=650}
+Row {data-height=650}
 -----------------------------------------------------------------------
 
-### Miles Per Gallon vs. Weight {data-width=600}
+### Miles Per Gallon vs. Weight 
 
 ```{r}
 plotOutput("plot1", brush = brushOpts(id = "plot1_brush"))
 output$plot1 <- renderPlot({
-  ggplot(all.sites.gwl.static, aes(x=DecLongVa, y=DecLatVa, color = WellDepth)) +
+  ggplot(selectedData(), aes(x=DecLongVa, y=DecLatVa, color = WellDepth)) +
   geom_point()
 })
 ```
 
-### Miles Per Gallon and Cylinders
+Row {data-height=350}
+-----------------------------------------------------------------------
+
+### Miles Per Gallon and Cylinders {data-width=400}
 
 ```{r}
 renderPlot({
-  ggplot(selectedData(), aes(Date, Depth.to.Water.Below.Land.Surface.in.ft.)) + 
+  ggplot(selectedData(), aes(WellDepth, Depth.to.Water.Below.Land.Surface.in.ft.)) + 
     geom_point() +
     geom_line()
 })
 
 ```
 
-Column {data-width=350}
------------------------------------------------------------------------
 
-### Car Details {data-width=400}
+
+### Car Details
 
 ```{r}
 renderTable({

@@ -1,10 +1,9 @@
 ---
-title: "New Mexico Groundwater"
+title: "Untitled"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
     vertical_layout: fill
-    theme: united
 editor_options: 
   chunk_output_type: console
 runtime: shiny
@@ -19,7 +18,6 @@ library(sf)
 library(plotly)
 library(mapview)
 library(shiny)
-library(viridis)
 
 
 theme_set(theme_classic())
@@ -32,51 +30,43 @@ sites.joined.skinny <- sites.joined.skinny %>% dplyr::select(-X)
 sites.summary.static <- read.csv("../Processed/sites.summary.static.csv", as.is = TRUE)
 sites.summary.static$firstMeas <- as.Date(sites.summary.static$firstMeas)
 sites.summary.static$lastMeas <- as.Date(sites.summary.static$lastMeas)
-sites.summary.static$SiteType <- as.factor(sites.summary.static$SiteType)
-
-
-
-countylist <- unique(sites.summary.static$CountyNm)
+sites.summary.static <-  sites.summary.static %>% filter(Count > 10)
 
 #gwl data
 gwl.joined.skinny <- read.csv("../Processed/gwl.joined.skinny.csv",as.is=TRUE)
 gwl.joined.skinny$Date<-as.Date(gwl.joined.skinny$Date)
 
+countylist <- unique(sites.summary.static$CountyNm)
+```
 
+Sidebar {.sidebar}
+=======================================================================
+Identify desired attributes to narrow down sites on map
+
+```{r}
+#Agency selection
+checkboxGroupInput("AgencyCd", label = "Agency",
+            choices = c("USGS", "NMBGMR", "NGWMN", "OSE", "ABQ"), selected = "USGS")
+#Well Depth
+sliderInput("WellDepth", "Well Depth (ft)",
+            min = 3, max = 7218, value = c(3,5000), step = 1)
+# Number of measurements per well
+sliderInput("Count", "Number of measurements per well",
+            min = 1, max = 13000, value = c(1,10), step = 1)
+#Date of last measurement
+dateRangeInput("lastMeas", "Date of last measurement", start = NULL, end = NULL, 
+               min = "1900-05-01",max = "2019-11-08", format = "yyyy-mm-dd", 
+               startview = "month", weekstart = 0, language = "en", 
+               separator = " to ", width = NULL, autoclose = TRUE)
+#county drop down
+selectizeInput(
+        'County', 'County', choices = countylist,
+        multiple = TRUE, selected = NULL)
 ```
 
 Dashboard
 =======================================================================
 
-
-Sidebar {.sidebar}
--------------------------------------------
-Identify desired attributes to narrow down sites on map
-
-```{r}
-#Agency selection
-checkboxGroupInput("Agency", label = "Agency",
-            choices = c("USGS", "NMBGMR", "NGWMN", "OSE", "ABQ"), selected = "USGS")
-
-#Well Depth
-sliderInput("Depth", "Well Depth (ft)",
-            min = 3, max = 7218, value = c(1000,5000), step = 5)
-
-#Number of measurements per well
-sliderInput("Measurements", "Number of measurements per well",
-            min = 1, max = 13000, value = c(100,12000), step = 1)
-
-#Date of last measurement
-dateRangeInput("Dates", "Date of last measurement", start = NULL, end = NULL, 
-               min = "1900-05-01",max = "2019-11-08", format = "yyyy-mm-dd", 
-               startview = "month", weekstart = 0, language = "en", 
-               separator = " to ", width = NULL, autoclose = TRUE)
-
-#County drop down
-selectizeInput(
-        'County', 'County', choices = countylist,
-        multiple = TRUE, selected = NULL)
-```
 
 Row {data-height=650}
 -----------------------------------------------------------------------
@@ -84,38 +74,14 @@ Row {data-height=650}
 ### Chart A
 
 ```{r}
-
-selectedData <- reactive({
-  m <- subset(sites.summary.static,
-              AgencyCd.x %in% input$AgencyCd &
-              WellDepth >= input$Depth[1] & WellDepth <= input$Depth[2] &
-              Count >= input$Measurements[1] & Count <= input$Measurements[2] #&
-              #lastMeas <= input$Dates[1] & lastMeas <= input$Dates[2] &
-              #CountyNm %in% input$County
-       ) 
-  if (nrow(m) == 0)
-    m <- sites.summary.static
-  return(m)
-  
-  
-})
-
 output$map <- renderLeaflet({
-
-  #palette 
-  pal <- colorNumeric(viridis(999), NULL)
-  
- selectedData() %>%
- leaflet() %>% 
+  leaflet(data = sites.summary.static) %>% 
  addTiles()%>%
  addCircleMarkers(~DecLongVa, ~DecLatVa,
                   stroke = FALSE, 
                   fillOpacity = 0.3,
-                  fillColor = ~pal(WellDepth),
                   popup = ~as.character(`SiteNo`),
-                  layerId = ~SiteNo) %>%
- addLegend(position = 'bottomright', pal = pal, 
-                values = selectedData()$WellDepth, title = 'Well Depth (ft)')
+                  layerId = ~SiteNo)
 })
 leafletOutput('map')
 ```
@@ -123,7 +89,7 @@ leafletOutput('map')
 Row {data-height=350}
 -----------------------------------------------------------------------
 
-### Static Example
+### Chart B
 
 ```{r}
 site1ex <- gwl.joined.skinny %>%
@@ -161,17 +127,11 @@ click_marker <- eventReactive(input$map_marker_click, {
   
   
  })
- output$well <- renderPlotly({
-   p <- ggplot(plot_data(), aes(x=Date, y = Depth.to.Water.Below.Land.Surface.in.ft.)) +
-     geom_point() + geom_line() + scale_y_reverse() +
-     labs(y="Depth to Water (ft)")
-   ggplotly(p)
+ output$well <- renderPlot({
+   ggplot(plot_data(), aes(x=Date, y = Depth.to.Water.Below.Land.Surface.in.ft.)) +
+     geom_point() + geom_line()
    
  })
-plotlyOutput('well')
+plotOutput('well')
 
 ```
-
-About
-==================================================
-Metadata

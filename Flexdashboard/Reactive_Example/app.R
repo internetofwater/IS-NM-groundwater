@@ -23,7 +23,8 @@ server <- function(input, output) {
         leaflet() %>% 
             setView(lng=131 , lat =-25, zoom=4) %>%
             addTiles(options = providerTileOptions(noWrap = TRUE)) %>%
-            addCircleMarkers(data=data, ~x , ~y, layerId=~id, popup=~id, radius=8 , color="black",  fillColor="red", stroke = TRUE, fillOpacity = 0.8)
+            addCircleMarkers(data=data, ~x , ~y, layerId=~id, popup=~id, radius=8 , 
+                             color="black",  fillColor="red", stroke = TRUE, fillOpacity = 0.8)
     })
     
     # store the click
