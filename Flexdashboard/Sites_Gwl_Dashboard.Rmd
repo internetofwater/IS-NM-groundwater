@@ -81,7 +81,7 @@ selectizeInput(
 Row {data-height=650}
 -----------------------------------------------------------------------
 
-### Chart A
+### Sites
 
 ```{r}
 
@@ -174,4 +174,12 @@ plotlyOutput('well')
 
 About
 ==================================================
-Metadata
+To-do:
+
+- convert to .RDS dfs
+- join new version of NMBGMR gwl data
+- wrangle and clean OSE
+- wrangle and clean ABQ
+- join all
+- create "About" page
+- submit skinny joined df with "must haves"
