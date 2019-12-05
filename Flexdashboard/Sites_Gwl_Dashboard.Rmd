@@ -87,15 +87,15 @@ Row {data-height=650}
 
 selectedData <- reactive({
   m <- subset(sites.summary.static,
-              AgencyCd.x %in% input$AgencyCd &
+              AgencyCd.x %in% input$Agency &
               WellDepth >= input$Depth[1] & WellDepth <= input$Depth[2] &
               Count >= input$Measurements[1] & Count <= input$Measurements[2] #&
               #lastMeas <= input$Dates[1] & lastMeas <= input$Dates[2] &
               #CountyNm %in% input$County
        ) 
-  if (nrow(m) == 0)
-    m <- sites.summary.static
-  return(m)
+ # if (nrow(m) == 0)
+ #   m <- sites.summary.static
+ # return(m)
   
   
 })
