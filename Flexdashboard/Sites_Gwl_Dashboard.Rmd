@@ -20,6 +20,10 @@ library(plotly)
 library(mapview)
 library(shiny)
 library(viridis)
+library(shinyWidgets); 
+#devtools::install_github("dreamRs/shinyWidgets") 
+#install.packages("shinyWidgets")
+
 
 
 theme_set(theme_classic())
@@ -33,7 +37,7 @@ sites.summary.static <- read.csv("../Processed/sites.summary.static.csv", as.is 
 sites.summary.static$firstMeas <- as.Date(sites.summary.static$firstMeas)
 sites.summary.static$lastMeas <- as.Date(sites.summary.static$lastMeas)
 sites.summary.static$SiteType <- as.factor(sites.summary.static$SiteType)
-
+sites.summary.static$AgencyCd.x <- as.factor(sites.summary.static$AgencyCd.x)
 
 
 countylist <- unique(sites.summary.static$CountyNm)
@@ -63,8 +67,7 @@ sliderInput("Depth", "Well Depth (ft)",
             min = 3, max = 7218, value = c(1000,5000), step = 5)
 
 #Number of measurements per well
-sliderInput("Measurements", "Number of measurements per well",
-            min = 1, max = 13000, value = c(100,12000), step = 1)
+numericInput("Measurements", "Minimum number of measurements per well", value = 10)
 
 #Date of last measurement
 dateRangeInput("Dates", "Date of last measurement", start ="1900-05-01", end = Sys.Date(), 
@@ -76,6 +79,15 @@ dateRangeInput("Dates", "Date of last measurement", start ="1900-05-01", end = S
 selectizeInput(
         'County', 'County', choices = countylist,
         multiple = TRUE, selected = countylist)
+
+pickerInput(
+   inputId = "Id094",
+   label = "Select/deselect all options", 
+    choices = countylist,
+   options = list(
+      `actions-box` = TRUE), 
+    multiple = TRUE
+)
 ```
 
 Row {data-height=650}
@@ -89,9 +101,9 @@ selectedData <- reactive({
   m <- subset(sites.summary.static,
               AgencyCd.x %in% input$Agency &
               WellDepth >= input$Depth[1] & WellDepth <= input$Depth[2] &
-              Count >= input$Measurements[1] & Count <= input$Measurements[2] &
+              Count >= input$Measurements &
               lastMeas >= as.Date(input$Dates[1]) & lastMeas <= as.Date(input$Dates[2]) &
-              CountyNm %in% input$County
+              CountyNm %in% input$Id094
        ) 
  # if (nrow(m) == 0)
  #   m <- sites.summary.static
