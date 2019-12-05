@@ -67,15 +67,15 @@ sliderInput("Measurements", "Number of measurements per well",
             min = 1, max = 13000, value = c(100,12000), step = 1)
 
 #Date of last measurement
-dateRangeInput("Dates", "Date of last measurement", start = NULL, end = NULL, 
-               min = "1900-05-01",max = "2019-11-08", format = "yyyy-mm-dd", 
+dateRangeInput("Dates", "Date of last measurement", start ="1900-05-01", end = Sys.Date(), 
+               min = "1900-05-01",max = Sys.Date(), format = "yyyy-mm-dd", 
                startview = "month", weekstart = 0, language = "en", 
                separator = " to ", width = NULL, autoclose = TRUE)
 
 #County drop down
 selectizeInput(
         'County', 'County', choices = countylist,
-        multiple = TRUE, selected = NULL)
+        multiple = TRUE, selected = countylist)
 ```
 
 Row {data-height=650}
@@ -89,9 +89,9 @@ selectedData <- reactive({
   m <- subset(sites.summary.static,
               AgencyCd.x %in% input$Agency &
               WellDepth >= input$Depth[1] & WellDepth <= input$Depth[2] &
-              Count >= input$Measurements[1] & Count <= input$Measurements[2] #&
-              #lastMeas <= input$Dates[1] & lastMeas <= input$Dates[2] &
-              #CountyNm %in% input$County
+              Count >= input$Measurements[1] & Count <= input$Measurements[2] &
+              lastMeas >= as.Date(input$Dates[1]) & lastMeas <= as.Date(input$Dates[2]) &
+              CountyNm %in% input$County
        ) 
  # if (nrow(m) == 0)
  #   m <- sites.summary.static
