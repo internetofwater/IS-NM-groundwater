@@ -20,7 +20,8 @@ library(plotly)
 library(mapview)
 library(shiny)
 library(viridis)
-library(shinyWidgets); 
+library(shinyWidgets) 
+library(scales)
 #devtools::install_github("dreamRs/shinyWidgets") 
 #install.packages("shinyWidgets")
 
@@ -28,9 +29,6 @@ library(shinyWidgets);
 
 theme_set(theme_classic())
 getwd()
-#meta data
-sites.joined.skinny <- read.csv("../Processed/sites.joined.skinny.csv", as.is=TRUE)
-sites.joined.skinny <- sites.joined.skinny %>% dplyr::select(-X)
 
 #static df with count and date measurements
 sites.summary.static <- read.csv("../Processed/sites.summary.static.csv", as.is = TRUE)
@@ -64,7 +62,7 @@ checkboxGroupInput("Agency", label = "Agency",
 
 #Well Depth
 sliderInput("Depth", "Well Depth (ft)",
-            min = 3, max = 7218, value = c(1000,5000), step = 5)
+            min = 1, max = 7400, value = c(1,3000), step = 10)
 
 #Number of measurements per well
 numericInput("Measurements", "Minimum number of measurements per well", value = 10)
@@ -76,14 +74,11 @@ dateRangeInput("Dates", "Date of last measurement", start ="1900-05-01", end = S
                separator = " to ", width = NULL, autoclose = TRUE)
 
 #County drop down
-selectizeInput(
-        'County', 'County', choices = countylist,
-        multiple = TRUE, selected = countylist)
-
 pickerInput(
-   inputId = "Id094",
-   label = "Select/deselect all options", 
+   inputId = "County",
+   label = "County", 
     choices = countylist,
+   selected = countylist,
    options = list(
       `actions-box` = TRUE), 
     multiple = TRUE
@@ -103,7 +98,7 @@ selectedData <- reactive({
               WellDepth >= input$Depth[1] & WellDepth <= input$Depth[2] &
               Count >= input$Measurements &
               lastMeas >= as.Date(input$Dates[1]) & lastMeas <= as.Date(input$Dates[2]) &
-              CountyNm %in% input$Id094
+              CountyNm %in% input$County
        ) 
  # if (nrow(m) == 0)
  #   m <- sites.summary.static
@@ -134,25 +129,6 @@ leafletOutput('map')
 
 Row {data-height=350}
 -----------------------------------------------------------------------
-
-### Static Example
-
-```{r}
-site1ex <- gwl.joined.skinny %>%
-  filter(SiteNo == "314810106513601") 
-site1ex <- site1ex %>% 
-  dplyr::group_by(Date)
-site1ex.plot <- site1ex %>%
-  ggplot(aes(x=Date, y = Depth.to.Water.Below.Land.Surface.in.ft.)) +
-  geom_point() +
-  geom_line() +
-  scale_y_reverse() +
-  labs(y="Depth to Water (ft)")
-            
-print(site1ex.plot) 
-ggplotly(site1ex.plot)
-```
-
 ### Click on a point to see groundwater levels
 
 ```{r}
@@ -183,6 +159,13 @@ click_marker <- eventReactive(input$map_marker_click, {
 plotlyOutput('well')
 
 ```
+
+### Chart B
+
+```{r}
+
+```
+
 
 About
 ==================================================
