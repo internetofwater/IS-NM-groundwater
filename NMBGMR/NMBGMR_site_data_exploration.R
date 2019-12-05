@@ -4,26 +4,28 @@ library(stringr); library(PBSmapping); library(spData); library(sf); library(ply
 library(ggplot2); 
 #tidyverse messes up maps function because purrr masks part of it
 
+options(scipen=999) #turns scientific notation to numeric
 
+NMBGMR.site <- read.csv("./NMBGMR/gwLevelMetadata.csv") #6090 sites
 
-NMBGMR.site <- read.csv("./NMBGMR/NMBGMR_SiteInfo.csv") #6091 sites
+NMBGMR.site <- NMBGMR.site %>% dplyr::select(-countDepth2Water, -countManualD2W)
 names(NMBGMR.site)
 
-#do not know the coordinate reference system they used
 
 names(NMBGMR.site) <- c("SiteNo", "SiteID.NMBGMR", "Easting", 
-                         "Northing", "AltVa", "OSEWellID", "HoleDepth",
-                         "WellDepth", "FormationZone.NMBGMR", "Geometry", 
-                        "ObjectID.NMBGMR","DecLongVa", "DecLatVa", "wkid")
+                         "Northing", "AltVa",  "WellDepth",
+                          "FormationZone.NMBGMR", "FormationMeaning.NMBGMR", 
+                        "DepthToWater")
 
 NMBGMR.site <- NMBGMR.site %>%
-  dplyr::select(-ObjectID.NMBGMR, -Geometry, -wkid) %>%
   mutate(AgencyCd="NMBGMR", AgencyNm = "New Mexico Bureau of Geology and Mineral Resources")
+NMBGMR.site <- NMBGMR.site[!(is.na(NMBGMR.site$Easting)) | !(is.na(NMBGMR.site$Northing)),]
 
-utmcoor <- SpatialPoints(cbind(NMBGMR.site$Easting,NMBGMR.site$Northing), proj4string=CRS("+proj=utm +zone=13"))
+#create Lat/Long with Easting/Northing
+utmcoor <- SpatialPoints(cbind(NMBGMR.site$Easting, NMBGMR.site$Northing), proj4string=CRS("+proj=utm +zone=13"))
 longlatcoor<-spTransform(utmcoor,CRS("+proj=longlat"))
 
-#not right for lat
+#Add lat/long into df
 NMBGMR.site$DecLongVa <- coordinates(longlatcoor)[,1]
 NMBGMR.site$DecLatVa <- coordinates(longlatcoor)[,2]
 
@@ -40,19 +42,22 @@ NM.county <- st_as_sf(map(database = "county",'new mexico', plot=TRUE, fill = TR
 st_crs(NM.county) #projection is 4326
 st_crs(NMBGMR.site.spatial)
 
+
+#add counties
 intersect <- st_intersection(NMBGMR.site.spatial, NM.county)
 intersect$CountyNm <- gsub("new mexico,", "", intersect$ID)
 intersect$CountyNm <- stringr::str_to_title(intersect$CountyNm) %>%
                       paste0(" County") %>%
                       as.factor()
 
-NMBGMR.site <- intersect %>% select(-ID)
+NMBGMR.site <- intersect %>% dplyr::select(-ID)
 
+
+#save file as csv, keeping geometry column intact
 write.csv(NMBGMR.site, file="./NMBGMR/NMBGMR.site.csv")
 
-#once I figure out how to get correct lat long info, then save as this so that geometry column stays
-#intact
-st_write(WQ.countypop.joined, "./Data/Processed/WQ.countypop.joined.csv", 
+
+st_write(NMBGMR.site, "./NMBGMR/NMBGMR.site.csv", 
          layer_options = "GEOMETRY=AS_XY")
 
 
@@ -61,9 +66,14 @@ st_write(WQ.countypop.joined, "./Data/Processed/WQ.countypop.joined.csv",
 #plot well sites and levels over map of NM
 NMBGMR.site.map <- ggplot() +
   geom_sf(data=NM.county, fill="white") +
-  geom_sf(data = test, aes(color = ID, fill=ID), 
-          alpha = 0.5, size = 1)
+  geom_sf(data = NMBGMR.site.spatial, aes(color = DepthToWater, fill=DepthToWater), 
+          alpha = 0.5, size = 1)+
+  labs(color = "Water level below ground surface", fill="Water level below ground surface")
   
 print(NMBGMR.site.map)
+
+
+
+
 
 
