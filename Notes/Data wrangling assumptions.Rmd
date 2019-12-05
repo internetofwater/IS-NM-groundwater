@@ -13,5 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### NMBGMR
 
-Do not know coordinate references system they used.
+Do not know coordinate references system they used. Converted Easting/Northing coordinates to Lat/Long coordinates with 4326 projection.
+
+
 
