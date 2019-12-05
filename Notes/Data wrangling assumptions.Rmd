@@ -1,0 +1,17 @@
+---
+title: "Assumptions"
+author: "Rachel Bash"
+date: "12/5/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Assumptions
+
+### NMBGMR
+
+Do not know coordinate references system they used.
+
