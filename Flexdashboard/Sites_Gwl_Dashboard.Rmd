@@ -60,12 +60,13 @@ Identify desired attributes to narrow down sites on map
 checkboxGroupInput("Agency", label = "Agency",
             choices = c("USGS", "NMBGMR", "NGWMN", "OSE", "ABQ"), selected = "USGS")
 
-#Well Depth
-sliderInput("Depth", "Well Depth (ft)",
-            min = 1, max = 7400, value = c(1,3000), step = 10)
-
 #Number of measurements per well
 numericInput("Measurements", "Minimum number of measurements per well", value = 10)
+
+#Well Depth
+sliderInput("Depth", "Well Depth (ft)",
+            min = 0, max = 7400, value = c(0,3000), step = 10)
+setSliderColor("Purple", 1)
 
 #Date of last measurement
 dateRangeInput("Dates", "Date of last measurement", start ="1900-05-01", end = Sys.Date(), 
