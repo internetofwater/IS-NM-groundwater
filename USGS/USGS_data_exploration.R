@@ -12,23 +12,23 @@ USGS.gwl <- readNWISdata(service = "gwlevels", stateCd= "NM", parameterCd = "720
 USGS.gwl$site_no <- as.factor(USGS.gwl$site_no)
  #all observations have a date, very few (about 4000) have a time/timestamp
 USGS.gwl$site_tp_cd <- as.factor(USGS.gwl$site_tp_cd)
-summary(USGS.gwl$site_tp_cd)
 USGS.gwl$lev_dt <- as.Date(USGS.gwl$lev_dt)
 
 write.csv(USGS.gwl, file = "./USGS/USGS.gwl.csv")
 
 
-###site level info
+###first finding all the site level numbers
 USGS.site <- whatNWISsites(stateCd="NM", service="gwlevels")
 #produced site numbers with lat and long info
-USGS.sitenumbers <- USGS.site %>%
-  select(agency_cd, site_no, station_nm, site_tp_cd, dec_lat_va, dec_long_va)
+USGS.sitenumbers <- USGS.site %>% select(site_no)
 
+#readNWIS sites can only pull a certain number at a time otherwise its too big, so split into two
 USGS.sitenumbers.top <- USGS.sitenumbers %>% top_n(30000)
 USGS.sitenumbers.top <- USGS.sitenumbers.top$site_no
 USGS.sitenumbers.bottom <- USGS.sitenumbers %>%top_n(-8339)
 USGS.sitenumbers.bottom <- USGS.sitenumbers.bottom$site_no
 
+#bind together for full metadata on site info
 USGS.site.top <- readNWISsite(USGS.sitenumbers.top)
 USGS.site.bottom <- readNWISsite(USGS.sitenumbers.bottom)
 USGS.site <- rbind(USGS.site.top, USGS.site.bottom)
@@ -37,13 +37,30 @@ USGS.site <- rbind(USGS.site.top, USGS.site.bottom)
 
 
 USGS.site$site_no <- as.factor(USGS.site$site_no)
+USGS.site$agency_cd <- "USGS"
 USGS.site <- USGS.site %>%
   mutate(AgencyNm = "U.S. Geological Survey")
-length(unique(USGS.site$site_no)) #perhaps two duplicates?
+length(unique(USGS.site$site_no)) #few duplicates
+USGS.site$county_cd <- as.factor(USGS.site$county_cd)
+summary(USGS.site$county_cd)
 
+#find county codes to match with county names
+county_query <- read.delim("./USGS/county_query.txt")
+county_query.NM <- county_query %>% filter(state_cd =="35") %>%
+  select(county_cd, county_nm)
+county_query.NM$county_cd <- ifelse(county_query.NM$county_cd>9, 
+                                paste0("0", county_query.NM$county_cd),
+                                paste0("00",county_query.NM$county_cd))
+county_query.NM$county_cd <- as.factor(county_query.NM$county_cd)
 
+#join with USGS site meta data
+USGS.site <- left_join(USGS.site, county_query.NM, by = "county_cd")
+
+#write csv
 str(USGS.site)
 write.csv(USGS.site, file="./USGS/USGS.site.csv")
+
+
  
 #--------to plot-----------#
 
