@@ -1,15 +1,15 @@
 #NGWMN Data
 
-pacman::p_load(tidyverse, sf, maps, sp)
+pacman::p_load(tidyverse, sf, maps, sp, lubridate)
 
 getwd()
 #water level info
 NGWMN.gwl <- read.csv("./NGWMN/Raw/WATERLEVEL.csv"); head(NGWMN.gwl)
 #taking out unused/irrelevant columns
-NGWMN.gwl.skinny <- NGWMN.gwl %>%
-  select(AgencyCd, SiteNo, Time, Depth.to.Water.Below.Land.Surface.in.ft., 
-         Water.level.in.feet.relative.to.NAVD88, Observation.Method, Accuracy.Value,
-         Data.Provided.by, Comment)
+#NGWMN.gwl.skinny <- NGWMN.gwl %>%
+#  select(AgencyCd, SiteNo, Time, Depth.to.Water.Below.Land.Surface.in.ft., 
+#         Water.level.in.feet.relative.to.NAVD88, Observation.Method, Accuracy.Value,
+#         Data.Provided.by, Comment)
 
 #exploratory
 summary(NGWMN.gwl$Original.Direction) #not sure what this is
@@ -20,23 +20,26 @@ summary(NGWMN.gwl$Depth.to.Water.Below.Land.Surface.in.ft.)
 
 
 #fixing time components
-NGWMN.gwl.skinny <- NGWMN.gwl.skinny %>% rename_at("Time",~"DateTime")
-NGWMN.gwl.skinny$Date <- as.Date(NGWMN.gwl.skinny$DateTime) 
-#fix time component so that all time values are not 00:00 - see Lauren's email
-NGWMN.gwl.skinny$DateTime <- as.POSIXct(NGWMN.gwl.skinny$DateTime)
-NGWMN.gwl.skinny$Time <- format(as.POSIXct(NGWMN.gwl.skinny$DateTime), format = "%H:%M:%S")
+NGWMN.gwl <- NGWMN.gwl %>% rename_at("Time",~"DateTime")
+NGWMN.gwl$Date <- as.Date(NGWMN.gwl$DateTime) 
+#fix time component 
+NGWMN.gwl$Time <- substring(NGWMN.gwl$DateTime, 12, 19)
+NGWMN.gwl$Time <- hms::as.hms(NGWMN.gwl$Time)
 
-write.csv(NGWMN.gwl.skinny, file="./NGWMN/NGWMN.gwl.skinny.csv") 
+
+write.csv(NGWMN.gwl, file="./NGWMN/NGWMN.gwl.csv") 
 
 #site info
 NGWMN.site <- read.csv("./NGWMN/Raw/SITE_INFO.csv"); head(NGWMN.site)
 #taking out unused/irrelevant columns
-NGWMN.site.skinny <- NGWMN.site %>%
-  select(AgencyCd, SiteNo, AgencyNm, SiteName, DecLatVa, DecLongVa, HorzDatum, HorzMethod,
-         HorzAcy, AltVa, AltDatumCd, AltMethod, AltAcy, StateCd, StateNm, CountyCd, CountyNm,
-         SiteType, WellDepth, NatAquiferCd, NatAqfrDesc, LocalAquiferCd, LocalAquiferName)
-unique(NGWMN.site.skinny$SiteNo) #58 site names
-write.csv(NGWMN.site.skinny, file="./NGWMN/NGWMN.site.skinny.csv")
+#NGWMN.site.skinny <- NGWMN.site %>%
+#  select(AgencyCd, SiteNo, AgencyNm, SiteName, DecLatVa, DecLongVa, HorzDatum, HorzMethod,
+#         HorzAcy, AltVa, AltDatumCd, AltMethod, AltAcy, StateCd, StateNm, CountyCd, CountyNm,
+#         SiteType, WellDepth, NatAquiferCd, NatAqfrDesc, LocalAquiferCd, LocalAquiferName)
+#unique(NGWMN.site.skinny$SiteNo) #58 site names
+
+
+write.csv(NGWMN.site, file="./NGWMN/NGWMN.site.csv")
 
 
 #---------to plot--------------#
