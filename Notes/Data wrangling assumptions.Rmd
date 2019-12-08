@@ -13,7 +13,25 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### NMBGMR
 
+Pulled data by creating a loop that pulled each site number from website from csv
+
 Do not know coordinate references system they used. Converted Easting/Northing coordinates to Lat/Long coordinates with 4326 projection.
+
+### USGS
+
+Pulled from NWIS dataRetrieval package, last pull was on 12/7/2019.
+
+Data coordinate system was NAD83 or crs 4269.
+
+### NGWMN 
+
+Downloaded zipfile from website, saved under Raw folder
+
+### OSE
+
+Downloaded shapefile from OSE website. Data dictionary: http://www.ose.state.nm.us/GIS/PODS/nmose_WATERS_PODs_data_dictionary_v8.xlsx
+
+For depth to water, used static_level column, and for Date and Time, I used sys_date
 
 
 
