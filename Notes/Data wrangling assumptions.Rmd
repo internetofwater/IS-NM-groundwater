@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Assumptions
+## Notes
 
 ### NMBGMR
 
@@ -33,5 +33,9 @@ Downloaded shapefile from OSE website. Data dictionary: http://www.ose.state.nm.
 
 For depth to water, used static_level column, and for Date and Time, I used sys_date
 
+
+### ABQ
+
+No location information like lat or long data. No actual gwl data
 
 
