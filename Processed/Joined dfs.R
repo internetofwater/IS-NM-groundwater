@@ -6,32 +6,51 @@ pacman::p_load(tidyverse, plyr, dataRetrieval, devtools)
 
 #NGWMN = NGWMN.gwl.skinny and USGS = USGS.gwl
 
-NGWMN.gwls <- read.csv("./NGWMN/NGWMN.gwl.skinny.csv")
-NGWMN.gwls <- NGWMN.gwls %>% select(-X)
+NGWMN.gwls <- read.csv("./NGWMN/NGWMN.gwl.csv")
 USGS.gwls <- read.csv("./USGS/USGS.gwl.csv")
-USGS.gwls <- USGS.gwls %>% select(-X)
+NMBGMR.gwls <- read.csv("./NMBGMR/NMBGMR.gwl.csv")
+OSE.gwls <- read.csv("./OSE/OSE.gwl.csv")
+ABQ.gwls <- read.csv("./ABQ/ABQ.gwl.csv")
+
+
+#rename so that all overlapping variables with NGWMN have the same name 
 
 names(USGS.gwls)
-names(NGWMN.gwls)
-#rename so that all overlapping variables with NGWMN have the same name in NGWMN
-#sl_lev_va matched with "Water.level.in.feet.relative.to.NAVD.88" 
-  #BUT we don't know the vertical datum (sl_datum_cd)
-names(USGS.gwls) <- c("AgencyCd", "SiteNo", "site_tp_cd.USGS", "Date", "Time", 
-                     "lev_tz_cd_reported.USGS", "Depth.to.Water.Below.Land.Surface.in.ft.",
-                     "Water.level.in.feet.relative.to.NAVD88", "sl_datum_cd.USGS", 
-                     "lev_status_cd.USGS", "Data.Provided.by", "lev_dt_acy_cd.USGS",
-                     "Accuracy.Value", "lev_src_cd.USGS", "Observation.Method", 
+names(NGWMN.gwls) <- c("X", "AgencyCd", "SiteNo", "DateTime", "OriginalParameter",
+                       "OriginalDirection", "OriginalUnit", "OriginalValue", "AccuracyUnit",
+                       "AccuracyValue", "DepthToWater", "WaterRelativeToNAVD88", 
+                       "Comment", "ObservationMethod", "DataProvidedBy", "Date", "Time")
+
+names(USGS.gwls) <- c("X","AgencyCd", "SiteNo", "site_tp_cd.USGS", "Date", "Time", 
+                     "lev_tz_cd_reported.USGS", "DepthToWater",
+                     "WaterRelativeToNAVD88", "sl_datum_cd.USGS", 
+                     "Status", "DataProvidedBy", "lev_dt_acy_cd.USGS",
+                     "AccuracyValue", "lev_src_cd.USGS", "ObservationMethod", 
                      "Comment", "DateTime", "lev_tz_cd.USGS")
-#all columns that relate to NGWMN have been renamed using the NGWMN column names.
-#The columns that don't relate to NGWMN have been kept as is plus .USGS
+
+names(NMBGMR.gwls)<- c("X", "SiteNo", "Date", "Status", "ObservationMethod", "MedDepth2WaterBGS.NMBGMR",
+                       "MedManualDepth2WaterBGS.NMBGMR", "DepthToWater", "AgencyCd")
+
+names(OSE.gwls)<- c("X","AgencyCd", "OSEWellID", "sys_date.OSE", "DepthToWater", "Date", "Time")
+
+names(ABQ.gwls) <- c("X", "facility_id.ABQ", "SiteNo", "Date", "DepthToWater", "water_level_elev",
+                     "ObservationMethod", "WellDepth", "Status", "Technician", "WaterRelativeToNAVD88",
+                     "AgencyCd")
+
 
 gwl.joined <- rbind.fill(NGWMN.gwls, USGS.gwls)
+gwl.joined <- rbind.fill(gwl.joined, NMBGMR.gwls)
+gwl.joined <- rbind.fill(gwl.joined, OSE.gwls)
+gwl.joined <- rbind.fill(gwl.joined, ABQ.gwls)
 gwl.joined.skinny <- gwl.joined %>%
-  select(AgencyCd, SiteNo, Date, Time, Depth.to.Water.Below.Land.Surface.in.ft.)
+  select(AgencyCd, SiteNo, OSEWellID, Date, Time, DepthToWater, AccuracyValue, 
+         WaterRelativeToNAVD88, ObservationMethod, Status)
 
-write.csv(gwl.joined, file = "./Processed/gwl.joined.csv")
+saveRDS(gwl.joined, "./Processed/gwl.joined.rds")
+saveRDS(gwl.joined.skinny, "./Processed/gwl.joined.skinny.rds")
 
-write.csv(gwl.joined.skinny, file="./Processed/gwl.joined.skinny.csv")
+#write.csv(gwl.joined, file = "./Processed/gwl.joined.csv")
+#write.csv(gwl.joined.skinny, file="./Processed/gwl.joined.skinny.csv")
 
 
 #--------joining site info dfs-----------#
