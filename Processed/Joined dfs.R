@@ -57,34 +57,59 @@ saveRDS(gwl.joined.skinny, "./Processed/gwl.joined.skinny.rds")
 
 #USGS = sites.combined, NGWMN = NGWMN.site.skinny, NMBGMR = NMBGMR.site
 USGS.sites <- read.csv("./USGS/USGS.site.csv")
-USGS.sites <- USGS.sites %>% select(-X)
 NGWMN.sites <- read.csv("./NGWMN/NGWMN.site.skinny.csv") 
-NGWMN.sites <- NGWMN.sites %>% select(-X)
-#add in correct meta data for NMBGMR sites
+NMBGMR.sites <- read.csv("./NMBGMR/NMBGMR.site.csv")
+ABQ.sites <- read.csv("./ABQ/ABQ.site.csv")
+OSE.sites <- read.csv("./OSE/OSE.site.csv")
 
-
-str(USGS.sites)
-str(NGWMN.sites)                         
 
 names(NGWMN.sites)
-names(USGS.sites)
 
 
 names(USGS.sites) <- 
-  c("AgencyCd", "SiteNo", "SiteName", "SiteType", "lat_va.USGS", "long_va.USGS", 
+  c("X", "AgencyCd", "SiteNo", "SiteName", "SiteType", "lat_va.USGS", "long_va.USGS", 
     "DecLatVa", "DecLongVa", "HorzMethod", "HorzAcy", "coord_datum_cd.USGS",
-    "HorzDatum", "district_cd.USGS", "StateCd", "CountyCd", "country_cd.USGS", 
+    "HorzDatum", "DistrictCd", "StateCd", "CountyCd", "CountryCd", 
     "land_net_ds.USGS", "map_nm.USGS", "map_scale_fc.USGS", "AltVa", "AltMethod", 
-    "AltAcy", "AltDatumCd", "huc_cd.USGS", "basic_cd.USGS", "topo_cd.USGS", 
+    "AltAcy", "AltDatumCd", "huc_cd.USGS", "BasinCd", "topo_cd.USGS", 
     "instruments_cd.USGS", 
     "construction_dt.USGS", "inventory_dt.USGS", "drain_area_va.USGS", 
     "contrib_drain_area_va.USGS", "tz_cd.USGS", "local_time_fg.USGS", 
-    "reliability_cd.USGS", "gw_file_cd.USGS", "NatAquiferCd", "LocalAquiferCd", 
+    "reliability_cd.USGS", "gw_file_cd.USGS", "NatAquiferCd", "LocalAquiferName", 
     "aqfr_type_cd.USGS", "WellDepth", "HoleDepth", "depth_src_cd.USGS",
-    "project_no.USGS", "AgencyNm")
+    "project_no.USGS", "AgencyNm", "CountyNm")
+
+names(NMBGMR.sites) <- c("DecLongVa", "DecLatVA", "SiteNo", "SiteID.NMBGMR", "Easting",
+                         "Northing", "AltVa", "WellDepth", "FormationZone.NMBGMR",
+                         "FormationMeaning.NMBGMR", "DepthToWater", "AgencyCd",
+                         "AgencyNm", "CountyNm")
+
+names(ABQ.sites) <- c("X", "facility_id.ABQ", "SiteNo", "SiteName", "data_provider",
+                      "subfacility_code.ABQ", "loc_desc.ABQ","loc_type.ABQ","loc_purpose.ABQ",
+                      "loc_type_2.ABQ","BasinCd","within_facility_yn.ABQ","CountyCd",
+                      "DistrictCd","StateCd", "loc_minor_basin.ABQ","custome_field_1.ABQ",
+                      "stream_code.ABQ","custom_field_2.ABQ","stream_mile.ABQ",
+                      "custom_field_3.ABQ","custom_field_4.ABQ","phase_code.ABQ",
+                      "custom_field_5.ABQ","remark_1.ABQ","bore_id.ABQ","remark_2.ABQ",
+                      "StartDate","EndDate","DrillingMethod", "geologist.ABQ",
+                      "sampling_method.ABQ","drawing_checker.ABQ","drawing_check_date.ABQ",
+                      "drawing_editor.ABQ","drawing_edit_date.ABQ","driller.ABQ",
+                      "units.ABQ","depth_to_bedrock.ABQ","log_date.ABQ","WellDepth",
+                      "bearing.ABQ","Comment","plunge.ABQ","drilling_subcontractor.ABQ",
+                      "engineer_subcontractor.ABQ","engineer.ABQ","estab_company_code.ABQ",
+                      "excav_company_code.ABQ","inspector.ABQ","inspect_subcontractor.ABQ",
+                      "ebatch.ABQ","map_code.ABQ","parent_loc_code.ABQ","status_flag.ABQ",
+                      "TimeZone", "euid.ABQ","land_use.ABQ","hole_diameter.ABQ",
+                      "hole_diameter_unit.ABQ","alert_purge_criteria.ABQ","offset.ABQ",
+                      "station.ABQ","route.ABQ")
+
+names(OSE.sites) <- c("DecLongVa", "DecLatVa", "AgencyCd", "AgencyNm","OBJECTID.OSE",
+                      "pod_basin.OSE", "OSEWellID", "pod_suffix.OSE", "SiteName",
+                      "AltVa", "TimeZone", "Easting", "Northing", "crs_code", "HorzDatum",
+                      "StateCd", "CountyNm", "City", "Zip", "LocalAquiferName",
+                      "WellDepth", "depth_water.OSE", "use_of_well.OSE", "CasingSize")
 
 sites.joined <- rbind.fill(NGWMN.sites, USGS.sites)
-sites.joined$OSEWellID <- ""
 
 sites.joined <- rbind.fill(sites.joined, NMBGMR.sites)
 names(sites.joined)
@@ -106,6 +131,9 @@ gwl.sites.joined <- left_join(gwl.joined.skinny, sites.joined.skinny,
 write.csv(gwl.sites.joined, file = "./Processed/gwl.sites.joined.csv")
 
 
+
+
+AH-001
 #--------create static gwl summarized df-----------#
 gwl.joined.skinny$Date <- as.Date(gwl.joined.skinny$Date)
 gwl.joined.skinny.static <- gwl.joined.skinny %>%
