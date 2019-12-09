@@ -110,31 +110,27 @@ names(OSE.sites) <- c("DecLongVa", "DecLatVa", "AgencyCd", "AgencyNm","OBJECTID.
                       "WellDepth", "depth_water.OSE", "use_of_well.OSE", "CasingSize")
 
 sites.joined <- rbind.fill(NGWMN.sites, USGS.sites)
-
 sites.joined <- rbind.fill(sites.joined, NMBGMR.sites)
+sites.joined <- rbind.fill(sites.joined, ABQ.sites)
+sites.joined <- rbind.fill(sites.joined, OSE.sites)
 names(sites.joined)
 
 sites.joined.skinny <- sites.joined %>%
   select(AgencyCd, SiteNo, AgencyNm, SiteName, OSEWellID, DecLatVa, DecLongVa, 
-         HorzDatum, AltVa, AltDatumCd, CountyNm, SiteType, WellDepth, LocalAquiferName)
+         HorzDatum, AltVa, AltDatumCd, CountyNm, SiteType, WellDepth, LocalAquiferName, 
+         BasinCd, CasingSize, Comment)
 
+saveRDS(sites.joined, "./Processed/sites.joined.rds")
+saveRDS(sites.joined.skinny, "./Processed/sites.joined.skinny.rds")
 
-write.csv(sites.joined, file = "./Processed/sites.joined.csv")
-write.csv(sites.joined.skinny, file="./Processed/sites.joined.skinny.csv")
-
-
-
-#Join of both gwl and meta data....probably too big.
-gwl.sites.joined <- left_join(gwl.joined.skinny, sites.joined.skinny, 
-                              by = c("SiteNo", "AgencyCd"))
-
-write.csv(gwl.sites.joined, file = "./Processed/gwl.sites.joined.csv")
+#write.csv(sites.joined, file = "./Processed/sites.joined.csv")
+#write.csv(sites.joined.skinny, file="./Processed/sites.joined.skinny.csv")
 
 
 
 
-AH-001
 #--------create static gwl summarized df-----------#
+gwl.joined.skinny <- readRDS("./Processed/gwl.joined.skinny.rds")
 gwl.joined.skinny$Date <- as.Date(gwl.joined.skinny$Date)
 gwl.joined.skinny.static <- gwl.joined.skinny %>%
   dplyr::group_by(AgencyCd, SiteNo) %>%
@@ -145,4 +141,4 @@ gwl.joined.skinny.static <- gwl.joined.skinny %>%
   )
 
 sites.summary.static <- left_join(sites.joined.skinny, gwl.joined.skinny.static, by = "SiteNo")
-write.csv(sites.summary.static, file = "./Processed/sites.summary.static.csv")
+saveRDS(sites.summary.static, file = "./Processed/sites.summary.static.rds")
