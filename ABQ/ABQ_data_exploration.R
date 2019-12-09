@@ -23,10 +23,11 @@ ABQ.gwl <- read_excel(paste0(path, filename2), sheet = "Sheet2")
 names(ABQ.gwl)
 ABQ.gwl <- ABQ.gwl %>% select(facility_id, sys_loc_code, measurement_date, water_level_depth,
                               water_level_elev, measurement_method, measured_depth_of_well,
-                              dry_indicator_yn, technician)
-ABQ.gwl <- ABQ.gwl %>% mutate(AgencyCd="")
-data <- c("NA","NA","NA","NA","NA","NA","NA","NA","NA","ABQ")
+                              dry_indicator_yn, technician, historical_reference_elev)
+data <- c("NA","NA","NA","NA","NA","NA","NA","NA","NA","NA")
 ABQ.gwl[1,] <- data
+ABQ.gwl <- ABQ.gwl %>% mutate(AgencyCd="ABQ")
+
 
 #save csv's
 write.csv(ABQ.gwl, "./ABQ/ABQ.gwl.csv")
