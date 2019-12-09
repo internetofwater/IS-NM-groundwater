@@ -18,7 +18,7 @@ OSE <- OSE %>% select(OBJECTID, pod_basin, pod_nbr, pod_suffix, pod_name, county
                       geometry)
 
 names(OSE) <- c("OBJECTID.OSE", "pod_basin.OSE", "OSEWellID", "pod_suffix.OSE", "site_nm",
-                "County", "AltVa", "WellDepth", "depth_water.OSE","use_of_well.OSE",
+                "CountyNm", "AltVa", "WellDepth", "depth_water.OSE","use_of_well.OSE",
                 "UTM_zone", "Easting", "crs_code", "Northing", "HorzDatum", "Aquifer", 
                 "City", "State", "Zip", "lat_deg", "lat_min", "lat_sec",
                 "lon_deg", "lon_min", "lon_sec", "lat_lon_ac", "start_date.OSE", 
@@ -30,7 +30,7 @@ OSE$Casing_sz[OSE$Casing_sz==0] <- NA
 OSE$WellDepth[OSE$WellDepth==0] <- NA
 
 #fix county name
-levels(OSE$County) <- c("Bernalillo County", "Catron County", "Chaves County","Cibola County",
+levels(OSE$CountyNm) <- c("Bernalillo County", "Catron County", "Chaves County","Cibola County",
                         "Colfax County","Curry County","Dona Ana County","De Baca County",
                         "Eddy County","Grant County","Guadalupe County","Harding County",
                         "Hidalgo County","Los Alamos County","Lea County","Lincoln County",
@@ -45,9 +45,13 @@ OSE$AgencyNm <- "Office of the State Engineer"
 #create site and gwl dataframes
 OSE.site <- OSE %>% select(AgencyCd, AgencyNm, OBJECTID.OSE, pod_basin.OSE, OSEWellID, pod_suffix.OSE,
                            site_nm, AltVa, UTM_zone, Easting, Northing, crs_code, HorzDatum,
-                           State, County, City, Zip, Aquifer, WellDepth, depth_water.OSE,
+                           State, CountyNm, City, Zip, Aquifer, WellDepth, depth_water.OSE,
                            use_of_well.OSE, Casing_sz, geometry)
 OSE.gwl <- OSE %>% select(AgencyCd, OSEWellID, sys_date, static_lev) %>% as.data.frame()
+
+st_crs(OSE.site)
+OSE.site <- st_transform(OSE.site,4269)
+
 
 #fix Date and Time 
 OSE.gwl$Date <- as.Date(OSE.gwl$sys_date)
