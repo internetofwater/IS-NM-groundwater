@@ -38,6 +38,7 @@ sites.summary.static$SiteType <- as.factor(sites.summary.static$SiteType)
 sites.summary.static$AgencyCd.x <- as.factor(sites.summary.static$AgencyCd.x)
 
 
+
 countylist <- unique(sites.summary.static$CountyNm)
 
 #gwl data
@@ -66,11 +67,11 @@ numericInput("Measurements", "Minimum number of measurements per well", value = 
 #Well Depth
 sliderInput("Depth", "Well Depth (ft)",
             min = 0, max = 7400, value = c(0,3000), step = 10)
-setSliderColor("Purple", 1)
+#setSliderColor("Purple", 1)
 
 #Date of last measurement
 dateRangeInput("Dates", "Date of last measurement", start ="1900-05-01", end = Sys.Date(), 
-               min = "1900-05-01",max = Sys.Date(), format = "yyyy-mm-dd", 
+               min = "1900-05-01",max = Sys.Date(), format = "yyyy-mm-dd" , 
                startview = "month", weekstart = 0, language = "en", 
                separator = " to ", width = NULL, autoclose = TRUE)
 
@@ -173,9 +174,6 @@ About
 To-do:
 
 - convert to .RDS dfs
-- join new version of NMBGMR gwl data
-- wrangle and clean OSE
-- wrangle and clean ABQ
 - join all
 - create "About" page
 - submit skinny joined df with "must haves"
