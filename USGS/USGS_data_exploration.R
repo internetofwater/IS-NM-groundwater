@@ -5,6 +5,7 @@ library(maps)
 library(readxl)
 library(plyr)
 
+options(scipen=999)
 
 ###GW level info
 USGS.gwl <- readNWISdata(service = "gwlevels", stateCd= "NM", parameterCd = "72019")
