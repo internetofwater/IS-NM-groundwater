@@ -238,3 +238,6 @@ length(unique(countstatic$SiteNo))#implies there are only 1642 sites with more t
 saveRDS(sites.summary.static, file = "./Processed/sites.summary.static.rds")
 str(sites.summary.static)
 
+sites.summary.static10 <- head(sites.summary.static,10)
+saveRDS(sites.summary.static10, file = "./Processed/sites.summary.static10.rds")
+write.csv(sites.summary.static10, file = "./Processed/sites.summary.static10.csv")

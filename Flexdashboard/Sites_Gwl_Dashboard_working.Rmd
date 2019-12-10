@@ -11,6 +11,7 @@ runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
+library(rlang)
 library(tidyverse)
 library(flexdashboard)
 library(maps)
@@ -22,6 +23,7 @@ library(shiny)
 library(viridis)
 library(shinyWidgets) 
 library(scales)
+library(DT)
 #devtools::install_github("dreamRs/shinyWidgets") 
 #install.packages("shinyWidgets")
 
@@ -31,15 +33,15 @@ theme_set(theme_classic())
 getwd()
 
 #static df with count and date measurements
-sites.summary.static <- read.csv("../Processed/sites.summary.static.csv", as.is = TRUE)
-sites.summary.static$firstMeas <- as.Date(sites.summary.static$firstMeas)
-sites.summary.static$lastMeas <- as.Date(sites.summary.static$lastMeas)
-sites.summary.static$SiteType <- as.factor(sites.summary.static$SiteType)
-sites.summary.static$AgencyCd.x <- as.factor(sites.summary.static$AgencyCd.x)
+sites.summary.static10 <- read.csv("../Processed/sites.summary.static10.csv", as.is = TRUE)
+sites.summary.static10$firstMeas <- as.Date(sites.summary.static10$firstMeas)
+sites.summary.static10$lastMeas <- as.Date(sites.summary.static10$lastMeas)
+sites.summary.static10$SiteType <- as.factor(sites.summary.static10$SiteType)
+sites.summary.static10$AgencyCd.x <- as.factor(sites.summary.static10$AgencyCd.x)
 
 
 
-countylist <- unique(sites.summary.static$CountyNm)
+countylist <- unique(sites.summary.static10$CountyNm)
 
 #gwl data
 gwl.joined.skinny <- read.csv("../Processed/gwl.joined.skinny.csv",as.is=TRUE)
@@ -95,7 +97,7 @@ Row {data-height=650}
 ```{r}
 
 selectedData <- reactive({
-  m <- subset(sites.summary.static,
+  m <- subset(sites.summary.static10,
               AgencyCd.x %in% input$Agency &
               WellDepth >= input$Depth[1] & WellDepth <= input$Depth[2] &
               Count >= input$Measurements &
@@ -103,7 +105,7 @@ selectedData <- reactive({
               CountyNm %in% input$County
        ) 
  # if (nrow(m) == 0)
- #   m <- sites.summary.static
+ #   m <- sites.summary.static10
  # return(m)
   
   
@@ -153,7 +155,7 @@ click_marker <- eventReactive(input$map_marker_click, {
   
  })
  output$well <- renderPlotly({
-   p <- ggplot(plot_data(), aes(x=Date, y = Depth.to.Water.Below.Land.Surface.in.ft.)) +
+   p <- ggplot(plot_data(), aes(x=Date, y = DepthToWater)) +
      geom_point() + geom_line() + scale_y_reverse() +
      labs(y="Depth to Water (ft)")
    ggplotly(p)
@@ -166,7 +168,19 @@ plotlyOutput('well')
 ### Chart B
 
 ```{r}
+colname <- colnames(sites.summary.static10)
+table_data <- reactive({
+  
+  
+ # Fetch data for the clicked tract
+  
+ return(sites.summary.static10[sites.summary.static10$SiteNo == click_marker(), ])
+ rownames(sites.summary.static10) <- colname
+  
+ })
 
+renderDataTable({table_data()
+             })
 ```
 
 

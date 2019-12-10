@@ -97,7 +97,7 @@ site1ex <- gwl.joined.skinny %>%
 site1ex <- site1ex %>% 
   dplyr::group_by(Date)
 site1ex.plot <- site1ex %>%
-  ggplot(aes(x=Date, y = Depth.to.Water.Below.Land.Surface.in.ft.)) +
+  ggplot(aes(x=Date, y = DepthToWater)) +
   geom_point() +
   geom_line() +
   scale_y_reverse() +
@@ -128,7 +128,7 @@ click_marker <- eventReactive(input$map_marker_click, {
   
  })
  output$well <- renderPlot({
-   ggplot(plot_data(), aes(x=Date, y = Depth.to.Water.Below.Land.Surface.in.ft.)) +
+   ggplot(plot_data(), aes(x=Date, y = DepthToWater)) +
      geom_point() + geom_line()
    
  })
