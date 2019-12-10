@@ -50,7 +50,7 @@ saveRDS(gwl.joined, "./Processed/gwl.joined.rds")
 saveRDS(gwl.joined.skinny, "./Processed/gwl.joined.skinny.rds")
 
 #write.csv(gwl.joined, file = "./Processed/gwl.joined.csv")
-#write.csv(gwl.joined.skinny, file="./Processed/gwl.joined.skinny.csv")
+write.csv(gwl.joined.skinny, file="./Processed/gwl.joined.skinny.csv")
 
 
 #--------joining site info dfs-----------#
@@ -79,7 +79,7 @@ names(USGS.sites) <-
     "aqfr_type_cd.USGS", "WellDepth", "HoleDepth", "depth_src_cd.USGS",
     "project_no.USGS", "AgencyNm", "CountyNm")
 
-names(NMBGMR.sites) <- c("DecLongVa", "DecLatVA", "SiteNo", "SiteID.NMBGMR", "Easting",
+names(NMBGMR.sites) <- c("DecLongVa", "DecLatVa", "SiteNo", "SiteID.NMBGMR", "Easting",
                          "Northing", "AltVa", "WellDepth", "FormationZone.NMBGMR",
                          "FormationMeaning.NMBGMR", "DepthToWater", "AgencyCd",
                          "AgencyNm", "CountyNm")
@@ -227,8 +227,13 @@ sites.summary.static$Count <- ifelse(is.na(sites.summary.static$Count)==TRUE, 0,
 NAcounties <- sites.summary.static %>% filter(is.na(CountyNm))
 #there are 894 NAs, either because of gwl site numbers with no related site data, or  ABQ didn't provide
 
+#take out those without any site info
 sites.summary.static <- sites.summary.static %>% filter(!is.na(CountyNm))
 sites.summary.static$CountyNm <- as.character(sites.summary.static$CountyNm)
+
+length(unique(gwl.joined.skinny.static$SiteNo))
+countstatic <- sites.summary.static %>% filter(Count>1) 
+length(unique(countstatic$SiteNo))#implies there are only 1642 sites with more than one gwl measurement?
 
 saveRDS(sites.summary.static, file = "./Processed/sites.summary.static.rds")
 str(sites.summary.static)
