@@ -7,7 +7,7 @@ output:
     theme: united
 editor_options: 
   chunk_output_type: console
-runtime: shiny
+  runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
@@ -26,8 +26,6 @@ pacman::p_load(tidyverse, flexdashboard,maps,leaflet,sf,plotly,shiny,viridis,shi
 #devtools::install_github("dreamRs/shinyWidgets") 
 #install.packages("shinyWidgets")
 
-
-
 theme_set(theme_classic())
 getwd()
 
@@ -38,19 +36,15 @@ sites.summary.static$lastMeas <- as.Date(sites.summary.static$lastMeas)
 sites.summary.static$SiteType <- as.factor(sites.summary.static$SiteType)
 sites.summary.static$AgencyCd <- as.factor(sites.summary.static$AgencyCd)
 
-
 table(sites.summary.static$AgencyCd) #mostly USGS wells, but some are NMBGMR
 str(sites.summary.static)
 summary(sites.summary.static$WellDepth) #so many NAs for welldepth, none are showing up
-
 countylist <- unique(sites.summary.static$CountyNm)
 countylist <- sort(countylist)
 
 #gwl data
 gwl.joined.skinny <- readRDS("../Processed/gwl.joined.skinny.rds")
 gwl.joined.skinny$Date<-as.Date(gwl.joined.skinny$Date)
-
-
 ```
 
 Dashboard
@@ -73,7 +67,7 @@ numericInput("Measurements", "Minimum number of measurements per well", value = 
 #Well Depth
 sliderInput("Depth", "Well Depth (ft)",
             min = 0, max = 7400, value = c(0,1000), step = 10)
-#setSliderColor("Purple", 1)
+
 
 #County drop down
 pickerInput(
@@ -85,12 +79,12 @@ pickerInput(
       `actions-box` = TRUE), 
     multiple = TRUE
 )
+
 #Date of last measurement
 dateInput("Dates", "Has ground water level data as recent as:", 
                min = "2000-01-01",max = Sys.Date(), format = "yyyy-mm-dd" , 
                startview = "month", weekstart = 0, language = "en", 
                value = "1900-05-01",width = NULL, autoclose = TRUE)
-
 ```
 
 Row {data-height=750} 
@@ -99,7 +93,6 @@ Row {data-height=750}
 ### Sites
 
 ```{r}
-
 selectedData <- reactive({
   m <- subset(sites.summary.static,
               AgencyCd %in% input$Agency &
@@ -111,9 +104,7 @@ selectedData <- reactive({
  
   
 })
-
 output$map <- renderLeaflet({
-
   #palette 
   pal <- colorNumeric(magma(999), NULL, reverse = TRUE, na.color = "green")
   
@@ -139,14 +130,12 @@ Row
 ### Click on a point to see groundwater levels
 
 ```{r}
-
 click_marker <- eventReactive(input$map_marker_click, {
   
   x<-input$map_marker_click
   y<-x$id
   return(y)
 })
-
  plot_data <- reactive({
   
   
@@ -164,7 +153,6 @@ click_marker <- eventReactive(input$map_marker_click, {
    
  })
 plotlyOutput('well')
-
 ```
 
 ### Click on a point to see site infoformation
@@ -180,7 +168,6 @@ table_data <- reactive({
  rownames(sites.summary.static) <- colname
   
  })
-
 renderTable({t(table_data())
              })
 ```
@@ -238,4 +225,3 @@ OSEWellID are not unique (there are 85 sites with an OSEWellID of 1) - for futur
 **ABQ**
 
 No location information like lat or long data. No actual gwl data. Should not be included in final map.
-
