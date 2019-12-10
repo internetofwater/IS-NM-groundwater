@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Notes
 
-#Make sure everything is in projection 4269
+
 
 ### NMBGMR
 
@@ -43,11 +43,11 @@ For depth to water, used static_level column, and for Date and Time, I used sys_
 
 Translated geometry in 4269.
 
-OSEWellID are not unique (there are 85 sites with an OSEWellID of 1) - for future reference, will need to convert to unique identifyer (or use OBJECTID) for gwl data in order for it to show up on the map
+OSEWellID are not unique (there are 85 sites with an OSEWellID of 1) - for future reference, will need to convert to unique identifyer (or use OBJECTID) for gwl data in order for it to show up on the map. Will not include in map for now.
 
 
 ### ABQ
 
-No location information like lat or long data. No actual gwl data
+No location information like lat or long data. No actual gwl data. Should not be included in final map
 
 
