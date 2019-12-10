@@ -1,91 +1,75 @@
 ---
-title: "Untitled"
-output: 
-  flexdashboard::flex_dashboard:
-    orientation: columns
-    social: munu
-    source_code: embed
-runtime: shiny
+  title: "Demo"
+  output:
+    flexdashboard::flex_dashboard:
+      orientation: columns
+      vertical_layout: fill
 ---
 
-```{r global, include=FALSE}
-# load data in 'global' chunk so it can be shared by all users of the dashboard
-library(datasets)
-mtcars2 <- mtcars[, c("mpg", "cyl", "wt")]
 
-library(tidyverse)
-library(flexdashboard)
-library(maps)
-library(leaflet)
-library(sf)
-library(plotly)
-library(mapview)
-library(shiny)
-
-theme_set(theme_classic())
-getwd()
-
-
-all.sites.gwl <- read.csv("../Processed/gwl.sites.joined.csv")
-all.sites.gwl <- all.sites.gwl %>% dplyr::select(-X)
-all.sites.gwl$Date <- as.Date(all.sites.gwl$Date)
-
-all.sites.gwl.static <- all.sites.gwl %>%
-  dplyr::group_by(AgencyCd, SiteNo, DecLongVa, DecLatVa) %>%
-  dplyr::summarise(
-            firstMeas = min(Date),
-            lastMeas = max(Date), 
-            Count = length(SiteNo),
-            WellDepth = median(WellDepth))
+```{r setup, include=FALSE}
+  library(flexdashboard)
+  library(rmarkdown)
+  library(plotly)
+  library(shiny)
 
 ```
 
-
-Dashboard
-=======================================================================
-```{r}
-# Reactive that returns the whole dataset if there is no brush
-selectedData <- reactive({
-  data <- brushedPoints(all.sites.gwl.static, input$plot1_brush)
-  if (nrow(data) == 0)
-    data <- all.sites.gwl.static
-  data
-})
-```
-
-Row {data-height=650}
------------------------------------------------------------------------
-
-### Miles Per Gallon vs. Weight 
+Column {data-width=400}
+--------------------------------
+### Planet Earth
 
 ```{r}
-plotOutput("plot1", brush = brushOpts(id = "plot1_brush"))
-output$plot1 <- renderPlot({
-  ggplot(selectedData(), aes(x=DecLongVa, y=DecLatVa, color = WellDepth)) +
-  geom_point()
-})
+
+  library(leaflet)
+  m = leaflet() %>% addTiles()
+  m  # a map with the default OSM tile layer
+
+
 ```
 
-Row {data-height=350}
------------------------------------------------------------------------
-
-### Miles Per Gallon and Cylinders {data-width=400}
 
 ```{r}
-renderPlot({
-  ggplot(selectedData(), aes(WellDepth, Depth.to.Water.Below.Land.Surface.in.ft.)) + 
-    geom_point() +
-    geom_line()
-})
+  #plot setup
+  mtcars$am[which(mtcars$am == 0)] <- 'Automatic'
+  mtcars$am[which(mtcars$am == 1)] <- 'Manual'
+  mtcars$am <- as.factor(mtcars$am)
 
-```
+  p <- plot_ly(mtcars, x = ~wt, y = ~hp, z = ~qsec, color = ~am, colors = c('#BF382A', '#0C4B8E')) %>%
+    add_markers() %>%
+    layout(scene = list(xaxis = list(title = 'Weight'),
+                       yaxis = list(title = 'Gross horsepower'),
+                       zaxis = list(title = '1/4 mile time')))
+
+
+  set.seed(100)
+  d <- diamonds[sample(nrow(diamonds), 1000), ]
+
+
+  ##########################
+  absolutePanel(id = "controls", class = "panel panel-default", fixed = TRUE,
+                draggable = TRUE, top = 70, left = "auto", right = 20, bottom = "auto",
+                width = '30%', height = 'auto', 
+                style = "overflow-y:scroll; max-height: 1000px; opacity: 0.9; style = z-index: 400",
+
+              h4(strong("Groundwater Level Data")),
+
+      HTML('<button data-toggle="collapse" data-target="#box1" class="btn-block btn-primary">gwl</button>'),
+      tags$div(id = 'box1', class="collapse in",
+
+        plot_ly(d, x = ~carat, y = ~price, color = ~carat,
+          size = ~carat, text = ~paste("Clarity: ", clarity)) %>% layout(height=200)
+
+              ),
+
+   HTML('<button data-toggle="collapse" data-target="#box2" class="btn-block btn-warning">histogram</button>'),
+      tags$div(id = 'box2', class="collapse",
+
+         plot_ly(x = rnorm(500), type = "histogram", name = "Histogram") %>% layout(height=200)
+      ),
 
 
 
-### Car Details
+   )
 
-```{r}
-renderTable({
-  selectedData()
-})
-```
+  ```
