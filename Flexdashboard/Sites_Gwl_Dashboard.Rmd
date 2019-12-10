@@ -11,17 +11,18 @@ runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
-library(tidyverse)
-library(flexdashboard)
-library(maps)
-library(leaflet)
-library(sf)
-library(plotly)
-library(mapview)
-library(shiny)
-library(viridis)
-library(shinyWidgets) 
-library(scales)
+pacman::p_load(tidyverse, flexdashboard,maps,leaflet,sf,plotly,shiny,viridis,shinyWidgets,scales)
+#library(tidyverse)
+#library(flexdashboard)
+#library(maps)
+#library(leaflet)
+#library(sf)
+#library(plotly)
+#library(mapview)
+#library(shiny)
+#library(viridis)
+#library(shinyWidgets) 
+#library(scales)
 #devtools::install_github("dreamRs/shinyWidgets") 
 #install.packages("shinyWidgets")
 
@@ -31,18 +32,22 @@ theme_set(theme_classic())
 getwd()
 
 #static df with count and date measurements
-sites.summary.static <- read.csv("../Processed/sites.summary.static.csv", as.is = TRUE)
+sites.summary.static <- readRDS("../Processed/sites.summary.static.rds")
 sites.summary.static$firstMeas <- as.Date(sites.summary.static$firstMeas)
 sites.summary.static$lastMeas <- as.Date(sites.summary.static$lastMeas)
 sites.summary.static$SiteType <- as.factor(sites.summary.static$SiteType)
-sites.summary.static$AgencyCd.x <- as.factor(sites.summary.static$AgencyCd.x)
+sites.summary.static$AgencyCd <- as.factor(sites.summary.static$AgencyCd)
 
 
+table(sites.summary.static$AgencyCd) #mostly USGS wells, but some are NMBGMR
+str(sites.summary.static)
+summary(sites.summary.static$WellDepth) #so many NAs for welldepth, none are showing up
 
 countylist <- unique(sites.summary.static$CountyNm)
+countylist <- sort(countylist)
 
 #gwl data
-gwl.joined.skinny <- read.csv("../Processed/gwl.joined.skinny.csv",as.is=TRUE)
+gwl.joined.skinny <- readRDS("../Processed/gwl.joined.skinny.rds")
 gwl.joined.skinny$Date<-as.Date(gwl.joined.skinny$Date)
 
 
@@ -59,21 +64,16 @@ Identify desired attributes to narrow down sites on map
 ```{r}
 #Agency selection
 checkboxGroupInput("Agency", label = "Agency",
-            choices = c("USGS", "NMBGMR", "NGWMN", "OSE", "ABQ"), selected = "USGS")
+            choices = c("USGS", "NMBGMR"), 
+            selected = c("USGS", "NMBGMR"))
 
 #Number of measurements per well
-numericInput("Measurements", "Minimum number of measurements per well", value = 10)
+numericInput("Measurements", "Minimum number of measurements per well", value = 1)
 
 #Well Depth
 sliderInput("Depth", "Well Depth (ft)",
-            min = 0, max = 7400, value = c(0,3000), step = 10)
+            min = 0, max = 7400, value = c(0,1000), step = 10)
 #setSliderColor("Purple", 1)
-
-#Date of last measurement
-dateRangeInput("Dates", "Date of last measurement", start ="1900-05-01", end = Sys.Date(), 
-               min = "1900-05-01",max = Sys.Date(), format = "yyyy-mm-dd" , 
-               startview = "month", weekstart = 0, language = "en", 
-               separator = " to ", width = NULL, autoclose = TRUE)
 
 #County drop down
 pickerInput(
@@ -85,9 +85,15 @@ pickerInput(
       `actions-box` = TRUE), 
     multiple = TRUE
 )
+#Date of last measurement
+dateInput("Dates", "Has ground water level data as recent as:", 
+               min = "1900-05-01",max = Sys.Date(), format = "yyyy-mm-dd" , 
+               startview = "month", weekstart = 0, language = "en", 
+               value = "1900-05-01",width = NULL, autoclose = TRUE)
+
 ```
 
-Row {data-height=650}
+Row {data-height=750} 
 -----------------------------------------------------------------------
 
 ### Sites
@@ -96,41 +102,40 @@ Row {data-height=650}
 
 selectedData <- reactive({
   m <- subset(sites.summary.static,
-              AgencyCd.x %in% input$Agency &
+              AgencyCd %in% input$Agency &
               WellDepth >= input$Depth[1] & WellDepth <= input$Depth[2] &
               Count >= input$Measurements &
-              lastMeas >= as.Date(input$Dates[1]) & lastMeas <= as.Date(input$Dates[2]) &
+              lastMeas >= as.Date(input$Dates) &
               CountyNm %in% input$County
        ) 
- # if (nrow(m) == 0)
- #   m <- sites.summary.static
- # return(m)
-  
+ 
   
 })
 
 output$map <- renderLeaflet({
 
   #palette 
-  pal <- colorNumeric(viridis(999), NULL)
+  pal <- colorNumeric(magma(999), NULL, reverse = TRUE, na.color = "green")
   
  selectedData() %>%
  leaflet() %>% 
  addTiles()%>%
  addCircleMarkers(~DecLongVa, ~DecLatVa,
                   stroke = FALSE, 
-                  fillOpacity = 0.3,
+                  fillOpacity = 0.5,
+                  radius=5,
                   fillColor = ~pal(WellDepth),
                   popup = ~as.character(`SiteNo`),
                   layerId = ~SiteNo) %>%
- addLegend(position = 'bottomright', pal = pal, 
+ addLegend(position = 'bottomright', pal = pal, na.label = "NA",
                 values = selectedData()$WellDepth, title = 'Well Depth (ft)')
 })
 leafletOutput('map')
 ```
 
-Row {data-height=350}
+Row  
 -----------------------------------------------------------------------
+
 ### Click on a point to see groundwater levels
 
 ```{r}
@@ -152,7 +157,7 @@ click_marker <- eventReactive(input$map_marker_click, {
   
  })
  output$well <- renderPlotly({
-   p <- ggplot(plot_data(), aes(x=Date, y = Depth.to.Water.Below.Land.Surface.in.ft.)) +
+   p <- ggplot(plot_data(), aes(x=Date, y = DepthToWater)) +
      geom_point() + geom_line() + scale_y_reverse() +
      labs(y="Depth to Water (ft)")
    ggplotly(p)
@@ -165,15 +170,32 @@ plotlyOutput('well')
 ### Chart B
 
 ```{r}
+colname <- colnames(sites.summary.static)
+table_data <- reactive({
+  
+  
+ # Fetch data for the clicked tract
+  
+ return(sites.summary.static[sites.summary.static$SiteNo == click_marker(), ])
+ rownames(sites.summary.static) <- colname
+  
+ })
 
+renderTable({t(table_data())
+             })
 ```
 
 
-About
+About 
 ==================================================
 To-do:
 
-- convert to .RDS dfs
-- join all
+
 - create "About" page
 - submit skinny joined df with "must haves"
+
+- Do sites with NA welldepth show up on map?
+
+- What happened to NA agency codes?
+- add aquifer codes, county fips, state names
+- add Agency Name to ABQ
