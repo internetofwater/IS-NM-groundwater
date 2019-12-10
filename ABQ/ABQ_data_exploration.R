@@ -13,8 +13,10 @@ ABQ.site <- read_excel(paste0(path, fileName), sheet="ExampleEntry")
 
 names(ABQ.site)
 
-ABQ.site <- ABQ.site %>% select(sys_loc_code, loc_name, facility_id, loc_major_basin,
-                                loc_county_code, )
+ABQ.site$AgencyCd <- "ABQ"
+ABQ.site$loc_county_code <- str_to_title(ABQ.site$loc_county_code, locale="en")
+summary(ABQ.site$loc_county_code)
+countysum <- data.frame(table(ABQ.site$loc_county_code))
 
 # read in gwl data
 filename2 <- "CityABQ_DT_Water_Level_Data.xlsx"
