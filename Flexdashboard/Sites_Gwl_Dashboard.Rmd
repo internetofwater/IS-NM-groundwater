@@ -87,7 +87,7 @@ pickerInput(
 )
 #Date of last measurement
 dateInput("Dates", "Has ground water level data as recent as:", 
-               min = "1900-05-01",max = Sys.Date(), format = "yyyy-mm-dd" , 
+               min = "2000-01-01",max = Sys.Date(), format = "yyyy-mm-dd" , 
                startview = "month", weekstart = 0, language = "en", 
                value = "1900-05-01",width = NULL, autoclose = TRUE)
 
@@ -167,7 +167,7 @@ plotlyOutput('well')
 
 ```
 
-### Chart B
+### Click on a point to see site infoformation
 
 ```{r}
 colname <- colnames(sites.summary.static)
@@ -191,11 +191,51 @@ About
 To-do:
 
 
-- create "About" page
+- flesh out "About" page and clarify all assumptions made
 - submit skinny joined df with "must haves"
 
 - Do sites with NA welldepth show up on map?
 
-- What happened to NA agency codes?
+
 - add aquifer codes, county fips, state names
-- add Agency Name to ABQ
+
+
+
+
+**NMBGMR**
+
+Pulled data by creating a loop that pulled each site number from website from csv
+
+Do not know coordinate references system they used. Converted Easting/Northing coordinates to Lat/Long coordinates with 4326 projection.
+
+Some sites were lost 6090 -> 5337 because there were no Easting/Northing coordinates.
+
+**USGS**
+
+Pulled from NWIS dataRetrieval package, last pull was on 12/7/2019.
+
+Data coordinate system was NAD83 or crs 4269.
+
+Did a left join pulling gwl and sites. Assumed that all sites had gwl data.Removed a lot of potential groundwater wells without any data attached to them. 9778 sites with no gwl data
+
+**NGWMN** 
+
+Downloaded zipfile from website, saved under Raw folder
+Projection is in 4269. All sites were either from USGS or NMBGMR agencies, so there are no true "NGWMN" sites on the map.
+
+
+**OSE**
+
+Downloaded shapefile from OSE website. Data dictionary: http://www.ose.state.nm.us/GIS/PODS/nmose_WATERS_PODs_data_dictionary_v8.xlsx
+
+For depth to water, used static_level column, and for Date and Time, I used sys_date
+
+Translated geometry in 4269.
+
+OSEWellID are not unique (there are 85 sites with an OSEWellID of 1) - for future reference, will need to convert to unique identifyer (or use OBJECTID) for gwl data in order for it to show up on the map. Will not include in map for now.
+
+
+**ABQ**
+
+No location information like lat or long data. No actual gwl data. Should not be included in final map.
+
