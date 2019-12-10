@@ -31,7 +31,7 @@ NMBGMR.site$DecLatVa <- coordinates(longlatcoor)[,2]
 
 #separate from SpatialPoints chunk above 
 NMBGMR.site.spatial <-  st_as_sf(NMBGMR.site, 
-             coords = c("DecLongVa", "DecLatVa"), crs = 4326)
+             coords = c("DecLongVa", "DecLatVa"), crs = 4269)
 #NM coordinates 6528?, not what they used though
 
 
@@ -39,7 +39,8 @@ NMBGMR.site.spatial <-  st_as_sf(NMBGMR.site,
 NM.county <- st_as_sf(map(database = "county",'new mexico', plot=TRUE, fill = TRUE, col = "white"))
 
 #make sure projections are the same
-st_crs(NM.county) #projection is 4326
+NM.county<- st_transform(NM.county, 4269) 
+st_crs(NM.county)
 st_crs(NMBGMR.site.spatial)
 
 
@@ -54,7 +55,6 @@ NMBGMR.site <- intersect %>% dplyr::select(-ID)
 
 
 #save file as csv, keeping geometry column intact
-write.csv(NMBGMR.site, file="./NMBGMR/NMBGMR.site.csv")
 
 
 st_write(NMBGMR.site, "./NMBGMR/NMBGMR.site.csv", 
