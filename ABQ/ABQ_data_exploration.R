@@ -18,6 +18,7 @@ ABQ.site$loc_county_code <- str_to_title(ABQ.site$loc_county_code, locale="en")
 summary(ABQ.site$loc_county_code)
 countysum <- data.frame(table(ABQ.site$loc_county_code))
 
+
 # read in gwl data
 filename2 <- "CityABQ_DT_Water_Level_Data.xlsx"
 ABQ.gwl <- read_excel(paste0(path, filename2), sheet = "Sheet2")
