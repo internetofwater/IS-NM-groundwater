@@ -2,7 +2,7 @@
 title: "New Mexico Groundwater"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: rows
+    orientation: columns
     vertical_layout: fill
     theme: united
 editor_options: 
@@ -23,6 +23,7 @@ library(shiny)
 library(viridis)
 library(shinyWidgets) 
 library(scales)
+library(data.table)
 #devtools::install_github("dreamRs/shinyWidgets") 
 #install.packages("shinyWidgets")
 
@@ -43,7 +44,7 @@ countylist <- unique(sites.summary.static$CountyNm)
 countylist <- sort(countylist)
 
 #gwl data
-gwl.joined.skinny <- readRDS("../Processed/gwl.joined.skinny.rds")
+gwl.joined.skinny <- fread("../Processed/gwl.joined.skinny.csv")
 gwl.joined.skinny$Date<-as.Date(gwl.joined.skinny$Date)
 ```
 
@@ -84,10 +85,10 @@ pickerInput(
 dateInput("Dates", "Has ground water level data as recent as:", 
                min = "1900-05-01", max = Sys.Date(), format = "yyyy-mm-dd" , 
                startview = "month", weekstart = 0, language = "en", 
-               value = "2000-05-01",width = NULL, autoclose = TRUE)
+               value = "2000-01-01",width = NULL, autoclose = TRUE)
 ```
 
-Row {data-height=750} 
+Column {data-width=700} 
 -----------------------------------------------------------------------
 
 ### Sites
@@ -124,7 +125,7 @@ output$map <- renderLeaflet({
 leafletOutput('map')
 ```
 
-Row  
+Column {data-width=300}
 -----------------------------------------------------------------------
 
 ### Click on a point to see groundwater levels
@@ -155,21 +156,24 @@ click_marker <- eventReactive(input$map_marker_click, {
 plotlyOutput('well')
 ```
 
-### Click on a point to see site infoformation
+### Click on a point to see site information
 
 ```{r}
 colname <- colnames(sites.summary.static)
 table_data <- reactive({
   
-  
- # Fetch data for the clicked tract
+
   
  return(sites.summary.static[sites.summary.static$SiteNo == click_marker(), ])
- rownames(sites.summary.static) <- colname
+ #rownames(sites.summary.static) <- colname
   
  })
-renderTable({t(table_data())
+output$table <- renderTable({
+  q <- t(table_data())
+  q$SiteInfo <- colname
+  
              })
+tableOutput('table')
 ```
 
 
