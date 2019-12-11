@@ -11,18 +11,18 @@ editor_options:
 ---
 
 ```{r setup, include=FALSE}
-pacman::p_load(tidyverse, flexdashboard,maps,leaflet,sf,plotly,shiny,viridis,shinyWidgets,scales)
-#library(tidyverse)
-#library(flexdashboard)
-#library(maps)
-#library(leaflet)
-#library(sf)
-#library(plotly)
-#library(mapview)
-#library(shiny)
-#library(viridis)
-#library(shinyWidgets) 
-#library(scales)
+#pacman::p_load(tidyverse, flexdashboard,maps,leaflet,sf,plotly,shiny,viridis,shinyWidgets,scales)
+library(tidyverse)
+library(flexdashboard)
+library(maps)
+library(leaflet)
+library(sf)
+library(plotly)
+library(mapview)
+library(shiny)
+library(viridis)
+library(shinyWidgets) 
+library(scales)
 #devtools::install_github("dreamRs/shinyWidgets") 
 #install.packages("shinyWidgets")
 
@@ -82,9 +82,9 @@ pickerInput(
 
 #Date of last measurement
 dateInput("Dates", "Has ground water level data as recent as:", 
-               min = "2000-01-01",max = Sys.Date(), format = "yyyy-mm-dd" , 
+               min = "1900-05-01", max = Sys.Date(), format = "yyyy-mm-dd" , 
                startview = "month", weekstart = 0, language = "en", 
-               value = "1900-05-01",width = NULL, autoclose = TRUE)
+               value = "2000-05-01",width = NULL, autoclose = TRUE)
 ```
 
 Row {data-height=750} 
