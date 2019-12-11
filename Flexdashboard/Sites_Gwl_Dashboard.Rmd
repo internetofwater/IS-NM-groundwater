@@ -279,7 +279,7 @@ No location information like lat or long data. No actual gwl data. Is not includ
 Data wrangling completed in file called `ABQ_data_exploration.R`. Site and gwl information are saved as csv files in the ABQ folder on github.
 
 
-*To-improve upon :*
+*To-improve upon for future use:*
 
 - get unique identifier for OSE
 - add aquifer codes, county fips, state names to all data
