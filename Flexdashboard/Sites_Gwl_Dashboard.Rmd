@@ -79,7 +79,7 @@ numericInput("Measurements", "Minimum number of measurements per well", value = 
 
 #Well Depth
 sliderInput("Depth", "Well Depth (ft)",
-            min = -1, max = 7400, value = c(0,1000), step = 10)
+            min = -1, max = 7400, value = c(0,1000), step = 1)
 
 
 
@@ -99,7 +99,7 @@ pickerInput(
 dateRangeInput("Dates", "Data date range:", 
                min = "1900-05-01", max = Sys.Date(), format = "yyyy-mm-dd" , 
                startview = "year", weekstart = 0, language = "en",
-               separator = "to", start = "1900-05-01", end = Sys.Date(),
+               separator = "to", start = "2000-01-01", end = Sys.Date(),
                width = NULL, autoclose = TRUE)
 
 
@@ -167,8 +167,9 @@ click_marker <- eventReactive(input$map_marker_click, {
  output$well <- renderPlotly({
    p <- ggplot(plot_data(), aes(x=Date, y = DepthToWater)) +
      geom_point() + geom_line() + scale_y_reverse() +
-     labs(y="Depth to Water (ft)")
-   ggplotly(p)
+     labs(y="Depth to Water (ft) Below Ground Surface") +
+     expand_limits(y=c(min(plot_data()$DepthToWater)-10, max(plot_data()$DepthToWater)+10))
+   p <- ggplotly(p) %>% layout(margin = list(pad = 10))
    
  })
 plotlyOutput('well')
@@ -276,9 +277,11 @@ Data wrangling completed in file called `ABQ_data_exploration.R`. Site and gwl i
 
 *To-improve upon for future use:*
 
-- get unique identifier for OSE
+- update unique identifier for OSE with prefix and suffix values
 - add aquifer codes, county fips, state names to all data
 - set default zoom to New Mexico when nothing is selected
+- create popup in graph window (shinyWidgets) when you click on OSE point with no gwl data 
+- add comment below graph and make year show on x-axis
 
 
 
