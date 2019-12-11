@@ -39,9 +39,12 @@ sites.summary.static10$lastMeas <- as.Date(sites.summary.static10$lastMeas)
 sites.summary.static10$SiteType <- as.factor(sites.summary.static10$SiteType)
 sites.summary.static10$AgencyCd.x <- as.factor(sites.summary.static10$AgencyCd.x)
 
-
+table(sites.summary.static10$AgencyCd.x) #mostly USGS wells, but some are NMBGMR
+str(sites.summary.static10)
+summary(sites.summary.static10$WellDepth)
 
 countylist <- unique(sites.summary.static10$CountyNm)
+countylist <- sort(countylist)
 
 #gwl data
 gwl.joined.skinny <- read.csv("../Processed/gwl.joined.skinny.csv",as.is=TRUE)
@@ -61,21 +64,16 @@ Identify desired attributes to narrow down sites on map
 ```{r}
 #Agency selection
 checkboxGroupInput("Agency", label = "Agency",
-            choices = c("USGS", "NMBGMR", "NGWMN", "OSE", "ABQ"), selected = "USGS")
+            choices = c("USGS", "NMBGMR"), 
+            selected = c("USGS", "NMBGMR"))
 
 #Number of measurements per well
-numericInput("Measurements", "Minimum number of measurements per well", value = 10)
+numericInput("Measurements", "Minimum number of measurements per well", value = 1)
 
 #Well Depth
 sliderInput("Depth", "Well Depth (ft)",
             min = 0, max = 7400, value = c(0,3000), step = 10)
-#setSliderColor("Purple", 1)
 
-#Date of last measurement
-dateRangeInput("Dates", "Date of last measurement", start ="1900-05-01", end = Sys.Date(), 
-               min = "1900-05-01",max = Sys.Date(), format = "yyyy-mm-dd" , 
-               startview = "month", weekstart = 0, language = "en", 
-               separator = " to ", width = NULL, autoclose = TRUE)
 
 #County drop down
 pickerInput(
@@ -87,6 +85,14 @@ pickerInput(
       `actions-box` = TRUE), 
     multiple = TRUE
 )
+
+#Date of last measurement
+dateInput("Dates", "Has ground water level data as recent as:", 
+               min = "1900-05-01", max = Sys.Date(), format = "yyyy-mm-dd" , 
+               startview = "month", weekstart = 0, language = "en", 
+               value = "2000-05-01",width = NULL, autoclose = TRUE)
+
+
 ```
 
 Row {data-height=650}
@@ -101,12 +107,10 @@ selectedData <- reactive({
               AgencyCd.x %in% input$Agency &
               WellDepth >= input$Depth[1] & WellDepth <= input$Depth[2] &
               Count >= input$Measurements &
-              lastMeas >= as.Date(input$Dates[1]) & lastMeas <= as.Date(input$Dates[2]) &
+              lastMeas >= as.Date(input$Dates) &
               CountyNm %in% input$County
        ) 
- # if (nrow(m) == 0)
- #   m <- sites.summary.static10
- # return(m)
+ 
   
   
 })
@@ -114,7 +118,7 @@ selectedData <- reactive({
 output$map <- renderLeaflet({
 
   #palette 
-  pal <- colorNumeric(viridis(999), NULL)
+  pal <- colorNumeric(magma(999), NULL, reverse = TRUE, na.color = "green")
   
  selectedData() %>%
  leaflet() %>% 
@@ -179,7 +183,7 @@ table_data <- reactive({
   
  })
 
-renderDataTable({table_data()
+renderTable({t(table_data())
              })
 ```
 
