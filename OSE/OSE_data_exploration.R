@@ -29,15 +29,25 @@ OSE$AltVa[OSE$AltVa==0] <- NA
 OSE$Casing_sz[OSE$Casing_sz==0] <- NA
 OSE$WellDepth[OSE$WellDepth==0] <- NA
 
-#fix county name
-levels(OSE$CountyNm) <- c("Bernalillo County", "Catron County", "Chaves County","Cibola County",
-                        "Colfax County","Curry County","Dona Ana County","De Baca County",
-                        "Eddy County","Grant County","Guadalupe County","Harding County",
-                        "Hidalgo County","Los Alamos County","Lea County","Lincoln County",
-                        "Luna County","Mckinley County","Mora County","Otero County","Quay County",
-                        "Rio Arriba County","Roosevelt County","Sandoval County","Santa Fe County",
-                        "Sierra County","San Juan County","San Miguel County","Socorro County",
-                        "Taos County","Torrance County","Union County","Valencia County","XM", "XX")
+st_crs(OSE)
+OSE <- st_transform(OSE,4269)
+
+#map of NM counties
+NM.county <- st_as_sf(map(database = "county",'new mexico', plot=TRUE, fill = TRUE, col = "white"))
+
+#make sure projections are the same
+NM.county<- st_transform(NM.county, 4269) 
+st_crs(NM.county)
+
+#add counties
+intersect <- st_intersection(OSE, NM.county)
+intersect$CountyNm <- gsub("new mexico,", "", intersect$ID)
+intersect$CountyNm <- stringr::str_to_title(intersect$CountyNm) %>%
+  paste0(" County") %>%
+  as.factor()
+
+OSE <- intersect %>% dplyr::select(-ID)
+
 
 OSE$AgencyCd <- "OSE"
 OSE$AgencyNm <- "Office of the State Engineer"
@@ -49,8 +59,7 @@ OSE.site <- OSE %>% select(AgencyCd, AgencyNm, OBJECTID.OSE, pod_basin.OSE, OSEW
                            use_of_well.OSE, Casing_sz, geometry)
 OSE.gwl <- OSE %>% select(AgencyCd, OSEWellID, sys_date, static_lev) %>% as.data.frame()
 
-st_crs(OSE.site)
-OSE.site <- st_transform(OSE.site,4269)
+
 
 
 #fix Date and Time 
@@ -67,10 +76,6 @@ write.csv(OSE.gwl, "./OSE/OSE.gwl.csv")
 #-----------plotting--------------------#
 proj<- st_crs(OSE)
 NM.county <- st_as_sf(map(database = "county",'new mexico', plot=TRUE, fill = TRUE, col = "white"))
-
-#make sure projections are the same
-st_crs(NM.county) #projection is 4326
-st_set_crs(NM.county, proj) #set proj to 26913 to match OSE
 
 OSE.site.map <- ggplot() +
   geom_sf(data=NM.county, fill="white") +
