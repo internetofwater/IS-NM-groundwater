@@ -237,7 +237,7 @@ NAcounties <- sites.summary.static %>% filter(is.na(CountyNm))
 #there are lots of NAs, either because of gwl site numbers with no related site data, or  ABQ didn't provide
 
 #take out those without any site info
-sites.summary.static <- sites.summary.static %>% filter(!is.na(CountyNm))
+sites.summary.static <- sites.summary.static %>% filter(!is.na(CountyNm) & CountyNm != "")
 sites.summary.static$CountyNm <- as.character(sites.summary.static$CountyNm)
 
 length(unique(gwl.joined.skinny.static$SiteNo))
