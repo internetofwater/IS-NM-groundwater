@@ -24,6 +24,7 @@ library(viridis)
 library(shinyWidgets) 
 library(scales)
 library(data.table)
+library(DT)
 #devtools::install_github("dreamRs/shinyWidgets") 
 #install.packages("shinyWidgets")
 
@@ -49,7 +50,7 @@ sites.summary.static$WellDepth <-
   ifelse(is.na(sites.summary.static$WellDepth), "-1", sites.summary.static$WellDepth)
 sites.summary.static$WellDepth <- as.numeric(sites.summary.static$WellDepth)
 summary(sites.summary.static$WellDepth) 
-
+#something
 
 #gwl data
 gwl.joined.skinny <- fread("../Processed/gwl.joined.skinny.csv")
@@ -112,7 +113,7 @@ pickerInput(
 )
 ```
 
-Column {data-width=700} 
+Column {data-width=650} 
 -----------------------------------------------------------------------
 
 ### Sites
@@ -151,7 +152,7 @@ output$map <- renderLeaflet({
 leafletOutput('map')
 ```
 
-Column {data-width=300}
+Column {data-width=350}
 -----------------------------------------------------------------------
 
 ### Click on a point to see groundwater levels
