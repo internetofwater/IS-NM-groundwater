@@ -1,7 +1,7 @@
-pacman::p_load(tidyverse, plyr, dataRetrieval, devtools)
-library(data.table)
+pacman::p_load(tidyverse, plyr, dataRetrieval, devtools, data.table)
 
-options(scipen=999)
+
+options(scipen=999) #changes scientific notation to numeric
 
 #--------joining gwl dfs-----------#
 
@@ -201,6 +201,8 @@ saveRDS(sites.joined.skinny, "./Processed/sites.joined.skinny.rds")
 fwrite(sites.joined, file = "./Processed/sites.joined.csv")
 fwrite(sites.joined.skinny, file="./Processed/sites.joined.skinny.csv")
 
+#sites.joined.skinny<- fread("./Processed/sites.joined.skinny.csv")
+
 
 #--------create static gwl summarized df-----------#
 gwl.joined.skinny <- readRDS("./Processed/gwl.joined.skinny.rds")
@@ -247,7 +249,7 @@ names(sites.summary.static)
 sites.summary.static <- sites.summary.static %>% 
                         select(SiteNo, AgencyCd, SiteName, DecLatVa, DecLongVa, 
                                HorzDatum, AltVa, AltDatumCd, CountyNm, WellDepth, 
-                               LocalAquiferCd, CasingSize, lastMeas, Count)
+                               LocalAquiferCd, CasingSize, lastMeas, firstMeas, Count)
 
 saveRDS(sites.summary.static, file = "./Processed/sites.summary.static.rds")
 fwrite(sites.summary.static, file="./Processed/sites.summary.static.csv")
