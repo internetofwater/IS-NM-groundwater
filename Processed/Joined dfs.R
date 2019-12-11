@@ -1,4 +1,5 @@
 pacman::p_load(tidyverse, plyr, dataRetrieval, devtools)
+library(data.table)
 
 options(scipen=999)
 
@@ -48,6 +49,8 @@ gwl.joined.skinny <- gwl.joined %>%
 
 saveRDS(gwl.joined, "./Processed/gwl.joined.rds")
 saveRDS(gwl.joined.skinny, "./Processed/gwl.joined.skinny.rds")
+
+fwrite(gwl.joined.skinny, "./Processed/gwl.joined.skinny.csv")
 
 #write.csv(gwl.joined, file = "./Processed/gwl.joined.csv")
 write.csv(gwl.joined.skinny, file="./Processed/gwl.joined.skinny.csv")
