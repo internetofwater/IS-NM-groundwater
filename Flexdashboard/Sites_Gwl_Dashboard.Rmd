@@ -37,11 +37,19 @@ sites.summary.static$lastMeas <- as.Date(sites.summary.static$lastMeas)
 sites.summary.static$SiteType <- as.factor(sites.summary.static$SiteType)
 sites.summary.static$AgencyCd <- as.factor(sites.summary.static$AgencyCd)
 
-table(sites.summary.static$AgencyCd) #mostly USGS wells, but some are NMBGMR
-str(sites.summary.static)
-summary(sites.summary.static$WellDepth) #so many NAs for welldepth, none are showing up
+#create unique site no list
+sitelist <- unique(sites.summary.static$SiteNo)
+
+#create county list
 countylist <- unique(sites.summary.static$CountyNm)
 countylist <- sort(countylist)
+
+#make NA well depth values -1
+sites.summary.static$WellDepth <- 
+  ifelse(is.na(sites.summary.static$WellDepth), "-1", sites.summary.static$WellDepth)
+sites.summary.static$WellDepth <- as.numeric(sites.summary.static$WellDepth)
+summary(sites.summary.static$WellDepth) 
+
 
 #gwl data
 gwl.joined.skinny <- fread("../Processed/gwl.joined.skinny.csv")
@@ -57,6 +65,7 @@ Sidebar {.sidebar}
 Identify desired attributes to narrow down sites on map
 
 ```{r}
+
 #Agency selection
 checkboxGroupInput("Agency", label = "Agency",
             choices = c("USGS", "NMBGMR"), 
@@ -65,9 +74,12 @@ checkboxGroupInput("Agency", label = "Agency",
 #Number of measurements per well
 numericInput("Measurements", "Minimum number of measurements per well", value = 1)
 
+
+
 #Well Depth
 sliderInput("Depth", "Well Depth (ft)",
-            min = 0, max = 7400, value = c(0,1000), step = 10)
+            min = -1, max = 7400, value = c(0,1000), step = 10)
+
 
 
 #County drop down
@@ -85,7 +97,19 @@ pickerInput(
 dateInput("Dates", "Has ground water level data as recent as:", 
                min = "1900-05-01", max = Sys.Date(), format = "yyyy-mm-dd" , 
                startview = "month", weekstart = 0, language = "en", 
-               value = "2000-01-01",width = NULL, autoclose = TRUE)
+               value = "1900-05-01",width = NULL, autoclose = TRUE)
+
+#Site Selection
+pickerInput(
+   inputId = "Site",
+   label = "To search for specific site number, deselect all counties, then type below", 
+    choices = sitelist,
+   selected=NULL,
+   options = list(
+      `live-search` = TRUE,
+      `size` = 10, 
+      `title` = "Type Site Number")
+)
 ```
 
 Column {data-width=700} 
@@ -100,27 +124,29 @@ selectedData <- reactive({
               WellDepth >= input$Depth[1] & WellDepth <= input$Depth[2] &
               Count >= input$Measurements &
               lastMeas >= as.Date(input$Dates) &
-              CountyNm %in% input$County
+              CountyNm %in% input$County |
+              SiteNo %in% input$Site
        ) 
  
   
 })
 output$map <- renderLeaflet({
   #palette 
-  pal <- colorNumeric(magma(999), NULL, reverse = TRUE, na.color = "green")
+  pal <- colorNumeric(magma(999), NULL, reverse = TRUE)
   
  selectedData() %>%
  leaflet() %>% 
  addTiles()%>%
  addCircleMarkers(~DecLongVa, ~DecLatVa,
                   stroke = FALSE, 
-                  fillOpacity = 0.5,
+                  fillOpacity = 0.7,
                   radius=5,
                   fillColor = ~pal(WellDepth),
                   popup = ~as.character(`SiteNo`),
+                  popupOptions=popupOptions(className = "Site Number"),
                   layerId = ~SiteNo) %>%
  addLegend(position = 'bottomright', pal = pal, na.label = "NA",
-                values = selectedData()$WellDepth, title = 'Well Depth (ft)')
+                values = selectedData()$WellDepth, title = 'Well Depth (ft)') 
 })
 leafletOutput('map')
 ```
@@ -162,36 +188,40 @@ plotlyOutput('well')
 colname <- colnames(sites.summary.static)
 table_data <- reactive({
   
-
-  
- return(sites.summary.static[sites.summary.static$SiteNo == click_marker(), ])
+  t<-as.data.frame(sites.summary.static[sites.summary.static$SiteNo == click_marker(),  ])[1,]
+  t<-as.data.frame(t(t))
+  t$Attribute<-rownames(t)
+  rownames(t)<-NULL
+  colnames(t)<-c("Value","Attribute")
+  t<-t[c(2,1)]
+ return(t)
  #rownames(sites.summary.static) <- colname
   
  })
-output$table <- renderTable({
-  q <- t(table_data())
-  q$SiteInfo <- colname
+#q <- reactive({table_data()%>%t()})
+#colnames(q())<-NA
+output$table <- DT::renderDataTable({
+ DT::datatable(table_data(),options=list(dom='Bti',bPaginate=FALSE,scrollY='55vh'),rownames=FALSE)
+#  q$SiteInfo <- colname
   
              })
-tableOutput('table')
+DT::dataTableOutput('table')
 ```
+
+Groundwater Info
+==================================================
+
+```{r}
+
+```
+
 
 
 About 
 ==================================================
-To-do:
+Use this application to view 
 
-
-- flesh out "About" page and clarify all assumptions made
-- submit skinny joined df with "must haves"
-
-- Do sites with NA welldepth show up on map?
-
-
-- add aquifer codes, county fips, state names
-
-
-
+- NA values for Well Depth have been characterized as "-1" in the slider input
 
 **NMBGMR**
 
@@ -229,3 +259,16 @@ OSEWellID are not unique (there are 85 sites with an OSEWellID of 1) - for futur
 **ABQ**
 
 No location information like lat or long data. No actual gwl data. Should not be included in final map.
+
+
+
+To-do:
+
+- flesh out "About" page and clarify all assumptions made
+- submit skinny joined df with "must haves"
+
+- add aquifer codes, county fips, state names to all data
+- set default zoom to New Mexico when nothing is selected
+
+
+
