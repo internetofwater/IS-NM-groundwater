@@ -20,7 +20,7 @@ names(USGS.gwls)
 names(NGWMN.gwls) <- c("X", "AgencyCd", "SiteNo", "DateTime", "OriginalParameter",
                        "OriginalDirection", "OriginalUnit", "OriginalValue", "AccuracyUnit",
                        "AccuracyValue", "DepthToWater", "WaterRelativeToNAVD88", 
-                       "Comment", "ObservationMethod", "DataProvidedBy", "Date", "Time")
+                       "Comment", "ObservationMethod", "DataProvidedBy", "X","Date", "Time")
 
 names(USGS.gwls) <- c("X","AgencyCd", "SiteNo", "site_tp_cd.USGS", "Date", "Time", 
                      "lev_tz_cd_reported.USGS", "DepthToWater",
@@ -45,8 +45,7 @@ gwl.joined <- rbind.fill(gwl.joined, NMBGMR.gwls)
 gwl.joined <- rbind.fill(gwl.joined, OSE.gwls)
 gwl.joined <- rbind.fill(gwl.joined, ABQ.gwls)
 gwl.joined.skinny <- gwl.joined %>%
-  select(AgencyCd, SiteNo, OSEWellID, Date, Time, DepthToWater, AccuracyValue, 
-         WaterRelativeToNAVD88, ObservationMethod, Status)
+  select(SiteNo, Date, DepthToWater)
 
 saveRDS(gwl.joined, "./Processed/gwl.joined.rds")
 saveRDS(gwl.joined.skinny, "./Processed/gwl.joined.skinny.rds")
@@ -54,7 +53,7 @@ saveRDS(gwl.joined.skinny, "./Processed/gwl.joined.skinny.rds")
 fwrite(gwl.joined.skinny, "./Processed/gwl.joined.skinny.csv")
 
 #write.csv(gwl.joined, file = "./Processed/gwl.joined.csv")
-write.csv(gwl.joined.skinny, file="./Processed/gwl.joined.skinny.csv")
+#write.csv(gwl.joined.skinny, file="./Processed/gwl.joined.skinny.csv")
 
 
 #--------joining site info dfs-----------#
@@ -173,6 +172,7 @@ n_occur <- data.frame(table(sites.joined$SiteNo)) %>% filter(Freq>1)
 
 sites.joined <- rbind.fill(sites.joined, OSE.sites)
 n_occur <- data.frame(table(sites.joined$SiteNo)) %>% filter(Freq>1)
+sites.joined <- sites.joined[!rev(duplicated(rev(sites.joined$SiteNo))),]
 #1 new duplicate
 
 table(sites.joined$AgencyCd)
@@ -191,7 +191,7 @@ n_occur <- data.frame(table(sites.joined.skinny$SiteNo)) %>% filter(Freq > 1)
 zt <- sites.joined.skinny[sites.joined.skinny$SiteNo %in% n_occur$Var1,] %>% arrange(SiteNo)
 
 #The first occurrence has more data than the second - so keep the first occurrence
-sites.joined.skinny <- sites.joined.skinny[!(duplicated(sites.joined.skinny$SiteNo)),] 
+#sites.joined.skinny <- sites.joined.skinny[!(duplicated(sites.joined.skinny$SiteNo)),] 
 
 
 
@@ -232,7 +232,7 @@ sites.summary.static$Count <- ifelse(is.na(sites.summary.static$Count)==TRUE, 0,
                                      sites.summary.static$Count)
 
 NAcounties <- sites.summary.static %>% filter(is.na(CountyNm))
-#there are 894 NAs, either because of gwl site numbers with no related site data, or  ABQ didn't provide
+#there are lots of NAs, either because of gwl site numbers with no related site data, or  ABQ didn't provide
 
 #take out those without any site info
 sites.summary.static <- sites.summary.static %>% filter(!is.na(CountyNm))
@@ -242,9 +242,19 @@ length(unique(gwl.joined.skinny.static$SiteNo))
 countstatic <- sites.summary.static %>% filter(Count>1) 
 length(unique(countstatic$SiteNo))#implies there are only 1642 sites with more than one gwl measurement?
 
+#get rid of all variables that are not used in map at the moment to make file smaller
+names(sites.summary.static)
+sites.summary.static <- sites.summary.static %>% 
+                        select(SiteNo, AgencyCd, SiteName, DecLatVa, DecLongVa, 
+                               HorzDatum, AltVa, AltDatumCd, CountyNm, WellDepth, 
+                               LocalAquiferCd, CasingSize, lastMeas, Count)
+
 saveRDS(sites.summary.static, file = "./Processed/sites.summary.static.rds")
+fwrite(sites.summary.static, file="./Processed/sites.summary.static.csv")
 str(sites.summary.static)
 
+
+#mini file to practice
 sites.summary.static10 <- head(sites.summary.static,10)
 saveRDS(sites.summary.static10, file = "./Processed/sites.summary.static10.rds")
 write.csv(sites.summary.static10, file = "./Processed/sites.summary.static10.csv")

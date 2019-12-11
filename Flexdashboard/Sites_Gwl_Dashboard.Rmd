@@ -7,24 +7,24 @@ output:
     theme: united
 editor_options: 
   chunk_output_type: console
-  runtime: shiny
+runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
-#pacman::p_load(tidyverse, flexdashboard,maps,leaflet,sf,plotly,shiny,viridis,shinyWidgets,scales)
-library(tidyverse)
-library(flexdashboard)
-library(maps)
-library(leaflet)
-library(sf)
-library(plotly)
-library(mapview)
-library(shiny)
-library(viridis)
-library(shinyWidgets) 
-library(scales)
-library(data.table)
-library(DT)
+pacman::p_load(tidyverse, flexdashboard,maps,leaflet,sf,plotly,shiny,viridis,shinyWidgets,scales, data.table, DT)
+#$library(tidyverse)
+#$library(flexdashboard)
+#$library(maps)
+#$library(leaflet)
+#$library(sf)
+#$library(plotly)
+#$library(mapview)
+#$library(shiny)
+#$library(viridis)
+#$library(shinyWidgets) 
+#$library(scales)
+#$library(data.table)
+#$library(DT)
 #devtools::install_github("dreamRs/shinyWidgets") 
 #install.packages("shinyWidgets")
 
@@ -32,11 +32,10 @@ theme_set(theme_classic())
 getwd()
 
 #static df with count and date measurements
-sites.summary.static <- readRDS("../Processed/sites.summary.static.rds")
-sites.summary.static$firstMeas <- as.Date(sites.summary.static$firstMeas)
+sites.summary.static <- fread("../Processed/sites.summary.static.csv")
 sites.summary.static$lastMeas <- as.Date(sites.summary.static$lastMeas)
-sites.summary.static$SiteType <- as.factor(sites.summary.static$SiteType)
 sites.summary.static$AgencyCd <- as.factor(sites.summary.static$AgencyCd)
+sites.summary.static$CountyNm <- as.character(sites.summary.static$CountyNm)
 
 #create unique site no list
 sitelist <- unique(sites.summary.static$SiteNo)
@@ -50,7 +49,7 @@ sites.summary.static$WellDepth <-
   ifelse(is.na(sites.summary.static$WellDepth), "-1", sites.summary.static$WellDepth)
 sites.summary.static$WellDepth <- as.numeric(sites.summary.static$WellDepth)
 summary(sites.summary.static$WellDepth) 
-#something
+
 
 #gwl data
 gwl.joined.skinny <- fread("../Processed/gwl.joined.skinny.csv")
@@ -69,8 +68,8 @@ Identify desired attributes to narrow down sites on map
 
 #Agency selection
 checkboxGroupInput("Agency", label = "Agency",
-            choices = c("USGS", "NMBGMR"), 
-            selected = c("USGS", "NMBGMR"))
+            choices = c("USGS", "NMBGMR", "OSE"), 
+            selected = c("USGS", "NMBGMR", "OSE"))
 
 #Number of measurements per well
 numericInput("Measurements", "Minimum number of measurements per well", value = 1)
@@ -98,7 +97,7 @@ pickerInput(
 dateInput("Dates", "Has ground water level data as recent as:", 
                min = "1900-05-01", max = Sys.Date(), format = "yyyy-mm-dd" , 
                startview = "month", weekstart = 0, language = "en", 
-               value = "1900-05-01",width = NULL, autoclose = TRUE)
+               value = "2000-01-01",width = NULL, autoclose = TRUE)
 
 #Site Selection
 pickerInput(
@@ -209,28 +208,35 @@ output$table <- DT::renderDataTable({
 DT::dataTableOutput('table')
 ```
 
-Groundwater Info
-==================================================
-
-```{r}
-
-```
-
 
 
 About 
 ==================================================
-Use this application to view 
 
-- NA values for Well Depth have been characterized as "-1" in the slider input
+This application was created by combining groundwater levels and site information from five agencies that collect various water data across the state of New Mexico. This flex dashboard was created in R, and its reproducible code and associated data files can be found in github [here](https://github.com/rachelbash/IS-NM-groundwater). The crosswalk that standardized variables and joined all of the agency information together is found in the R scripted labeled "Joined dfs.R" in the Processed data folder.
+
+**Helpful information when using the map:**
+
+- There are many sites with no Well Depth information. In order to include them on the map, sites with no well depth associated have been assigned a well depth value of -1 in the slider input on the side bar. 
+- Site level and groundwater data go back as far as May 1st, 1900. In order to see sites with information in the 20th century, type a date in the box or search for a specific year or day.
+- In order to search for a specific site number, all counties from the County dropdown must be unchecked. Only then can you search for a single site number.
+- A majority of the sites included only have one groundwater level depth. This will cause only one point on the graph to the right to appear.
+- Once a site is clicked on the map, site attributes will appear in the table in the lower right.
+- ABQ information is not included on the map because there was no coordinate information for the sites listed.
+
+
+
+### Agency Notes
 
 **NMBGMR**
 
-Pulled data by creating a loop that pulled each site number from website from csv
+Pulled data by creating a loop that pulled each site number from website from csv.
 
-Do not know coordinate references system they used. Converted Easting/Northing coordinates to Lat/Long coordinates with 4326 projection.
+Do not know coordinate references system they used. Converted Easting/Northing coordinates to Lat/Long coordinates with 4269 projection.
 
-Some sites were lost 6090 -> 5337 because there were no Easting/Northing coordinates.
+Some sites were lost (6090 -> 5337 sites) because there were no Easting/Northing coordinates.
+
+Data wrangling completed in file called `NMBGMR_site_data_exploration.R` and `NMBGMR_gwl_data_exploration.R`. Site and gwl information are saved as csv files in the NMBGMR folder on github.
 
 **USGS**
 
@@ -238,36 +244,44 @@ Pulled from NWIS dataRetrieval package, last pull was on 12/7/2019.
 
 Data coordinate system was NAD83 or crs 4269.
 
-Did a left join pulling gwl and sites. Assumed that all sites had gwl data.Removed a lot of potential groundwater wells without any data attached to them. 9778 sites with no gwl data
+Did a left join pulling gwl and sites. Assumed that all sites had gwl data. Removed a lot of potential groundwater wells without any data attached to them. 9778 sites with no gwl data.
+
+Data wrangling completed in file called `USGS_data_exploration.R`. Site and gwl information are saved as csv files in the USGS folder on github.
 
 **NGWMN** 
 
-Downloaded zipfile from website, saved under Raw folder
+Downloaded zipfile from website (https://cida.usgs.gov/ngwmn/index.jsp), saved in Raw folder
+
 Projection is in 4269. All sites were either from USGS or NMBGMR agencies, so there are no true "NGWMN" sites on the map.
+
+Data wrangling completed in file called `NGWMN_data_exploration.R`. Site and gwl information are saved as csv files in the NGWMN folder on github.
 
 
 **OSE**
 
-Downloaded shapefile from OSE website. Data dictionary: http://www.ose.state.nm.us/GIS/PODS/nmose_WATERS_PODs_data_dictionary_v8.xlsx
+Downloaded shapefile from OSE website. Data dictionary is found here: http://www.ose.state.nm.us/GIS/PODS/nmose_WATERS_PODs_data_dictionary_v8.xlsx
 
-For depth to water, used static_level column, and for Date and Time, I used sys_date
+For depth to water, used static_level column.
 
-Translated geometry in 4269.
+Translated geometry to 4269 from espg 26913.
 
-OSEWellID are not unique (there are 85 sites with an OSEWellID of 1) - for future reference, will need to convert to unique identifyer (or use OBJECTID) for gwl data in order for it to show up on the map. Will not include in map for now.
+OSEWellID are not unique (e.g. there are 85 sites with an OSEWellID of 1) - for future reference, will need to convert to unique identifyer (or use OBJECTID) for gwl data in order for all sites to show up on the map.
+
+Data wrangling completed in file called `OSE_data_exploration.R`. Site and gwl information are saved as csv files in the OSE folder on github.
 
 
 **ABQ**
 
-No location information like lat or long data. No actual gwl data. Should not be included in final map.
+ABQ information received from Thushara G. in excel format. Just example data.
+
+No location information like lat or long data. No actual gwl data. Is not included in the final map.
+
+Data wrangling completed in file called `ABQ_data_exploration.R`. Site and gwl information are saved as csv files in the ABQ folder on github.
 
 
+*To-improve upon :*
 
-To-do:
-
-- flesh out "About" page and clarify all assumptions made
-- submit skinny joined df with "must haves"
-
+- get unique identifier for OSE
 - add aquifer codes, county fips, state names to all data
 - set default zoom to New Mexico when nothing is selected
 
