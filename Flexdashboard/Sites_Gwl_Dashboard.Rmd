@@ -34,6 +34,7 @@ getwd()
 #static df with count and date measurements
 sites.summary.static <- fread("../Processed/sites.summary.static.csv")
 sites.summary.static$lastMeas <- as.Date(sites.summary.static$lastMeas)
+sites.summary.static$firstMeas <- as.Date(sites.summary.static$firstMeas)
 sites.summary.static$AgencyCd <- as.factor(sites.summary.static$AgencyCd)
 sites.summary.static$CountyNm <- as.character(sites.summary.static$CountyNm)
 
@@ -89,27 +90,19 @@ pickerInput(
     choices = countylist,
    selected = countylist,
    options = list(
-      `actions-box` = TRUE), 
+      `actions-box` = TRUE,
+      `size`=10), 
     multiple = TRUE
 )
 
 #Date of last measurement
-dateInput("Dates", "Has ground water level data as recent as:", 
+dateRangeInput("Dates", "Data date range:", 
                min = "1900-05-01", max = Sys.Date(), format = "yyyy-mm-dd" , 
-               startview = "month", weekstart = 0, language = "en", 
-               value = "2000-01-01",width = NULL, autoclose = TRUE)
+               startview = "year", weekstart = 0, language = "en",
+               separator = "to", start = "1900-05-01", end = Sys.Date(),
+               width = NULL, autoclose = TRUE)
 
-#Site Selection
-pickerInput(
-   inputId = "Site",
-   label = "To search for specific site number, deselect all counties, then type below", 
-    choices = sitelist,
-   selected=NULL,
-   options = list(
-      `live-search` = TRUE,
-      `size` = 10, 
-      `title` = "Type Site Number")
-)
+
 ```
 
 Column {data-width=650} 
@@ -123,9 +116,8 @@ selectedData <- reactive({
               AgencyCd %in% input$Agency &
               WellDepth >= input$Depth[1] & WellDepth <= input$Depth[2] &
               Count >= input$Measurements &
-              lastMeas >= as.Date(input$Dates) &
-              CountyNm %in% input$County |
-              SiteNo %in% input$Site
+              firstMeas >= as.Date(input$Dates[1]) & lastMeas <= as.Date(input$Dates[2]) &
+              CountyNm %in% input$County
        ) 
  
   
@@ -213,12 +205,12 @@ DT::dataTableOutput('table')
 About 
 ==================================================
 
-This application was created by combining groundwater levels and site information from five agencies that collect various water data across the state of New Mexico. This flex dashboard was created in R, and its reproducible code and associated data files can be found in github [here](https://github.com/rachelbash/IS-NM-groundwater). The crosswalk that standardized variables and joined all of the agency information together is found in the R scripted labeled "Joined dfs.R" in the Processed data folder.
+This application was created by combining groundwater levels and site information from five agencies that collect various water data across the state of New Mexico. This flex dashboard was created in R, and its reproducible code and associated data files can be found in github [here](https://github.com/rachelbash/IS-NM-groundwater). The crosswalk that standardized variables and joined all of the agency information together is found in the R scripted labeled "Joined dfs.R" in the Processed data folder. Variable names and units have been converted to the standard WaterML.
 
 **Helpful information when using the map:**
 
 - There are many sites with no Well Depth information. In order to include them on the map, sites with no well depth associated have been assigned a well depth value of -1 in the slider input on the side bar. 
-- Site level and groundwater data go back as far as May 1st, 1900. In order to see sites with information in the 20th century, type a date in the box or search for a specific year or day.
+- Site level and groundwater data go back as far as May 1st, 1900. To see a specific date range, type in the two date boxes. The first measured data point will be bounded by the first box, and the most recent data point will be bounded by the second date box.
 - In order to search for a specific site number, all counties from the County dropdown must be unchecked. Only then can you search for a single site number.
 - A majority of the sites included only have one groundwater level depth. This will cause only one point on the graph to the right to appear.
 - Once a site is clicked on the map, site attributes will appear in the table in the lower right.
@@ -277,6 +269,9 @@ ABQ information received from Thushara G. in excel format. Just example data.
 No location information like lat or long data. No actual gwl data. Is not included in the final map.
 
 Data wrangling completed in file called `ABQ_data_exploration.R`. Site and gwl information are saved as csv files in the ABQ folder on github.
+
+
+
 
 
 *To-improve upon for future use:*
