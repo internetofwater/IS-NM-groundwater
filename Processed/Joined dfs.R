@@ -32,13 +32,14 @@ names(USGS.gwls) <- c("X","AgencyCd", "SiteNo", "site_tp_cd.USGS", "Date", "Time
 names(NMBGMR.gwls)<- c("X", "SiteNo", "Date", "Status", "ObservationMethod", "MedDepth2WaterBGS.NMBGMR",
                        "MedManualDepth2WaterBGS.NMBGMR", "DepthToWater", "AgencyCd")
 
-names(OSE.gwls)<- c("X","AgencyCd", "OSEWellID", "sys_date.OSE", "DepthToWater", "Date", "Time")
+names(OSE.gwls)<- c("X","AgencyCd", "SiteNo", "sys_date.OSE", "DepthToWater", "Date", "Time")
+#change OSEWellID to SiteNo so that the gwl can be mapped by the site info
 
 names(ABQ.gwls) <- c("X", "facility_id.ABQ", "SiteNo", "Date", "DepthToWater", "water_level_elev",
                      "ObservationMethod", "WellDepth", "Status", "Technician", "WaterRelativeToNAVD88",
                      "AgencyCd")
 
-
+gwl.joined <- NULL
 gwl.joined <- rbind.fill(NGWMN.gwls, USGS.gwls)
 gwl.joined <- rbind.fill(gwl.joined, NMBGMR.gwls)
 gwl.joined <- rbind.fill(gwl.joined, OSE.gwls)
@@ -113,8 +114,9 @@ names(OSE.sites) <- c("DecLongVa", "DecLatVa", "AgencyCd", "AgencyNm","OBJECTID.
                       "WellDepth", "depth_water.OSE", "use_of_well.OSE", "CasingSize")
 
 
+
 ############################### DEAL WITH DUPLICATED SITE NUMBERS #######################################################################################################
-#length unique ids
+#USGS.sites
 dim(USGS.sites)[1]; length(unique(USGS.sites$SiteNo))  #30 duplicates
 #find duplicates and keep last record
 n_occur <- data.frame(table(USGS.sites$SiteNo))
@@ -122,27 +124,29 @@ n_occur <- data.frame(table(USGS.sites$SiteNo))
 zt <- USGS.sites[USGS.sites$SiteNo %in% n_occur$Var1[n_occur$Freq > 1],]
 #keeps the last of duplicated sites    
 USGS.sites <- USGS.sites[!rev(duplicated(rev(USGS.sites$SiteNo))),]  
-summary(USGS.sites$AgencyCd)
+
 
 #NGWMN.sites
 dim(NGWMN.sites)[1]; length(unique(NGWMN.sites$SiteNo)) #no duplicates
-summary(NGWMN.sites$AgencyCd)
+
 
 #NMBGMR.sites
 dim(NMBGMR.sites)[1];   length(unique(NMBGMR.sites$SiteNo)) # no duplicates
-summary(NMBGMR.sites$AgencyCd)
+
 
 #OSE.sites
 dim(OSE.sites)[1];    length(unique(OSE.sites$OSEWellID)) ; length(unique(OSE.sites$OBJECTID.OSE))
 #There are so, so many duplicates of OSEWellID ... not a true unique number. 
 #The OBJECTID.OSE is a unique number but can't match to GW levels
-#find duplicates and keep last record
+#find duplicates of OSEWellID and keep last record
 n_occur <- data.frame(table(OSE.sites$OSEWellID))
 zt <- n_occur[n_occur$Freq > 1,]  
-#62492 sites have one duplicate... these are not in the same county and have different lat/long
+#21525 sites have more than one duplicate... these are not in the same county and have different lat/long
 #remove those sites 
 OSE.sites <- OSE.sites[! OSE.sites$OSEWellID %in% n_occur$Var1[n_occur$Freq > 1],]
-summary(OSE.sites$AgencyCd)
+#changed OSEWellID to SiteNo so that it can be mapped along with the other unique identifiers
+names(OSE.sites)[names(OSE.sites) == 'OSEWellID'] <- 'SiteNo'
+  #something that needs to be fixed in future iterations
 
 
 #ABQ sites
@@ -194,8 +198,8 @@ sites.joined.skinny <- sites.joined.skinny[!(duplicated(sites.joined.skinny$Site
 saveRDS(sites.joined, "./Processed/sites.joined.rds")
 saveRDS(sites.joined.skinny, "./Processed/sites.joined.skinny.rds")
 
-#write.csv(sites.joined, file = "./Processed/sites.joined.csv")
-#write.csv(sites.joined.skinny, file="./Processed/sites.joined.skinny.csv")
+fwrite(sites.joined, file = "./Processed/sites.joined.csv")
+fwrite(sites.joined.skinny, file="./Processed/sites.joined.skinny.csv")
 
 
 #--------create static gwl summarized df-----------#
@@ -208,7 +212,7 @@ gwl.joined.skinny.static <- gwl.joined.skinny %>%
     lastMeas = max(Date), 
     Count = length(SiteNo)
   )
-#This df does not include any measurements from OSE because there is no unique site No.
+
 
 
 length(unique(sites.joined.skinny$SiteNo))
