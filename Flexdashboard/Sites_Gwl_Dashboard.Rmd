@@ -12,19 +12,7 @@ runtime: shiny
 
 ```{r setup, include=FALSE}
 pacman::p_load(tidyverse, flexdashboard,maps,leaflet,sf,plotly,shiny,viridis,shinyWidgets,scales, data.table, DT)
-#$library(tidyverse)
-#$library(flexdashboard)
-#$library(maps)
-#$library(leaflet)
-#$library(sf)
-#$library(plotly)
-#$library(mapview)
-#$library(shiny)
-#$library(viridis)
-#$library(shinyWidgets) 
-#$library(scales)
-#$library(data.table)
-#$library(DT)
+
 #devtools::install_github("dreamRs/shinyWidgets") 
 #install.packages("shinyWidgets")
 
@@ -167,9 +155,10 @@ click_marker <- eventReactive(input$map_marker_click, {
  output$well <- renderPlotly({
    p <- ggplot(plot_data(), aes(x=Date, y = DepthToWater)) +
      geom_point() + geom_line() + scale_y_reverse() +
-     labs(y="Depth to Water (ft) Below Ground Surface") +
-     expand_limits(y=c(min(plot_data()$DepthToWater)-10, max(plot_data()$DepthToWater)+10))
-   p <- ggplotly(p) %>% layout(margin = list(pad = 10))
+     labs(y="feet", x="", title = "Depth to water \nbelow ground surface") +
+     expand_limits(y=c(min(plot_data()$DepthToWater)-10, max(plot_data()$DepthToWater)+10)) +
+     scale_x_date(labels = date_format("%Y-%m")) 
+   p <- ggplotly(p) %>% layout(margin = list(pad = 2))
    
  })
 plotlyOutput('well')
@@ -275,13 +264,14 @@ Data wrangling completed in file called `ABQ_data_exploration.R`. Site and gwl i
 
 
 
-*To-improve upon for future use:*
+*To improve upon for future use:*
 
 - update unique identifier for OSE with prefix and suffix values
 - add aquifer codes, county fips, state names to all data
 - set default zoom to New Mexico when nothing is selected
-- create popup in graph window (shinyWidgets) when you click on OSE point with no gwl data 
-- add comment below graph and make year show on x-axis
+- create popup in graph window (shinyWidgets) when you click on OSE point with no gwl data
+- change the way you view NA well depth values (either with toggle switch or numeric inputs instead of slider?)
+
 
 
 
