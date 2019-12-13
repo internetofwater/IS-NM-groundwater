@@ -1,0 +1,12 @@
+name: Sites_Gwl_Dashboard
+title: Sites_Gwl_Dashboard
+username:
+account: internetofwater
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 1589618
+bundleId: 2665220
+url: https://internetofwater.shinyapps.io/Sites_Gwl_Dashboard/
+when: 1576248613.65518
+asMultiple: FALSE
+asStatic: FALSE

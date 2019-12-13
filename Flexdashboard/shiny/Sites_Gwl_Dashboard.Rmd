@@ -1,0 +1,306 @@
+---
+title: "New Mexico Groundwater"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    theme: united
+editor_options: 
+  chunk_output_type: console
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+#pacman::p_load
+library(tidyverse)
+library(flexdashboard)
+library(maps)
+library(leaflet)
+library(sf)
+library(plotly)
+library(shiny)
+library(viridis)
+library(shinyWidgets)
+library(scales)
+library(data.table)
+library(DT)
+
+
+#devtools::install_github("dreamRs/shinyWidgets") 
+#install.packages("shinyWidgets")
+
+theme_set(theme_classic())
+getwd()
+
+#static df with count and date measurements
+sites.summary.static <- fread("sites.summary.static.csv",colClasses=c("character",
+                                                                      "character",
+                                                                      "character",
+                                                                      "numeric",
+                                                                      "numeric",
+                                                                      "character",
+                                                                      "numeric",
+                                                                      "character",
+                                                                      "character",
+                                                                      "numeric",
+                                                                      "character",
+                                                                      "character",
+                                                                      "Date",
+                                                                      "Date",
+                                                                      "integer"
+                                                                      ))
+# sites.summary.static$lastMeas <- as.Date(sites.summary.static$lastMeas)
+# sites.summary.static$firstMeas <- as.Date(sites.summary.static$firstMeas)
+# sites.summary.static$AgencyCd <- as.factor(sites.summary.static$AgencyCd)
+# sites.summary.static$CountyNm <- as.character(sites.summary.static$CountyNm)
+
+#create unique site no list
+sitelist <- unique(sites.summary.static$SiteNo)
+
+#create county list
+countylist <- unique(sites.summary.static$CountyNm)
+countylist <- sort(countylist)
+
+#make NA well depth values -1
+sites.summary.static$WellDepth <- 
+  ifelse(is.na(sites.summary.static$WellDepth), -1, sites.summary.static$WellDepth)
+#sites.summary.static$WellDepth <- as.numeric(sites.summary.static$WellDepth)
+summary(sites.summary.static$WellDepth) 
+
+
+#gwl data
+gwl.joined.skinny <- fread("gwl.joined.skinny.csv",colClasses=c("character","Date","numeric"))
+#gwl.joined.skinny$Date<-as.Date(gwl.joined.skinny$Date)
+```
+
+Dashboard
+=======================================================================
+
+
+Sidebar {.sidebar}
+-------------------------------------------
+Identify desired attributes to narrow down sites on map
+
+```{r}
+
+#Agency selection
+checkboxGroupInput("Agency", label = "Agency",
+            choices = c("USGS", "NMBGMR", "OSE"), 
+            selected = c("USGS", "NMBGMR", "OSE"))
+
+#Number of measurements per well
+numericInput("Measurements", "Minimum number of measurements per well", value = 1)
+
+
+
+#Well Depth
+sliderInput("Depth", "Well Depth (ft)",
+            min = -1, max = 7400, value = c(0,1000), step = 1)
+
+
+
+#County drop down
+pickerInput(
+   inputId = "County",
+   label = "County", 
+    choices = countylist,
+   selected = countylist,
+   options = list(
+      `actions-box` = TRUE,
+      `size`=10), 
+    multiple = TRUE
+)
+
+#Date of last measurement
+dateRangeInput("Dates", "Data date range:", 
+               min = "1900-05-01", max = Sys.Date(), format = "yyyy-mm-dd" , 
+               startview = "year", weekstart = 0, language = "en",
+               separator = "to", start = "2000-01-01", end = Sys.Date(),
+               width = NULL, autoclose = TRUE)
+
+
+```
+
+Column {data-width=650} 
+-----------------------------------------------------------------------
+
+### Sites
+
+```{r}
+selectedData <- reactive({
+  m <- subset(sites.summary.static,
+              AgencyCd %in% input$Agency &
+              WellDepth >= input$Depth[1] & WellDepth <= input$Depth[2] &
+              Count >= input$Measurements &
+              firstMeas >= as.Date(input$Dates[1]) & lastMeas <= as.Date(input$Dates[2]) &
+              CountyNm %in% input$County
+       ) 
+ 
+  
+})
+output$map <- renderLeaflet({
+  #palette 
+  pal <- colorNumeric(magma(999), NULL, reverse = TRUE)
+  
+ selectedData() %>%
+ leaflet() %>% 
+ addTiles()%>%
+ addCircleMarkers(~DecLongVa, ~DecLatVa,
+                  stroke = FALSE, 
+                  fillOpacity = 0.9,
+                  radius=5,
+                  fillColor = ~pal(WellDepth),
+                  popup = ~as.character(`SiteNo`),
+                  popupOptions=popupOptions(className = "Site Number"),
+                   clusterOptions = markerClusterOptions(),
+                  layerId = ~SiteNo) %>%
+ addLegend(position = 'bottomright', pal = pal, na.label = "NA",
+                values = selectedData()$WellDepth, title = 'Well Depth (ft)') 
+})
+leafletOutput('map')
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Click on a point to see groundwater levels
+
+```{r}
+click_marker <- eventReactive(input$map_marker_click, {
+  
+  x<-input$map_marker_click
+  y<-x$id
+  return(y)
+})
+ plot_data <- reactive({
+  
+  
+ # Fetch data for the clicked tract
+  
+ return(gwl.joined.skinny[gwl.joined.skinny$SiteNo == click_marker(), ])
+  
+  
+ })
+ output$well <- renderPlotly({
+   p <- ggplot(plot_data(), aes(x=Date, y = DepthToWater)) +
+     geom_point() + geom_line() + scale_y_reverse() +
+     labs(y="feet", x="", title = "Depth to water \nbelow ground surface") +
+     expand_limits(y=c(min(plot_data()$DepthToWater)-10, max(plot_data()$DepthToWater)+10)) +
+     scale_x_date(labels = date_format("%Y-%m")) 
+   p <- ggplotly(p) %>% layout(margin = list(pad = 2))
+   
+ })
+plotlyOutput('well')
+```
+
+### Click on a point to see site information
+
+```{r}
+colname <- colnames(sites.summary.static)
+table_data <- reactive({
+  
+  t<-as.data.frame(sites.summary.static[sites.summary.static$SiteNo == click_marker(),  ])[1,]
+  t<-as.data.frame(t(t))
+  t$Attribute<-rownames(t)
+  rownames(t)<-NULL
+  colnames(t)<-c("Value","Attribute")
+  t<-t[c(2,1)]
+ return(t)
+ #rownames(sites.summary.static) <- colname
+  
+ })
+#q <- reactive({table_data()%>%t()})
+#colnames(q())<-NA
+output$table <- DT::renderDataTable({
+ DT::datatable(table_data(),options=list(dom='Bti',bPaginate=FALSE,scrollY='55vh'),rownames=FALSE)
+#  q$SiteInfo <- colname
+  
+             })
+DT::dataTableOutput('table')
+```
+
+
+
+About 
+==================================================
+
+This application was created by combining groundwater levels and site information from five agencies that collect various water data across the state of New Mexico. This flex dashboard was created in R, and its reproducible code and associated data files can be found in github [here](https://github.com/rachelbash/IS-NM-groundwater). The crosswalk that standardized variables and joined all of the agency information together is found in the R scripted labeled "Joined dfs.R" in the Processed data folder. Variable names and units have been converted to the standard WaterML.
+
+**Helpful information when using the map:**
+
+- There are many sites with no Well Depth information. In order to include them on the map, sites with no well depth associated have been assigned a well depth value of -1 in the slider input on the side bar. 
+- Site level and groundwater data go back as far as May 1st, 1900. To see a specific date range, type in the two date boxes. The first measured data point will be bounded by the first box, and the most recent data point will be bounded by the second date box.
+- In order to search for a specific site number, all counties from the County dropdown must be unchecked. Only then can you search for a single site number.
+- A majority of the sites included only have one groundwater level depth. This will cause only one point on the graph to the right to appear.
+- Once a site is clicked on the map, site attributes will appear in the table in the lower right.
+- ABQ information is not included on the map because there was no coordinate information for the sites listed.
+
+
+
+### Agency Notes
+
+**NMBGMR**
+
+Pulled data by creating a loop that pulled each site number from website from csv.
+
+Do not know coordinate references system they used. Converted Easting/Northing coordinates to Lat/Long coordinates with 4269 projection.
+
+Some sites were lost (6090 -> 5337 sites) because there were no Easting/Northing coordinates.
+
+Data wrangling completed in file called `NMBGMR_site_data_exploration.R` and `NMBGMR_gwl_data_exploration.R`. Site and gwl information are saved as csv files in the NMBGMR folder on github.
+
+**USGS**
+
+Pulled from NWIS dataRetrieval package, last pull was on 12/7/2019.
+
+Data coordinate system was NAD83 or crs 4269.
+
+Did a left join pulling gwl and sites. Assumed that all sites had gwl data. Removed a lot of potential groundwater wells without any data attached to them. 9778 sites with no gwl data.
+
+Data wrangling completed in file called `USGS_data_exploration.R`. Site and gwl information are saved as csv files in the USGS folder on github.
+
+**NGWMN** 
+
+Downloaded zipfile from website (https://cida.usgs.gov/ngwmn/index.jsp), saved in Raw folder
+
+Projection is in 4269. All sites were either from USGS or NMBGMR agencies, so there are no true "NGWMN" sites on the map.
+
+Data wrangling completed in file called `NGWMN_data_exploration.R`. Site and gwl information are saved as csv files in the NGWMN folder on github.
+
+
+**OSE**
+
+Downloaded shapefile from OSE website. Data dictionary is found here: http://www.ose.state.nm.us/GIS/PODS/nmose_WATERS_PODs_data_dictionary_v8.xlsx
+
+For depth to water, used static_level column.
+
+Translated geometry to 4269 from espg 26913.
+
+OSEWellID are not unique (e.g. there are 85 sites with an OSEWellID of 1) - for future reference, will need to convert to unique identifyer (or use OBJECTID) for gwl data in order for all sites to show up on the map.
+
+Data wrangling completed in file called `OSE_data_exploration.R`. Site and gwl information are saved as csv files in the OSE folder on github.
+
+
+**ABQ**
+
+ABQ information received from Thushara G. in excel format. Just example data.
+
+No location information like lat or long data. No actual gwl data. Is not included in the final map.
+
+Data wrangling completed in file called `ABQ_data_exploration.R`. Site and gwl information are saved as csv files in the ABQ folder on github.
+
+
+
+
+
+*To improve upon for future use:*
+
+- update unique identifier for OSE with prefix and suffix values
+- add aquifer codes, county fips, state names to all data
+- set default zoom to New Mexico when nothing is selected
+- create popup in graph window (shinyWidgets) when you click on OSE point with no gwl data
+- change the way you view NA well depth values (either with toggle switch or numeric inputs instead of slider?)
+
+
+
+
