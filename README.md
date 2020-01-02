@@ -2,4 +2,4 @@
 Independent Study New Mexico Groundwater data
 
 ## Notes
-The old data is in this repository : (https://github.com/internetofwater/NM_groundwater)[repo]
+The old data is in this repository : https://github.com/internetofwater/NM_groundwater
