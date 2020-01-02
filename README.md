@@ -1,2 +1,5 @@
 # IS-NM-groundwater
 Independent Study New Mexico Groundwater data
+
+## Notes
+The old data is in this repository :
