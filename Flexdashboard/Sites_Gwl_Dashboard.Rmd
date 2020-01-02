@@ -124,6 +124,7 @@ output$map <- renderLeaflet({
                   fillColor = ~pal(WellDepth),
                   popup = ~as.character(`SiteNo`),
                   popupOptions=popupOptions(className = "Site Number"),
+                  clusterOptions = markerClusterOptions(),
                   layerId = ~SiteNo) %>%
  addLegend(position = 'bottomright', pal = pal, na.label = "NA",
                 values = selectedData()$WellDepth, title = 'Well Depth (ft)') 

@@ -1,0 +1,369 @@
+state_cd	nat_aqfr_cd	nat_aqfr_nm
+02	N100AKUNCD	Alaska unconsolidated-deposit
+01	N100ALLUVL	Alluvial
+05	N100ALLUVL	Alluvial
+08	N100ALLUVL	Alluvial
+10	N100ALLUVL	Alluvial
+18	N100ALLUVL	Alluvial
+20	N100ALLUVL	Alluvial
+21	N100ALLUVL	Alluvial
+22	N100ALLUVL	Alluvial
+24	N100ALLUVL	Alluvial
+29	N100ALLUVL	Alluvial
+30	N100ALLUVL	Alluvial
+31	N100ALLUVL	Alluvial
+34	N100ALLUVL	Alluvial
+36	N100ALLUVL	Alluvial
+38	N100ALLUVL	Alluvial
+39	N100ALLUVL	Alluvial
+40	N100ALLUVL	Alluvial
+42	N100ALLUVL	Alluvial
+46	N100ALLUVL	Alluvial
+47	N100ALLUVL	Alluvial
+48	N100ALLUVL	Alluvial
+49	N100ALLUVL	Alluvial
+51	N100ALLUVL	Alluvial
+54	N100ALLUVL	Alluvial
+56	N100ALLUVL	Alluvial
+04	N100BSNRGB	Basin and Range basin-fill
+06	N100BSNRGB	Basin and Range basin-fill
+16	N100BSNRGB	Basin and Range basin-fill
+32	N100BSNRGB	Basin and Range basin-fill
+35	N100BSNRGB	Basin and Range basin-fill
+41	N100BSNRGB	Basin and Range basin-fill
+49	N100BSNRGB	Basin and Range basin-fill
+06	N100CACSTL	California Coastal Basin
+16	N100CMBPLB	Columbia Plateau basin-fill
+41	N100CMBPLB	Columbia Plateau basin-fill
+53	N100CMBPLB	Columbia Plateau basin-fill
+09	N100GLCIAL	Sand and gravel (glaciated regions)
+17	N100GLCIAL	Sand and gravel (glaciated regions)
+18	N100GLCIAL	Sand and gravel (glaciated regions)
+19	N100GLCIAL	Sand and gravel (glaciated regions)
+20	N100GLCIAL	Sand and gravel (glaciated regions)
+21	N100GLCIAL	Sand and gravel (glaciated regions)
+23	N100GLCIAL	Sand and gravel (glaciated regions)
+25	N100GLCIAL	Sand and gravel (glaciated regions)
+26	N100GLCIAL	Sand and gravel (glaciated regions)
+27	N100GLCIAL	Sand and gravel (glaciated regions)
+29	N100GLCIAL	Sand and gravel (glaciated regions)
+30	N100GLCIAL	Sand and gravel (glaciated regions)
+31	N100GLCIAL	Sand and gravel (glaciated regions)
+33	N100GLCIAL	Sand and gravel (glaciated regions)
+34	N100GLCIAL	Sand and gravel (glaciated regions)
+36	N100GLCIAL	Sand and gravel (glaciated regions)
+38	N100GLCIAL	Sand and gravel (glaciated regions)
+39	N100GLCIAL	Sand and gravel (glaciated regions)
+42	N100GLCIAL	Sand and gravel (glaciated regions)
+44	N100GLCIAL	Sand and gravel (glaciated regions)
+46	N100GLCIAL	Sand and gravel (glaciated regions)
+50	N100GLCIAL	Sand and gravel (glaciated regions)
+55	N100GLCIAL	Sand and gravel (glaciated regions)
+08	N100HGHPLN	High Plains
+20	N100HGHPLN	High Plains
+31	N100HGHPLN	High Plains
+35	N100HGHPLN	High Plains
+40	N100HGHPLN	High Plains
+46	N100HGHPLN	High Plains
+48	N100HGHPLN	High Plains
+56	N100HGHPLN	High Plains
+05	N100MSRVVL	Mississippi River Valley alluvial
+17	N100MSRVVL	Mississippi River Valley alluvial
+21	N100MSRVVL	Mississippi River Valley alluvial
+22	N100MSRVVL	Mississippi River Valley alluvial
+28	N100MSRVVL	Mississippi River Valley alluvial
+29	N100MSRVVL	Mississippi River Valley alluvial
+47	N100MSRVVL	Mississippi River Valley alluvial
+06	N100PCFNWB	Pacific Northwest basin-fill
+16	N100PCFNWB	Pacific Northwest basin-fill
+32	N100PCFNWB	Pacific Northwest basin-fill
+41	N100PCFNWB	Pacific Northwest basin-fill
+49	N100PCFNWB	Pacific Northwest basin-fill
+53	N100PCFNWB	Pacific Northwest basin-fill
+56	N100PCFNWB	Pacific Northwest basin-fill
+06	N100PCFNWV	Pacific Northwest volcanic-rock
+16	N100PCFNWV	Pacific Northwest volcanic-rock
+30	N100PCFNWV	Pacific Northwest volcanic-rock
+32	N100PCFNWV	Pacific Northwest volcanic-rock
+41	N100PCFNWV	Pacific Northwest volcanic-rock
+49	N100PCFNWV	Pacific Northwest volcanic-rock
+53	N100PCFNWV	Pacific Northwest volcanic-rock
+56	N100PCFNWV	Pacific Northwest volcanic-rock
+35	N100PCSRVR	Pecos River Basin alluvial
+48	N100PCSRVR	Pecos River Basin alluvial
+48	N100SYMOUR	Seymour
+41	N100WLMLWD	Willamette Lowland basin-fill
+53	N100WLMLWD	Willamette Lowland basin-fill
+40	N300ADAVMS	Ada-Vamoosa
+40	N300CNRLOK	Central Oklahoma
+04	N300COPLTS	Colorado Plateaus
+08	N300COPLTS	Colorado Plateaus
+35	N300COPLTS	Colorado Plateaus
+49	N300COPLTS	Colorado Plateaus
+56	N300COPLTS	Colorado Plateaus
+09	N300ERLMZC	Early Mesozoic basin
+24	N300ERLMZC	Early Mesozoic basin
+25	N300ERLMZC	Early Mesozoic basin
+34	N300ERLMZC	Early Mesozoic basin
+36	N300ERLMZC	Early Mesozoic basin
+37	N300ERLMZC	Early Mesozoic basin
+42	N300ERLMZC	Early Mesozoic basin
+51	N300ERLMZC	Early Mesozoic basin
+26	N300JCBSVL	Jacobsville
+55	N300JCBSVL	Jacobsville
+19	N300LCRTCS	Lower Cretaceous
+20	N300LCRTCS	Lower Cretaceous
+27	N300LCRTCS	Lower Cretaceous
+30	N300LCRTCS	Lower Cretaceous
+31	N300LCRTCS	Lower Cretaceous
+38	N300LCRTCS	Lower Cretaceous
+46	N300LCRTCS	Lower Cretaceous
+56	N300LCRTCS	Lower Cretaceous
+30	N300LTRTRY	Lower Tertiary
+38	N300LTRTRY	Lower Tertiary
+46	N300LTRTRY	Lower Tertiary
+56	N300LTRTRY	Lower Tertiary
+26	N300MRSHLL	Marshall
+36	N300NYSDSN	New York sandstone
+01	N300PNSLVN	Pennsylvanian
+13	N300PNSLVN	Pennsylvanian
+17	N300PNSLVN	Pennsylvanian
+18	N300PNSLVN	Pennsylvanian
+21	N300PNSLVN	Pennsylvanian
+24	N300PNSLVN	Pennsylvanian
+26	N300PNSLVN	Pennsylvanian
+39	N300PNSLVN	Pennsylvanian
+42	N300PNSLVN	Pennsylvanian
+47	N300PNSLVN	Pennsylvanian
+51	N300PNSLVN	Pennsylvanian
+54	N300PNSLVN	Pennsylvanian
+40	N300RSHSPG	Rush Springs
+72	N300STHCST	South Coast (Puerto Rico)
+30	N300UPCTCS	Upper Cretaceous
+38	N300UPCTCS	Upper Cretaceous
+46	N300UPCTCS	Upper Cretaceous
+56	N300UPCTCS	Upper Cretaceous
+56	N300WYTRTR	Wyoming Tertiary
+40	N400ABKSMP	Arbuckle-Simpson
+12	N400BISCYN	Biscayne
+40	N400BLAINE	Blaine
+48	N400BLAINE	Blaine
+04	N400BSNRGC	Basin and Range carbonate-rock
+06	N400BSNRGC	Basin and Range carbonate-rock
+16	N400BSNRGC	Basin and Range carbonate-rock
+32	N400BSNRGC	Basin and Range carbonate-rock
+49	N400BSNRGC	Basin and Range carbonate-rock
+37	N400CSLHYN	Castle Hayne
+78	N400KNGSHL	Kingshill (Virgin Islands)
+72	N400NCSTLM	North Coast Limestone (Puerto Rico)
+09	N400NYNECB	New York and New England carbonate-rock
+23	N400NYNECB	New York and New England carbonate-rock
+25	N400NYNECB	New York and New England carbonate-rock
+34	N400NYNECB	New York and New England carbonate-rock
+36	N400NYNECB	New York and New England carbonate-rock
+42	N400NYNECB	New York and New England carbonate-rock
+50	N400NYNECB	New York and New England carbonate-rock
+21	N400ORDVCN	Ordovician
+47	N400ORDVCN	Ordovician
+24	N400PDMBRC	Piedmont and Blue Ridge carbonate-rock
+34	N400PDMBRC	Piedmont and Blue Ridge carbonate-rock
+37	N400PDMBRC	Piedmont and Blue Ridge carbonate-rock
+42	N400PDMBRC	Piedmont and Blue Ridge carbonate-rock
+01	N400PDMBRX	Piedmont and Blue Ridge crystalline-rock
+10	N400PDMBRX	Piedmont and Blue Ridge crystalline-rock
+11	N400PDMBRX	Piedmont and Blue Ridge crystalline-rock
+13	N400PDMBRX	Piedmont and Blue Ridge crystalline-rock
+24	N400PDMBRX	Piedmont and Blue Ridge crystalline-rock
+34	N400PDMBRX	Piedmont and Blue Ridge crystalline-rock
+37	N400PDMBRX	Piedmont and Blue Ridge crystalline-rock
+42	N400PDMBRX	Piedmont and Blue Ridge crystalline-rock
+45	N400PDMBRX	Piedmont and Blue Ridge crystalline-rock
+47	N400PDMBRX	Piedmont and Blue Ridge crystalline-rock
+51	N400PDMBRX	Piedmont and Blue Ridge crystalline-rock
+54	N400PDMBRX	Piedmont and Blue Ridge crystalline-rock
+17	N400SLRDVN	Silurian-Devonian
+18	N400SLRDVN	Silurian-Devonian
+19	N400SLRDVN	Silurian-Devonian
+21	N400SLRDVN	Silurian-Devonian
+26	N400SLRDVN	Silurian-Devonian
+29	N400SLRDVN	Silurian-Devonian
+39	N400SLRDVN	Silurian-Devonian
+47	N400SLRDVN	Silurian-Devonian
+55	N400SLRDVN	Silurian-Devonian
+19	N400UPCRBN	Upper carbonate
+27	N400UPCRBN	Upper carbonate
+01	N500MSSPPI	Mississippian
+17	N500MSSPPI	Mississippian
+18	N500MSSPPI	Mississippian
+19	N500MSSPPI	Mississippian
+21	N500MSSPPI	Mississippian
+24	N500MSSPPI	Mississippian
+29	N500MSSPPI	Mississippian
+39	N500MSSPPI	Mississippian
+42	N500MSSPPI	Mississippian
+47	N500MSSPPI	Mississippian
+51	N500MSSPPI	Mississippian
+54	N500MSSPPI	Mississippian
+27	N500PLOZOC	Paleozoic
+30	N500PLOZOC	Paleozoic
+38	N500PLOZOC	Paleozoic
+46	N500PLOZOC	Paleozoic
+56	N500PLOZOC	Paleozoic
+01	N500VLYRDG	Valley and Ridge
+13	N500VLYRDG	Valley and Ridge
+24	N500VLYRDG	Valley and Ridge
+34	N500VLYRDG	Valley and Ridge
+36	N500VLYRDG	Valley and Ridge
+37	N500VLYRDG	Valley and Ridge
+42	N500VLYRDG	Valley and Ridge
+47	N500VLYRDG	Valley and Ridge
+51	N500VLYRDG	Valley and Ridge
+54	N500VLYRDG	Valley and Ridge
+16	N600CMBPLV	Columbia Plateau basaltic-rock
+41	N600CMBPLV	Columbia Plateau basaltic-rock
+53	N600CMBPLV	Columbia Plateau basaltic-rock
+15	N600HIVLCC	Hawaii volcanic-rock
+09	N600NECRSN	New York and New England crystalline-rock
+23	N600NECRSN	New York and New England crystalline-rock
+25	N600NECRSN	New York and New England crystalline-rock
+33	N600NECRSN	New York and New England crystalline-rock
+36	N600NECRSN	New York and New England crystalline-rock
+44	N600NECRSN	New York and New England crystalline-rock
+50	N600NECRSN	New York and New England crystalline-rock
+16	N600SKRVPB	Snake River Plain basin-fill
+41	N600SKRVPB	Snake River Plain basin-fill
+16	N600SKRVPV	Snake River Plain basaltic-rock
+41	N600SKRVPV	Snake River Plain basaltic-rock
+32	N600SRNVDV	Southern Nevada volcanic-rock
+00	N9999OTHER	Other
+01	N9999OTHER	Other
+02	N9999OTHER	Other
+04	N9999OTHER	Other
+05	N9999OTHER	Other
+06	N9999OTHER	Other
+08	N9999OTHER	Other
+09	N9999OTHER	Other
+10	N9999OTHER	Other
+11	N9999OTHER	Other
+12	N9999OTHER	Other
+13	N9999OTHER	Other
+15	N9999OTHER	Other
+16	N9999OTHER	Other
+17	N9999OTHER	Other
+18	N9999OTHER	Other
+19	N9999OTHER	Other
+20	N9999OTHER	Other
+21	N9999OTHER	Other
+22	N9999OTHER	Other
+23	N9999OTHER	Other
+24	N9999OTHER	Other
+25	N9999OTHER	Other
+26	N9999OTHER	Other
+27	N9999OTHER	Other
+28	N9999OTHER	Other
+29	N9999OTHER	Other
+30	N9999OTHER	Other
+31	N9999OTHER	Other
+32	N9999OTHER	Other
+33	N9999OTHER	Other
+34	N9999OTHER	Other
+35	N9999OTHER	Other
+36	N9999OTHER	Other
+37	N9999OTHER	Other
+38	N9999OTHER	Other
+39	N9999OTHER	Other
+40	N9999OTHER	Other
+41	N9999OTHER	Other
+42	N9999OTHER	Other
+44	N9999OTHER	Other
+45	N9999OTHER	Other
+46	N9999OTHER	Other
+47	N9999OTHER	Other
+48	N9999OTHER	Other
+49	N9999OTHER	Other
+50	N9999OTHER	Other
+51	N9999OTHER	Other
+53	N9999OTHER	Other
+54	N9999OTHER	Other
+55	N9999OTHER	Other
+56	N9999OTHER	Other
+60	N9999OTHER	Other
+62	N9999OTHER	Other
+66	N9999OTHER	Other
+67	N9999OTHER	Other
+69	N9999OTHER	Other
+71	N9999OTHER	Other
+72	N9999OTHER	Other
+73	N9999OTHER	Other
+74	N9999OTHER	Other
+75	N9999OTHER	Other
+76	N9999OTHER	Other
+77	N9999OTHER	Other
+78	N9999OTHER	Other
+79	N9999OTHER	Other
+06	S100CNRLVL	Central Valley
+01	S100CSLLWD	Coastal lowlands
+12	S100CSLLWD	Coastal lowlands
+22	S100CSLLWD	Coastal lowlands
+28	S100CSLLWD	Coastal lowlands
+48	S100CSLLWD	Coastal lowlands
+01	S100MSEMBM	Mississippi embayment
+05	S100MSEMBM	Mississippi embayment
+17	S100MSEMBM	Mississippi embayment
+21	S100MSEMBM	Mississippi embayment
+22	S100MSEMBM	Mississippi embayment
+28	S100MSEMBM	Mississippi embayment
+29	S100MSEMBM	Mississippi embayment
+47	S100MSEMBM	Mississippi embayment
+10	S100NATLCP	Northern Atlantic Coastal Plain
+11	S100NATLCP	Northern Atlantic Coastal Plain
+24	S100NATLCP	Northern Atlantic Coastal Plain
+25	S100NATLCP	Northern Atlantic Coastal Plain
+34	S100NATLCP	Northern Atlantic Coastal Plain
+36	S100NATLCP	Northern Atlantic Coastal Plain
+37	S100NATLCP	Northern Atlantic Coastal Plain
+42	S100NATLCP	Northern Atlantic Coastal Plain
+44	S100NATLCP	Northern Atlantic Coastal Plain
+51	S100NATLCP	Northern Atlantic Coastal Plain
+16	S100NRMTIB	Northern Rocky Mountains Intermontane Basins
+30	S100NRMTIB	Northern Rocky Mountains Intermontane Basins
+53	S100NRMTIB	Northern Rocky Mountains Intermontane Basins
+56	S100NRMTIB	Northern Rocky Mountains Intermontane Basins
+53	S100PGTSND	Puget Sound
+08	S100RIOGRD	Rio Grande
+35	S100RIOGRD	Rio Grande
+48	S100RIOGRD	Rio Grande
+01	S100SECSLP	Southeastern Coastal Plain
+13	S100SECSLP	Southeastern Coastal Plain
+17	S100SECSLP	Southeastern Coastal Plain
+28	S100SECSLP	Southeastern Coastal Plain
+45	S100SECSLP	Southeastern Coastal Plain
+47	S100SECSLP	Southeastern Coastal Plain
+01	S100SURFCL	Surficial
+12	S100SURFCL	Surficial
+13	S100SURFCL	Surficial
+37	S100SURFCL	Surficial
+45	S100SURFCL	Surficial
+22	S100TXCLUP	Texas coastal uplands
+48	S100TXCLUP	Texas coastal uplands
+17	S300CAMORD	Cambrian-Ordovician
+19	S300CAMORD	Cambrian-Ordovician
+26	S300CAMORD	Cambrian-Ordovician
+27	S300CAMORD	Cambrian-Ordovician
+29	S300CAMORD	Cambrian-Ordovician
+55	S300CAMORD	Cambrian-Ordovician
+08	S300DNVRBS	Denver Basin
+01	S400FLORDN	Floridan
+12	S400FLORDN	Floridan
+13	S400FLORDN	Floridan
+45	S400FLORDN	Floridan
+05	S400OZRKPL	Ozark Plateaus
+17	S400OZRKPL	Ozark Plateaus
+20	S400OZRKPL	Ozark Plateaus
+29	S400OZRKPL	Ozark Plateaus
+40	S400OZRKPL	Ozark Plateaus
+35	S400RSWLBS	Roswell Basin
+05	S500EDRTRN	Edwards-Trinity
+40	S500EDRTRN	Edwards-Trinity
+48	S500EDRTRN	Edwards-Trinity
+12	S500INTRMD	Intermediate

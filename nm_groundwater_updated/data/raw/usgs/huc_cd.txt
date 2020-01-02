@@ -1,0 +1,561 @@
+HUC Code	HUC Name
+02040304	Eastern Lower Delmarva
+02080108	Lynnhaven-Poquoson
+02080203	Middle James-Buffalo
+02080206	Lower James
+02080207	Appomattox
+02080208	Hampton Roads
+03010101	Upper Roanoke
+03010102	Middle Roanoke
+03010103	Upper Dan
+03010104	Lower Dan
+03010105	Banister
+03010106	Roanoke Rapids
+03010107	Lower Roanoke
+03010201	Nottoway
+03010202	Blackwater
+03010203	Chowan
+03010204	Meherrin
+03010205	Albemarle
+03020101	Upper Tar
+03020102	Fishing
+03020103	Lower Tar
+03020104	Pamlico
+03020105	Pamlico Sound
+03020201	Upper Neuse
+03020202	Middle Neuse
+03020203	Contentnea
+03020204	Lower Neuse
+03020301	White Oak River
+03020302	New River
+03030002	Haw
+03030003	Deep
+03030004	Upper Cape Fear
+03030005	Lower Cape Fear
+03030006	Black
+03030007	Northeast Cape Fear
+03040101	Upper Yadkin
+03040102	South Yadkin
+03040103	Lower Yadkin
+03040104	Upper Pee Dee
+03040105	Rocky
+03040201	Lower Pee Dee
+03040202	Lynches
+03040203	Lumber
+03040204	Little Pee Dee
+03040205	Black
+03040206	Waccamaw
+03040207	Carolina Coastal-Sampit
+03040208	Coastal Carolina
+03050101	Upper Catawba
+03050102	South Fork Catawba
+03050103	Lower Catawba
+03050104	Wateree
+03050105	Upper Broad
+03050106	Lower Broad
+03050107	Tyger
+03050108	Enoree
+03050109	Saluda
+03050110	Congaree
+03050111	Lake Marion
+03050112	Santee
+03050201	Cooper
+03050202	South Carolina Coastal
+03050203	North Fork Edisto
+03050204	South Fork Edisto
+03050205	Four Hole Swamp
+03050206	Edisto River
+03050207	Salkehatchie
+03050208	Broad-St. Helena
+03050209	Bulls Bay
+03050210	St. Helena Island
+03060101	Seneca
+03060102	Tugaloo
+03060103	Upper Savannah
+03060104	Broad
+03060105	Little
+03060106	Middle Savannah
+03060107	Stevens
+03060108	Brier
+03060109	Lower Savannah
+03060110	Calibogue Sound-Wright River
+03060201	Upper Ogeechee
+03060202	Lower Ogeechee
+03060203	Canoochee
+03060204	Ogeechee Coastal
+03070101	Upper Oconee
+03070102	Lower Oconee
+03070103	Upper Ocmulgee
+03070104	Lower Ocmulgee
+03070105	Little Ocmulgee
+03070106	Altamaha
+03070107	Ohoopee
+03070201	Satilla
+03070202	Little Satilla
+03070203	Cumberland-St. Simons
+03070204	St. Marys
+03070205	Nassau
+03080101	Upper St. Johns
+03080102	Oklawaha
+03080103	Lower St. Johns
+03080201	Daytona-St. Augustine
+03080202	Cape Canaveral
+03080203	Vero Beach
+03090101	Kissimmee
+03090102	Northern Okeechobee Inflow
+03090103	Western Okeechobee Inflow
+03090201	Lake Okeechobee
+03090202	Everglades
+03090203	Florida Bay-Florida Keys
+03090204	Big Cypress Swamp
+03090205	Caloosahatchee
+03090206	Florida Southeast Coast
+03100101	Peace
+03100102	Myakka
+03100103	Charlotte Harbor
+03100201	Sarasota Bay
+03100202	Manatee
+03100203	Little Manatee
+03100204	Alafia
+03100205	Hillsborough
+03100206	Tampa Bay
+03100207	Crystal-Pithlachascotee
+03100208	Withlacoochee
+03110101	Waccasassa
+03110102	Econfina-Steinhatchee
+03110103	Aucilla
+03110201	Upper Suwannee
+03110202	Alapaha
+03110203	Withlacoochee
+03110204	Little
+03110205	Lower Suwannee
+03110206	Santa Fe
+03120001	Apalachee Bay-St. Marks
+03120002	Upper Ochlockonee
+03120003	Lower Ochlockonee
+03130001	Upper Chattahoochee
+03130002	Middle Chattahoochee-Lake Harding
+03130003	Middle Chattahoochee-Walter F
+03130004	Lower Chattahoochee
+03130005	Upper Flint
+03130006	Middle Flint
+03130007	Kinchafoonee-Muckalee
+03130008	Lower Flint
+03130009	Ichawaynochaway
+03130010	Spring
+03130011	Apalachicola
+03130012	Chipola
+03130013	New
+03130014	Apalachicola Bay
+03140101	St. Andrew-St. Joseph Bays
+03140102	Choctawhatchee Bay
+03140103	Yellow
+03140104	Blackwater
+03140105	Pensacola Bay
+03140106	Perdido
+03140107	Perdido Bay
+03140201	Upper Choctawhatchee
+03140202	Pea
+03140203	Lower Choctawhatchee
+03140301	Upper Conecuh
+03140302	Patsaliga
+03140303	Sepulga
+03140304	Lower Conecuh
+03140305	Escambia
+03150101	Conasauga
+03150102	Coosawattee
+03150103	Oostanaula
+03150104	Etowah
+03150105	Upper Coosa
+03150106	Middle Coosa
+03150107	Lower Coosa
+03150108	Upper Tallapoosa
+03150109	Middle Tallapoosa
+03150110	Lower Tallapoosa
+03150201	Upper Alabama
+03150202	Cahaba
+03150203	Middle Alabama
+03150204	Lower Alabama
+03160101	Upper Tombigbee
+03160102	Town
+03160103	Buttahatchee
+03160104	Tibbee
+03160105	Luxapallila
+03160106	Middle Tombigbee-Lubbub
+03160107	Sipsey
+03160108	Noxubee
+03160109	Mulberry
+03160110	Sipsey Fork
+03160111	Locust
+03160112	Upper Black Warrior
+03160113	Lower Black Warrior
+03160201	Middle Tombigbee-Chickasaw
+03160202	Sucarnoochee
+03160203	Lower Tombigbee
+03160204	Mobile-Tensaw
+03160205	Mobile Bay
+03170001	Chunky-Okatibbee
+03170002	Upper Chickasawhay
+03170003	Lower Chickasawhay
+03170004	Upper Leaf
+03170005	Lower Leaf
+03170006	Pascagoula
+03170007	Black
+03170008	Escatawpa
+03170009	Mississippi Coastal
+03180001	Upper Pearl
+03180002	Middle Pearl-Strong
+03180003	Middle Pearl-Silver
+03180004	Lower Pearl
+03180005	Bogue Chitto
+05050001	Upper New
+05110002	Barren
+05120115	Skillet
+05130101	Upper Cumberland
+05130103	Upper Cumberland-Lake Cumberland
+05130104	South Fork Cumberland
+05130105	Obey
+05130106	Upper Cumberland-Cordell Hull Reservoir
+05130107	Collins
+05130108	Caney
+05130201	Lower Cumberland-Old Hickory Lake
+05130202	Lower Cumberland-Sycamore
+05130203	Stones
+05130204	Harpeth
+05130205	Lower Cumberland
+05130206	Red
+05140204	Saline
+05140206	Lower Ohio
+06010101	North Fork Holston
+06010102	South Fork Holston
+06010103	Watauga, North Carolina, Tennessee
+06010104	Holston
+06010105	Upper French Broad
+06010106	Pigeon
+06010107	Lower French Broad
+06010108	Nolichucky
+06010201	Watts Bar Lake
+06010202	Upper Little Tennessee
+06010203	Tuckasegee
+06010204	Lower Little Tennessee
+06010205	Upper Clinch, Tennessee, Virginia
+06010206	Powell
+06010207	Lower Clinch
+06010208	Emory
+06020001	Middle Tennessee-Chickamauga
+06020002	Hiwassee
+06020003	Ocoee
+06020004	Sequatchie
+06030001	Guntersville Lake
+06030002	Wheeler Lake
+06030003	Upper Elk
+06030004	Lower Elk
+06030005	Pickwick Lake
+06030006	Bear
+06040001	Lower Tennessee-Beech
+06040002	Upper Duck
+06040003	Lower Duck
+06040004	Buffalo
+06040005	Kentucky Lake
+06040006	Lower Tennessee
+07140101	Cahokia-Joachim
+07140102	Meramec
+07140103	Bourbeuse
+07140104	Big
+07140105	Upper Mississippi-Cape Girardeau
+07140106	Big Muddy
+07140107	Whitewater
+07140108	Cache
+07140204	Lower Kaskaskia
+08010100	Lower Mississippi-Memphis
+08010201	Bayou De Chien-Mayfield
+08010202	Obion
+08010203	South Fork Obion
+08010204	North Fork Forked Deer
+08010205	South Fork Forked Deer
+08010206	Forked Deer
+08010207	Upper Hatchie
+08010208	Lower Hatchie
+08010209	Loosahatchie
+08010210	Wolf
+08010211	Horn Lake-Nonconnah
+08020100	Lower Mississippi-Helena
+08020201	New Madrid-St. Johns
+08020202	Upper St. Francis
+08020203	Lower St. Francis
+08020204	Little River Ditches
+08020205	L'Anguille
+08020301	Lower White-Bayou Des Arc
+08020302	Cache
+08020303	Lower White
+08020304	Big
+08020401	Lower Arkansas
+08020402	Bayou Meto
+08030100	Lower Mississippi-Greenville
+08030201	Little Tallahatchie
+08030202	Tallahatchie
+08030203	Yocona
+08030204	Coldwater
+08030205	Yalobusha
+08030206	Upper Yazoo
+08030207	Big Sunflower
+08030208	Lower Yazoo
+08030209	Deer-Steele
+08040101	Ouachita Headwaters
+08040102	Upper Ouachita
+08040103	Little Missouri
+08040201	Lower Ouachita-Smackover
+08040202	Lower Ouachita-Bayou De Loutre
+08040203	Upper Saline
+08040204	Lower Saline
+08040205	Bayou Bartholomew
+08040206	Bayou D'Arbonne
+08040207	Lower Ouachita
+08040301	Lower Red
+08040302	Castor
+08040303	Dugdemona
+08040304	Little
+08040305	Black
+08040306	Bayou Cocodrie
+08050001	Boeuf
+08050002	Bayou Macon
+08050003	Tensas
+08060100	Lower Mississippi-Natchez
+08060201	Upper Big Black
+08060202	Lower Big Black
+08060203	Bayou Pierre
+08060204	Coles Creek
+08060205	Homochitto
+08060206	Buffalo
+08070100	Lower Mississippi-Baton Rouge
+08070201	Bayou Sara-Thompson
+08070202	Amite
+08070203	Tickfaw
+08070204	Lake Maurepas
+08070205	Tangipahoa
+08070300	Lower Grand
+08080101	Atchafalaya
+08080102	Bayou Teche
+08080103	Vermilion
+08080201	Mermentau Headwaters
+08080202	Mermentau
+08080203	Upper Calcasieu
+08080204	Whisky Chitto
+08080205	West Fork Calcasieu
+08080206	Lower Calcasieu
+08090100	Lower Mississippi-New Orleans
+08090201	Liberty Bayou-Tchefuncta
+08090202	Lake Pontchartrain
+08090203	Eastern Louisiana Coastal
+08090301	East Central Louisiana Coastal
+08090302	West Central Louisiana Coastal
+10290105	Harry S. Truman Reservoir
+10290106	Sac
+10290107	Pomme De Terre
+10290108	South Grand
+10290109	Lake of the Ozarks
+10290110	Niangua
+10290111	Lower Osage
+10290201	Upper Gasconade
+10290202	Big Piney
+10290203	Lower Gasconade
+10300102	Lower Missouri-Moreau
+10300103	Lamine
+10300104	Blackwater
+10300200	Lower Missouri
+11010001	Beaver Reservoir
+11010002	James
+11010003	Bull Shoals Lake
+11010004	Middle White
+11010005	Buffalo
+11010006	North Fork White
+11010007	Upper Black
+11010008	Current
+11010009	Lower Black
+11010010	Spring
+11010011	Eleven Point
+11010012	Strawberry
+11010013	Upper White-Village
+11010014	Little Red
+11050002	Lower Cimarron-Skeleton
+11050003	Lower Cimarron
+11060001	Kaw Lake
+11060004	Lower Salt Fork Arkansas
+11060006	Black Bear-Red Rock
+11070106	Caney
+11070107	Bird
+11070206	Lake O' The Cherokees
+11070207	Spring
+11070208	Elk
+11070209	Lower Neosho
+11090202	Lower Canadian-Walnut
+11090203	Little
+11090204	Lower Canadian
+11100302	Lower North Canadian
+11100303	Deep Fork
+11110101	Polecat-Snake
+11110102	Dirty-Greenleaf
+11110103	Illinois
+11110104	Robert S. Kerr Reservoir
+11110105	Poteau
+11110201	Frog-Mulberry
+11110202	Dardanelle Reservoir
+11110203	Lake Conway-Point Remove
+11110204	Petit Jean
+11110205	Cadron
+11110206	Fourche La Fave
+11110207	Lower Arkansas-Maumelle
+11130201	Farmers-Mud
+11130206	Wichita
+11130207	Southern Beaver
+11130208	Northern Beaver
+11130209	Little Wichita
+11130210	Lake Texoma
+11130302	Upper Washita
+11130303	Middle Washita
+11130304	Lower Washita
+11140101	Bois D'arc-Island
+11140102	Blue
+11140103	Muddy Boggy
+11140104	Clear Boggy
+11140105	Kiamichi
+11140106	Pecan-Waterhole
+11140107	Upper Little
+11140108	Mountain Fork
+11140109	Lower Little Arkansas, Oklahoma
+11140201	McKinney-Posten Bayous
+11140202	Middle Red-Coushatta
+11140203	Loggy Bayou
+11140204	Red Chute
+11140205	Bodcau Bayou
+11140206	Bayou Pierre
+11140207	Lower Red-Lake Iatt
+11140208	Saline Bayou
+11140209	Black Lake Bayou
+11140301	Sulphur Headwaters
+11140302	Lower Sulpher
+11140303	White Oak Bayou
+11140304	Cross Bayou
+11140305	Lake O'the Pines
+11140306	Caddo Lake
+11140307	Little Cypress
+12010001	Upper Sabine
+12010002	Middle Sabine
+12010003	Lake Fork
+12010004	Toledo Bend Reservoir
+12010005	Lower Sabine
+12020001	Upper Neches
+12020002	Middle Neches
+12020003	Lower Neches
+12020004	Upper Angelina
+12020005	Lower Angelina
+12020006	Village
+12020007	Pine Island Bayou
+12030101	Upper West Fork Trinity
+12030102	Lower West Fork Trinity
+12030103	Elm Fork Trinity
+12030104	Denton
+12030105	Upper Trinity
+12030106	East Fork Trinity
+12030107	Cedar
+12030108	Richland
+12030109	Chambers
+12030201	Lower Trinity-Tehuacana
+12030202	Lower Trinity-Kickapoo
+12030203	Lower Trinity
+12040101	West Fork San Jacinto
+12040102	Spring
+12040103	East Fork San Jacinto
+12040104	Buffalo-San Jacinto
+12040201	Sabine Lake
+12040202	East Galveston Bay
+12040203	North Galveston Bay
+12040204	West Galveston Bay
+12040205	Austin-Oyster
+12060101	Middle Brazos-Millers
+12060102	Upper Clear Fork Brazos
+12060103	Paint
+12060104	Lower Clear Fork Brazos
+12060105	Hubbard
+12060201	Middle Brazos-Palo Pinto
+12060202	Middle Brazos-Lake Whitney
+12060203	Bosque
+12060204	North Bosque
+12070101	Lower Brazos-Little Brazos
+12070102	Yegua
+12070103	Navasota
+12070104	Lower Brazos
+12070201	Leon
+12070202	Cowhouse
+12070203	Lampasas
+12070204	Little
+12070205	San Gabriel
+12090102	South Concho
+12090105	Concho
+12090106	Middle Colorado
+12090107	Pecan Bayou
+12090108	Jim Ned
+12090109	San Saba
+12090110	Brady
+12090201	Buchanan-Lyndon B. Johnson Lakes
+12090202	North Llano
+12090203	South Llano
+12090204	Llano
+12090205	Austin-Travis Lakes
+12090206	Pedernales
+12090301	Lower Colorado-Cummins
+12090302	Lower Colorado
+12090401	San Bernard
+12090402	East Matagorda Bay
+12100101	Lavaca
+12100102	Navidad
+12100201	Upper Guadalupe
+12100202	Middle Guadalupe
+12100203	San Marcos
+12100204	Lower Guadalupe
+12100301	Upper San Antonio
+12100302	Medina
+12100303	Lower San Antonio
+12100304	Cibolo
+12100401	East Matagorda Bay
+12100402	West Matagorda Bay
+12100403	East San Antonio Bay
+12100404	West San Antonio Bay
+12100405	Aransas Bay
+12100406	Mission
+12100407	Aransas
+12110101	Nueces Headwaters
+12110102	West Nueces
+12110103	Upper Nueces
+12110104	Turkey
+12110105	Middle Nueces
+12110106	Upper Frio
+12110107	Hondo
+12110108	Lower Frio
+12110109	San Miguel
+12110110	Atascosa
+12110111	Lower Nueces
+12110201	North Corpus Christi Bay
+12110202	South Corpus Christi Bay
+12110203	North Laguna Madre
+12110204	San Fernando
+12110205	Baffin Bay
+12110206	Palo Blanco
+12110207	Central Laguna Madre
+12110208	South Laguna Madre
+13040212	Amistad Reservoir
+13040301	Upper Devils
+13040302	Lower Devils
+13040303	Dry Devils
+13080001	Elm-Sycamore
+13080002	San Ambrosia-Santa Isabel
+13080003	International Falcon Reservoir
+13090001	Los Olmos
+13090002	Lower Rio Grande
+21010002	Cibuco-Guajataca
+21010003	Culebrinas-Guanajibo
+21010004	Southern Puerto Rico
+21010005	Eastern Puerto Rico
+21010006	Puerto Rican Islands
+21020001	St. John-St. Thomas
+21020002	St. Croix

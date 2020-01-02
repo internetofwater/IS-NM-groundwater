@@ -1,0 +1,3284 @@
+country_cd	state_cd	county_cd	county_nm
+US	01	001	Autauga
+US	01	003	Baldwin
+US	01	005	Barbour
+US	01	007	Bibb
+US	01	009	Blount
+US	01	011	Bullock
+US	01	013	Butler
+US	01	015	Calhoun
+US	01	017	Chambers
+US	01	019	Cherokee
+US	01	021	Chilton
+US	01	023	Choctaw
+US	01	025	Clarke
+US	01	027	Clay
+US	01	029	Cleburne
+US	01	031	Coffee
+US	01	033	Colbert
+US	01	035	Conecuh
+US	01	037	Coosa
+US	01	039	Covington
+US	01	041	Crenshaw
+US	01	043	Cullman
+US	01	045	Dale
+US	01	047	Dallas
+US	01	049	Dekalb
+US	01	051	Elmore
+US	01	053	Escambia
+US	01	055	Etowah
+US	01	057	Fayette
+US	01	059	Franklin
+US	01	061	Geneva
+US	01	063	Greene
+US	01	065	Hale
+US	01	067	Henry
+US	01	069	Houston
+US	01	071	Jackson
+US	01	073	Jefferson
+US	01	075	Lamar
+US	01	077	Lauderdale
+US	01	079	Lawrence
+US	01	081	Lee
+US	01	083	Limestone
+US	01	085	Lowndes
+US	01	087	Macon
+US	01	089	Madison
+US	01	091	Marengo
+US	01	093	Marion
+US	01	095	Marshall
+US	01	097	Mobile
+US	01	099	Monroe
+US	01	101	Montgomery
+US	01	103	Morgan
+US	01	105	Perry
+US	01	107	Pickens
+US	01	109	Pike
+US	01	111	Randolph
+US	01	113	Russell
+US	01	115	St. Clair
+US	01	117	Shelby
+US	01	119	Sumter
+US	01	121	Talladega
+US	01	123	Tallapoosa
+US	01	125	Tuscaloosa
+US	01	127	Walker
+US	01	129	Washington
+US	01	131	Wilcox
+US	01	133	Winston
+US	02	013	Aleutians East Borough
+US	02	016	Aleutians West Census Area
+US	02	020	Municipality Of Anchorage
+US	02	050	Bethel Census Area
+US	02	060	Bristol Bay Borough
+US	02	068	Denali Borough
+US	02	070	Dillingham Census Area
+US	02	090	Fairbanks North Star Borough
+US	02	100	Haines Borough
+US	02	105	Hoonah-Angoon Census Area
+US	02	110	City And Borough Of Juneau
+US	02	122	Kenai Peninsula Borough
+US	02	130	Ketchikan Gateway Borough
+US	02	150	Kodiak Island Borough
+US	02	158	Kusilvak Census Area
+US	02	164	Lake And Peninsula Borough
+US	02	170	Matanuska-Susitna Borough
+US	02	180	Nome Census Area
+US	02	185	North Slope Borough
+US	02	188	Northwest Arctic Borough
+US	02	195	Petersburg Borough
+US	02	198	Prince Of Wales-Hyder Census Area
+US	02	220	City And Borough Of Sitka
+US	02	230	Skagway Municipality
+US	02	240	Southeast Fairbanks Census Area
+US	02	261	Valdez-Cordova Census Area
+US	02	270	Wade Hampton Census Area
+US	02	275	City And Borough Of Wrangell
+US	02	282	City And Borough Of Yakutat
+US	02	290	Yukon-Koyukuk Census Area
+US	04	001	Apache
+US	04	003	Cochise
+US	04	005	Coconino
+US	04	007	Gila
+US	04	009	Graham
+US	04	011	Greenlee
+US	04	012	La Paz
+US	04	013	Maricopa
+US	04	015	Mohave
+US	04	017	Navajo
+US	04	019	Pima
+US	04	021	Pinal
+US	04	023	Santa Cruz
+US	04	025	Yavapai
+US	04	027	Yuma
+US	05	001	Arkansas
+US	05	003	Ashley
+US	05	005	Baxter
+US	05	007	Benton
+US	05	009	Boone
+US	05	011	Bradley
+US	05	013	Calhoun
+US	05	015	Carroll
+US	05	017	Chicot
+US	05	019	Clark
+US	05	021	Clay
+US	05	023	Cleburne
+US	05	025	Cleveland
+US	05	027	Columbia
+US	05	029	Conway
+US	05	031	Craighead
+US	05	033	Crawford
+US	05	035	Crittenden
+US	05	037	Cross
+US	05	039	Dallas
+US	05	041	Desha
+US	05	043	Drew
+US	05	045	Faulkner
+US	05	047	Franklin
+US	05	049	Fulton
+US	05	051	Garland
+US	05	053	Grant
+US	05	055	Greene
+US	05	057	Hempstead
+US	05	059	Hot Spring
+US	05	061	Howard
+US	05	063	Independence
+US	05	065	Izard
+US	05	067	Jackson
+US	05	069	Jefferson
+US	05	071	Johnson
+US	05	073	Lafayette
+US	05	075	Lawrence
+US	05	077	Lee
+US	05	079	Lincoln
+US	05	081	Little River
+US	05	083	Logan
+US	05	085	Lonoke
+US	05	087	Madison
+US	05	089	Marion
+US	05	091	Miller
+US	05	093	Mississippi
+US	05	095	Monroe
+US	05	097	Montgomery
+US	05	099	Nevada
+US	05	101	Newton
+US	05	103	Ouachita
+US	05	105	Perry
+US	05	107	Phillips
+US	05	109	Pike
+US	05	111	Poinsett
+US	05	113	Polk
+US	05	115	Pope
+US	05	117	Prairie
+US	05	119	Pulaski
+US	05	121	Randolph
+US	05	123	St. Francis
+US	05	125	Saline
+US	05	127	Scott
+US	05	129	Searcy
+US	05	131	Sebastian
+US	05	133	Sevier
+US	05	135	Sharp
+US	05	137	Stone
+US	05	139	Union
+US	05	141	Van Buren
+US	05	143	Washington
+US	05	145	White
+US	05	147	Woodruff
+US	05	149	Yell
+US	06	001	Alameda
+US	06	003	Alpine
+US	06	005	Amador
+US	06	007	Butte
+US	06	009	Calaveras
+US	06	011	Colusa
+US	06	013	Contra Costa
+US	06	015	Del Norte
+US	06	017	El Dorado
+US	06	019	Fresno
+US	06	021	Glenn
+US	06	023	Humboldt
+US	06	025	Imperial
+US	06	027	Inyo
+US	06	029	Kern
+US	06	031	Kings
+US	06	033	Lake
+US	06	035	Lassen
+US	06	037	Los Angeles
+US	06	039	Madera
+US	06	041	Marin
+US	06	043	Mariposa
+US	06	045	Mendocino
+US	06	047	Merced
+US	06	049	Modoc
+US	06	051	Mono
+US	06	053	Monterey
+US	06	055	Napa
+US	06	057	Nevada
+US	06	059	Orange
+US	06	061	Placer
+US	06	063	Plumas
+US	06	065	Riverside
+US	06	067	Sacramento
+US	06	069	San Benito
+US	06	071	San Bernardino
+US	06	073	San Diego
+US	06	075	San Francisco
+US	06	077	San Joaquin
+US	06	079	San Luis Obispo
+US	06	081	San Mateo
+US	06	083	Santa Barbara
+US	06	085	Santa Clara
+US	06	087	Santa Cruz
+US	06	089	Shasta
+US	06	091	Sierra
+US	06	093	Siskiyou
+US	06	095	Solano
+US	06	097	Sonoma
+US	06	099	Stanislaus
+US	06	101	Sutter
+US	06	103	Tehama
+US	06	105	Trinity
+US	06	107	Tulare
+US	06	109	Tuolumne
+US	06	111	Ventura
+US	06	113	Yolo
+US	06	115	Yuba
+US	08	001	Adams
+US	08	003	Alamosa
+US	08	005	Arapahoe
+US	08	007	Archuleta
+US	08	009	Baca
+US	08	011	Bent
+US	08	013	Boulder
+US	08	014	Broomfield
+US	08	015	Chaffee
+US	08	017	Cheyenne
+US	08	019	Clear Creek
+US	08	021	Conejos
+US	08	023	Costilla
+US	08	025	Crowley
+US	08	027	Custer
+US	08	029	Delta
+US	08	031	Denver
+US	08	033	Dolores
+US	08	035	Douglas
+US	08	037	Eagle
+US	08	039	Elbert
+US	08	041	El Paso
+US	08	043	Fremont
+US	08	045	Garfield
+US	08	047	Gilpin
+US	08	049	Grand
+US	08	051	Gunnison
+US	08	053	Hinsdale
+US	08	055	Huerfano
+US	08	057	Jackson
+US	08	059	Jefferson
+US	08	061	Kiowa
+US	08	063	Kit Carson
+US	08	065	Lake
+US	08	067	La Plata
+US	08	069	Larimer
+US	08	071	Las Animas
+US	08	073	Lincoln
+US	08	075	Logan
+US	08	077	Mesa
+US	08	079	Mineral
+US	08	081	Moffat
+US	08	083	Montezuma
+US	08	085	Montrose
+US	08	087	Morgan
+US	08	089	Otero
+US	08	091	Ouray
+US	08	093	Park
+US	08	095	Phillips
+US	08	097	Pitkin
+US	08	099	Prowers
+US	08	101	Pueblo
+US	08	103	Rio Blanco
+US	08	105	Rio Grande
+US	08	107	Routt
+US	08	109	Saguache
+US	08	111	San Juan
+US	08	113	San Miguel
+US	08	115	Sedgwick
+US	08	117	Summit
+US	08	119	Teller
+US	08	121	Washington
+US	08	123	Weld
+US	08	125	Yuma
+US	09	001	Fairfield
+US	09	003	Hartford
+US	09	005	Litchfield
+US	09	007	Middlesex
+US	09	009	New Haven
+US	09	011	New London
+US	09	013	Tolland
+US	09	015	Windham
+US	10	001	Kent
+US	10	003	New Castle
+US	10	005	Sussex
+US	11	001	District Of Columbia
+US	12	001	Alachua
+US	12	003	Baker
+US	12	005	Bay
+US	12	007	Bradford
+US	12	009	Brevard
+US	12	011	Broward
+US	12	013	Calhoun
+US	12	015	Charlotte
+US	12	017	Citrus
+US	12	019	Clay
+US	12	021	Collier
+US	12	023	Columbia
+US	12	027	Desoto
+US	12	029	Dixie
+US	12	031	Duval
+US	12	033	Escambia
+US	12	035	Flagler
+US	12	037	Franklin
+US	12	039	Gadsden
+US	12	041	Gilchrist
+US	12	043	Glades
+US	12	045	Gulf
+US	12	047	Hamilton
+US	12	049	Hardee
+US	12	051	Hendry
+US	12	053	Hernando
+US	12	055	Highlands
+US	12	057	Hillsborough
+US	12	059	Holmes
+US	12	061	Indian River
+US	12	063	Jackson
+US	12	065	Jefferson
+US	12	067	Lafayette
+US	12	069	Lake
+US	12	071	Lee
+US	12	073	Leon
+US	12	075	Levy
+US	12	077	Liberty
+US	12	079	Madison
+US	12	081	Manatee
+US	12	083	Marion
+US	12	085	Martin
+US	12	086	Miami-Dade
+US	12	087	Monroe
+US	12	089	Nassau
+US	12	091	Okaloosa
+US	12	093	Okeechobee
+US	12	095	Orange
+US	12	097	Osceola
+US	12	099	Palm Beach
+US	12	101	Pasco
+US	12	103	Pinellas
+US	12	105	Polk
+US	12	107	Putnam
+US	12	109	St. Johns
+US	12	111	St. Lucie
+US	12	113	Santa Rosa
+US	12	115	Sarasota
+US	12	117	Seminole
+US	12	119	Sumter
+US	12	121	Suwannee
+US	12	123	Taylor
+US	12	125	Union
+US	12	127	Volusia
+US	12	129	Wakulla
+US	12	131	Walton
+US	12	133	Washington
+US	13	001	Appling
+US	13	003	Atkinson
+US	13	005	Bacon
+US	13	007	Baker
+US	13	009	Baldwin
+US	13	011	Banks
+US	13	013	Barrow
+US	13	015	Bartow
+US	13	017	Ben Hill
+US	13	019	Berrien
+US	13	021	Bibb
+US	13	023	Bleckley
+US	13	025	Brantley
+US	13	027	Brooks
+US	13	029	Bryan
+US	13	031	Bulloch
+US	13	033	Burke
+US	13	035	Butts
+US	13	037	Calhoun
+US	13	039	Camden
+US	13	043	Candler
+US	13	045	Carroll
+US	13	047	Catoosa
+US	13	049	Charlton
+US	13	051	Chatham
+US	13	053	Chattahoochee
+US	13	055	Chattooga
+US	13	057	Cherokee
+US	13	059	Clarke
+US	13	061	Clay
+US	13	063	Clayton
+US	13	065	Clinch
+US	13	067	Cobb
+US	13	069	Coffee
+US	13	071	Colquitt
+US	13	073	Columbia
+US	13	075	Cook
+US	13	077	Coweta
+US	13	079	Crawford
+US	13	081	Crisp
+US	13	083	Dade
+US	13	085	Dawson
+US	13	087	Decatur
+US	13	089	Dekalb
+US	13	091	Dodge
+US	13	093	Dooly
+US	13	095	Dougherty
+US	13	097	Douglas
+US	13	099	Early
+US	13	101	Echols
+US	13	103	Effingham
+US	13	105	Elbert
+US	13	107	Emanuel
+US	13	109	Evans
+US	13	111	Fannin
+US	13	113	Fayette
+US	13	115	Floyd
+US	13	117	Forsyth
+US	13	119	Franklin
+US	13	121	Fulton
+US	13	123	Gilmer
+US	13	125	Glascock
+US	13	127	Glynn
+US	13	129	Gordon
+US	13	131	Grady
+US	13	133	Greene
+US	13	135	Gwinnett
+US	13	137	Habersham
+US	13	139	Hall
+US	13	141	Hancock
+US	13	143	Haralson
+US	13	145	Harris
+US	13	147	Hart
+US	13	149	Heard
+US	13	151	Henry
+US	13	153	Houston
+US	13	155	Irwin
+US	13	157	Jackson
+US	13	159	Jasper
+US	13	161	Jeff Davis
+US	13	163	Jefferson
+US	13	165	Jenkins
+US	13	167	Johnson
+US	13	169	Jones
+US	13	171	Lamar
+US	13	173	Lanier
+US	13	175	Laurens
+US	13	177	Lee
+US	13	179	Liberty
+US	13	181	Lincoln
+US	13	183	Long
+US	13	185	Lowndes
+US	13	187	Lumpkin
+US	13	189	Mcduffie
+US	13	191	Mcintosh
+US	13	193	Macon
+US	13	195	Madison
+US	13	197	Marion
+US	13	199	Meriwether
+US	13	201	Miller
+US	13	205	Mitchell
+US	13	207	Monroe
+US	13	209	Montgomery
+US	13	211	Morgan
+US	13	213	Murray
+US	13	215	Muscogee
+US	13	217	Newton
+US	13	219	Oconee
+US	13	221	Oglethorpe
+US	13	223	Paulding
+US	13	225	Peach
+US	13	227	Pickens
+US	13	229	Pierce
+US	13	231	Pike
+US	13	233	Polk
+US	13	235	Pulaski
+US	13	237	Putnam
+US	13	239	Quitman
+US	13	241	Rabun
+US	13	243	Randolph
+US	13	245	Richmond
+US	13	247	Rockdale
+US	13	249	Schley
+US	13	251	Screven
+US	13	253	Seminole
+US	13	255	Spalding
+US	13	257	Stephens
+US	13	259	Stewart
+US	13	261	Sumter
+US	13	263	Talbot
+US	13	265	Taliaferro
+US	13	267	Tattnall
+US	13	269	Taylor
+US	13	271	Telfair
+US	13	273	Terrell
+US	13	275	Thomas
+US	13	277	Tift
+US	13	279	Toombs
+US	13	281	Towns
+US	13	283	Treutlen
+US	13	285	Troup
+US	13	287	Turner
+US	13	289	Twiggs
+US	13	291	Union
+US	13	293	Upson
+US	13	295	Walker
+US	13	297	Walton
+US	13	299	Ware
+US	13	301	Warren
+US	13	303	Washington
+US	13	305	Wayne
+US	13	307	Webster
+US	13	309	Wheeler
+US	13	311	White
+US	13	313	Whitfield
+US	13	315	Wilcox
+US	13	317	Wilkes
+US	13	319	Wilkinson
+US	13	321	Worth
+US	15	001	Hawaii
+US	15	003	Honolulu
+US	15	005	Kalawao
+US	15	007	Kauai
+US	15	009	Maui
+US	16	001	Ada
+US	16	003	Adams
+US	16	005	Bannock
+US	16	007	Bear Lake
+US	16	009	Benewah
+US	16	011	Bingham
+US	16	013	Blaine
+US	16	015	Boise
+US	16	017	Bonner
+US	16	019	Bonneville
+US	16	021	Boundary
+US	16	023	Butte
+US	16	025	Camas
+US	16	027	Canyon
+US	16	029	Caribou
+US	16	031	Cassia
+US	16	033	Clark
+US	16	035	Clearwater
+US	16	037	Custer
+US	16	039	Elmore
+US	16	041	Franklin
+US	16	043	Fremont
+US	16	045	Gem
+US	16	047	Gooding
+US	16	049	Idaho
+US	16	051	Jefferson
+US	16	053	Jerome
+US	16	055	Kootenai
+US	16	057	Latah
+US	16	059	Lemhi
+US	16	061	Lewis
+US	16	063	Lincoln
+US	16	065	Madison
+US	16	067	Minidoka
+US	16	069	Nez Perce
+US	16	071	Oneida
+US	16	073	Owyhee
+US	16	075	Payette
+US	16	077	Power
+US	16	079	Shoshone
+US	16	081	Teton
+US	16	083	Twin Falls
+US	16	085	Valley
+US	16	087	Washington
+US	17	001	Adams
+US	17	003	Alexander
+US	17	005	Bond
+US	17	007	Boone
+US	17	009	Brown
+US	17	011	Bureau
+US	17	013	Calhoun
+US	17	015	Carroll
+US	17	017	Cass
+US	17	019	Champaign
+US	17	021	Christian
+US	17	023	Clark
+US	17	025	Clay
+US	17	027	Clinton
+US	17	029	Coles
+US	17	031	Cook
+US	17	033	Crawford
+US	17	035	Cumberland
+US	17	037	Dekalb
+US	17	039	Dewitt
+US	17	041	Douglas
+US	17	043	Dupage
+US	17	045	Edgar
+US	17	047	Edwards
+US	17	049	Effingham
+US	17	051	Fayette
+US	17	053	Ford
+US	17	055	Franklin
+US	17	057	Fulton
+US	17	059	Gallatin
+US	17	061	Greene
+US	17	063	Grundy
+US	17	065	Hamilton
+US	17	067	Hancock
+US	17	069	Hardin
+US	17	071	Henderson
+US	17	073	Henry
+US	17	075	Iroquois
+US	17	077	Jackson
+US	17	079	Jasper
+US	17	081	Jefferson
+US	17	083	Jersey
+US	17	085	Jo Daviess
+US	17	087	Johnson
+US	17	089	Kane
+US	17	091	Kankakee
+US	17	093	Kendall
+US	17	095	Knox
+US	17	097	Lake
+US	17	099	Lasalle
+US	17	101	Lawrence
+US	17	103	Lee
+US	17	105	Livingston
+US	17	107	Logan
+US	17	109	Mcdonough
+US	17	111	Mchenry
+US	17	113	Mclean
+US	17	115	Macon
+US	17	117	Macoupin
+US	17	119	Madison
+US	17	121	Marion
+US	17	123	Marshall
+US	17	125	Mason
+US	17	127	Massac
+US	17	129	Menard
+US	17	131	Mercer
+US	17	133	Monroe
+US	17	135	Montgomery
+US	17	137	Morgan
+US	17	139	Moultrie
+US	17	141	Ogle
+US	17	143	Peoria
+US	17	145	Perry
+US	17	147	Piatt
+US	17	149	Pike
+US	17	151	Pope
+US	17	153	Pulaski
+US	17	155	Putnam
+US	17	157	Randolph
+US	17	159	Richland
+US	17	161	Rock Island
+US	17	163	St. Clair
+US	17	165	Saline
+US	17	167	Sangamon
+US	17	169	Schuyler
+US	17	171	Scott
+US	17	173	Shelby
+US	17	175	Stark
+US	17	177	Stephenson
+US	17	179	Tazewell
+US	17	181	Union
+US	17	183	Vermilion
+US	17	185	Wabash
+US	17	187	Warren
+US	17	189	Washington
+US	17	191	Wayne
+US	17	193	White
+US	17	195	Whiteside
+US	17	197	Will
+US	17	199	Williamson
+US	17	201	Winnebago
+US	17	203	Woodford
+US	18	001	Adams
+US	18	003	Allen
+US	18	005	Bartholomew
+US	18	007	Benton
+US	18	009	Blackford
+US	18	011	Boone
+US	18	013	Brown
+US	18	015	Carroll
+US	18	017	Cass
+US	18	019	Clark
+US	18	021	Clay
+US	18	023	Clinton
+US	18	025	Crawford
+US	18	027	Daviess
+US	18	029	Dearborn
+US	18	031	Decatur
+US	18	033	Dekalb
+US	18	035	Delaware
+US	18	037	Dubois
+US	18	039	Elkhart
+US	18	041	Fayette
+US	18	043	Floyd
+US	18	045	Fountain
+US	18	047	Franklin
+US	18	049	Fulton
+US	18	051	Gibson
+US	18	053	Grant
+US	18	055	Greene
+US	18	057	Hamilton
+US	18	059	Hancock
+US	18	061	Harrison
+US	18	063	Hendricks
+US	18	065	Henry
+US	18	067	Howard
+US	18	069	Huntington
+US	18	071	Jackson
+US	18	073	Jasper
+US	18	075	Jay
+US	18	077	Jefferson
+US	18	079	Jennings
+US	18	081	Johnson
+US	18	083	Knox
+US	18	085	Kosciusko
+US	18	087	Lagrange
+US	18	089	Lake
+US	18	091	Laporte
+US	18	093	Lawrence
+US	18	095	Madison
+US	18	097	Marion
+US	18	099	Marshall
+US	18	101	Martin
+US	18	103	Miami
+US	18	105	Monroe
+US	18	107	Montgomery
+US	18	109	Morgan
+US	18	111	Newton
+US	18	113	Noble
+US	18	115	Ohio
+US	18	117	Orange
+US	18	119	Owen
+US	18	121	Parke
+US	18	123	Perry
+US	18	125	Pike
+US	18	127	Porter
+US	18	129	Posey
+US	18	131	Pulaski
+US	18	133	Putnam
+US	18	135	Randolph
+US	18	137	Ripley
+US	18	139	Rush
+US	18	141	St. Joseph
+US	18	143	Scott
+US	18	145	Shelby
+US	18	147	Spencer
+US	18	149	Starke
+US	18	151	Steuben
+US	18	153	Sullivan
+US	18	155	Switzerland
+US	18	157	Tippecanoe
+US	18	159	Tipton
+US	18	161	Union
+US	18	163	Vanderburgh
+US	18	165	Vermillion
+US	18	167	Vigo
+US	18	169	Wabash
+US	18	171	Warren
+US	18	173	Warrick
+US	18	175	Washington
+US	18	177	Wayne
+US	18	179	Wells
+US	18	181	White
+US	18	183	Whitley
+US	19	001	Adair
+US	19	003	Adams
+US	19	005	Allamakee
+US	19	007	Appanoose
+US	19	009	Audubon
+US	19	011	Benton
+US	19	013	Black Hawk
+US	19	015	Boone
+US	19	017	Bremer
+US	19	019	Buchanan
+US	19	021	Buena Vista
+US	19	023	Butler
+US	19	025	Calhoun
+US	19	027	Carroll
+US	19	029	Cass
+US	19	031	Cedar
+US	19	033	Cerro Gordo
+US	19	035	Cherokee
+US	19	037	Chickasaw
+US	19	039	Clarke
+US	19	041	Clay
+US	19	043	Clayton
+US	19	045	Clinton
+US	19	047	Crawford
+US	19	049	Dallas
+US	19	051	Davis
+US	19	053	Decatur
+US	19	055	Delaware
+US	19	057	Des Moines
+US	19	059	Dickinson
+US	19	061	Dubuque
+US	19	063	Emmet
+US	19	065	Fayette
+US	19	067	Floyd
+US	19	069	Franklin
+US	19	071	Fremont
+US	19	073	Greene
+US	19	075	Grundy
+US	19	077	Guthrie
+US	19	079	Hamilton
+US	19	081	Hancock
+US	19	083	Hardin
+US	19	085	Harrison
+US	19	087	Henry
+US	19	089	Howard
+US	19	091	Humboldt
+US	19	093	Ida
+US	19	095	Iowa
+US	19	097	Jackson
+US	19	099	Jasper
+US	19	101	Jefferson
+US	19	103	Johnson
+US	19	105	Jones
+US	19	107	Keokuk
+US	19	109	Kossuth
+US	19	111	Lee
+US	19	113	Linn
+US	19	115	Louisa
+US	19	117	Lucas
+US	19	119	Lyon
+US	19	121	Madison
+US	19	123	Mahaska
+US	19	125	Marion
+US	19	127	Marshall
+US	19	129	Mills
+US	19	131	Mitchell
+US	19	133	Monona
+US	19	135	Monroe
+US	19	137	Montgomery
+US	19	139	Muscatine
+US	19	141	O'Brien
+US	19	143	Osceola
+US	19	145	Page
+US	19	147	Palo Alto
+US	19	149	Plymouth
+US	19	151	Pocahontas
+US	19	153	Polk
+US	19	155	Pottawattamie
+US	19	157	Poweshiek
+US	19	159	Ringgold
+US	19	161	Sac
+US	19	163	Scott
+US	19	165	Shelby
+US	19	167	Sioux
+US	19	169	Story
+US	19	171	Tama
+US	19	173	Taylor
+US	19	175	Union
+US	19	177	Van Buren
+US	19	179	Wapello
+US	19	181	Warren
+US	19	183	Washington
+US	19	185	Wayne
+US	19	187	Webster
+US	19	189	Winnebago
+US	19	191	Winneshiek
+US	19	193	Woodbury
+US	19	195	Worth
+US	19	197	Wright
+US	20	001	Allen
+US	20	003	Anderson
+US	20	005	Atchison
+US	20	007	Barber
+US	20	009	Barton
+US	20	011	Bourbon
+US	20	013	Brown
+US	20	015	Butler
+US	20	017	Chase
+US	20	019	Chautauqua
+US	20	021	Cherokee
+US	20	023	Cheyenne
+US	20	025	Clark
+US	20	027	Clay
+US	20	029	Cloud
+US	20	031	Coffey
+US	20	033	Comanche
+US	20	035	Cowley
+US	20	037	Crawford
+US	20	039	Decatur
+US	20	041	Dickinson
+US	20	043	Doniphan
+US	20	045	Douglas
+US	20	047	Edwards
+US	20	049	Elk
+US	20	051	Ellis
+US	20	053	Ellsworth
+US	20	055	Finney
+US	20	057	Ford
+US	20	059	Franklin
+US	20	061	Geary
+US	20	063	Gove
+US	20	065	Graham
+US	20	067	Grant
+US	20	069	Gray
+US	20	071	Greeley
+US	20	073	Greenwood
+US	20	075	Hamilton
+US	20	077	Harper
+US	20	079	Harvey
+US	20	081	Haskell
+US	20	083	Hodgeman
+US	20	085	Jackson
+US	20	087	Jefferson
+US	20	089	Jewell
+US	20	091	Johnson
+US	20	093	Kearny
+US	20	095	Kingman
+US	20	097	Kiowa
+US	20	099	Labette
+US	20	101	Lane
+US	20	103	Leavenworth
+US	20	105	Lincoln
+US	20	107	Linn
+US	20	109	Logan
+US	20	111	Lyon
+US	20	113	Mcpherson
+US	20	115	Marion
+US	20	117	Marshall
+US	20	119	Meade
+US	20	121	Miami
+US	20	123	Mitchell
+US	20	125	Montgomery
+US	20	127	Morris
+US	20	129	Morton
+US	20	131	Nemaha
+US	20	133	Neosho
+US	20	135	Ness
+US	20	137	Norton
+US	20	139	Osage
+US	20	141	Osborne
+US	20	143	Ottawa
+US	20	145	Pawnee
+US	20	147	Phillips
+US	20	149	Pottawatomie
+US	20	151	Pratt
+US	20	153	Rawlins
+US	20	155	Reno
+US	20	157	Republic
+US	20	159	Rice
+US	20	161	Riley
+US	20	163	Rooks
+US	20	165	Rush
+US	20	167	Russell
+US	20	169	Saline
+US	20	171	Scott
+US	20	173	Sedgwick
+US	20	175	Seward
+US	20	177	Shawnee
+US	20	179	Sheridan
+US	20	181	Sherman
+US	20	183	Smith
+US	20	185	Stafford
+US	20	187	Stanton
+US	20	189	Stevens
+US	20	191	Sumner
+US	20	193	Thomas
+US	20	195	Trego
+US	20	197	Wabaunsee
+US	20	199	Wallace
+US	20	201	Washington
+US	20	203	Wichita
+US	20	205	Wilson
+US	20	207	Woodson
+US	20	209	Wyandotte
+US	21	001	Adair
+US	21	003	Allen
+US	21	005	Anderson
+US	21	007	Ballard
+US	21	009	Barren
+US	21	011	Bath
+US	21	013	Bell
+US	21	015	Boone
+US	21	017	Bourbon
+US	21	019	Boyd
+US	21	021	Boyle
+US	21	023	Bracken
+US	21	025	Breathitt
+US	21	027	Breckinridge
+US	21	029	Bullitt
+US	21	031	Butler
+US	21	033	Caldwell
+US	21	035	Calloway
+US	21	037	Campbell
+US	21	039	Carlisle
+US	21	041	Carroll
+US	21	043	Carter
+US	21	045	Casey
+US	21	047	Christian
+US	21	049	Clark
+US	21	051	Clay
+US	21	053	Clinton
+US	21	055	Crittenden
+US	21	057	Cumberland
+US	21	059	Daviess
+US	21	061	Edmonson
+US	21	063	Elliott
+US	21	065	Estill
+US	21	067	Fayette
+US	21	069	Fleming
+US	21	071	Floyd
+US	21	073	Franklin
+US	21	075	Fulton
+US	21	077	Gallatin
+US	21	079	Garrard
+US	21	081	Grant
+US	21	083	Graves
+US	21	085	Grayson
+US	21	087	Green
+US	21	089	Greenup
+US	21	091	Hancock
+US	21	093	Hardin
+US	21	095	Harlan
+US	21	097	Harrison
+US	21	099	Hart
+US	21	101	Henderson
+US	21	103	Henry
+US	21	105	Hickman
+US	21	107	Hopkins
+US	21	109	Jackson
+US	21	111	Jefferson
+US	21	113	Jessamine
+US	21	115	Johnson
+US	21	117	Kenton
+US	21	119	Knott
+US	21	121	Knox
+US	21	123	Larue
+US	21	125	Laurel
+US	21	127	Lawrence
+US	21	129	Lee
+US	21	131	Leslie
+US	21	133	Letcher
+US	21	135	Lewis
+US	21	137	Lincoln
+US	21	139	Livingston
+US	21	141	Logan
+US	21	143	Lyon
+US	21	145	Mccracken
+US	21	147	Mccreary
+US	21	149	Mclean
+US	21	151	Madison
+US	21	153	Magoffin
+US	21	155	Marion
+US	21	157	Marshall
+US	21	159	Martin
+US	21	161	Mason
+US	21	163	Meade
+US	21	165	Menifee
+US	21	167	Mercer
+US	21	169	Metcalfe
+US	21	171	Monroe
+US	21	173	Montgomery
+US	21	175	Morgan
+US	21	177	Muhlenberg
+US	21	179	Nelson
+US	21	181	Nicholas
+US	21	183	Ohio
+US	21	185	Oldham
+US	21	187	Owen
+US	21	189	Owsley
+US	21	191	Pendleton
+US	21	193	Perry
+US	21	195	Pike
+US	21	197	Powell
+US	21	199	Pulaski
+US	21	201	Robertson
+US	21	203	Rockcastle
+US	21	205	Rowan
+US	21	207	Russell
+US	21	209	Scott
+US	21	211	Shelby
+US	21	213	Simpson
+US	21	215	Spencer
+US	21	217	Taylor
+US	21	219	Todd
+US	21	221	Trigg
+US	21	223	Trimble
+US	21	225	Union
+US	21	227	Warren
+US	21	229	Washington
+US	21	231	Wayne
+US	21	233	Webster
+US	21	235	Whitley
+US	21	237	Wolfe
+US	21	239	Woodford
+US	22	001	Acadia Parish
+US	22	003	Allen Parish
+US	22	005	Ascension Parish
+US	22	007	Assumption Parish
+US	22	009	Avoyelles Parish
+US	22	011	Beauregard Parish
+US	22	013	Bienville Parish
+US	22	015	Bossier Parish
+US	22	017	Caddo Parish
+US	22	019	Calcasieu Parish
+US	22	021	Caldwell Parish
+US	22	023	Cameron Parish
+US	22	025	Catahoula Parish
+US	22	027	Claiborne Parish
+US	22	029	Concordia Parish
+US	22	031	De Soto Parish
+US	22	033	East Baton Rouge Parish
+US	22	035	East Carroll Parish
+US	22	037	East Feliciana Parish
+US	22	039	Evangeline Parish
+US	22	041	Franklin Parish
+US	22	043	Grant Parish
+US	22	045	Iberia Parish
+US	22	047	Iberville Parish
+US	22	049	Jackson Parish
+US	22	051	Jefferson Parish
+US	22	053	Jefferson Davis Parish
+US	22	055	Lafayette Parish
+US	22	057	Lafourche Parish
+US	22	059	Lasalle Parish
+US	22	061	Lincoln Parish
+US	22	063	Livingston Parish
+US	22	065	Madison Parish
+US	22	067	Morehouse Parish
+US	22	069	Natchitoches Parish
+US	22	071	Orleans Parish
+US	22	073	Ouachita Parish
+US	22	075	Plaquemines Parish
+US	22	077	Pointe Coupee Parish
+US	22	079	Rapides Parish
+US	22	081	Red River Parish
+US	22	083	Richland Parish
+US	22	085	Sabine Parish
+US	22	087	St. Bernard Parish
+US	22	089	St. Charles Parish
+US	22	091	St. Helena Parish
+US	22	093	St. James Parish
+US	22	095	St. John The Baptist Parish
+US	22	097	St. Landry Parish
+US	22	099	St. Martin Parish
+US	22	101	St. Mary Parish
+US	22	103	St. Tammany Parish
+US	22	105	Tangipahoa Parish
+US	22	107	Tensas Parish
+US	22	109	Terrebonne Parish
+US	22	111	Union Parish
+US	22	113	Vermilion Parish
+US	22	115	Vernon Parish
+US	22	117	Washington Parish
+US	22	119	Webster Parish
+US	22	121	West Baton Rouge Parish
+US	22	123	West Carroll Parish
+US	22	125	West Feliciana Parish
+US	22	127	Winn Parish
+US	23	001	Androscoggin
+US	23	003	Aroostook
+US	23	005	Cumberland
+US	23	007	Franklin
+US	23	009	Hancock
+US	23	011	Kennebec
+US	23	013	Knox
+US	23	015	Lincoln
+US	23	017	Oxford
+US	23	019	Penobscot
+US	23	021	Piscataquis
+US	23	023	Sagadahoc
+US	23	025	Somerset
+US	23	027	Waldo
+US	23	029	Washington
+US	23	031	York
+US	24	001	Allegany
+US	24	003	Anne Arundel
+US	24	005	Baltimore
+US	24	009	Calvert
+US	24	011	Caroline
+US	24	013	Carroll
+US	24	015	Cecil
+US	24	017	Charles
+US	24	019	Dorchester
+US	24	021	Frederick
+US	24	023	Garrett
+US	24	025	Harford
+US	24	027	Howard
+US	24	029	Kent
+US	24	031	Montgomery
+US	24	033	Prince George'S
+US	24	035	Queen Anne'S
+US	24	037	St. Mary'S
+US	24	039	Somerset
+US	24	041	Talbot
+US	24	043	Washington
+US	24	045	Wicomico
+US	24	047	Worcester
+US	24	510	Baltimore City
+US	25	001	Barnstable
+US	25	003	Berkshire
+US	25	005	Bristol
+US	25	007	Dukes
+US	25	009	Essex
+US	25	011	Franklin
+US	25	013	Hampden
+US	25	015	Hampshire
+US	25	017	Middlesex
+US	25	019	Nantucket
+US	25	021	Norfolk
+US	25	023	Plymouth
+US	25	025	Suffolk
+US	25	027	Worcester
+US	26	001	Alcona
+US	26	003	Alger
+US	26	005	Allegan
+US	26	007	Alpena
+US	26	009	Antrim
+US	26	011	Arenac
+US	26	013	Baraga
+US	26	015	Barry
+US	26	017	Bay
+US	26	019	Benzie
+US	26	021	Berrien
+US	26	023	Branch
+US	26	025	Calhoun
+US	26	027	Cass
+US	26	029	Charlevoix
+US	26	031	Cheboygan
+US	26	033	Chippewa
+US	26	035	Clare
+US	26	037	Clinton
+US	26	039	Crawford
+US	26	041	Delta
+US	26	043	Dickinson
+US	26	045	Eaton
+US	26	047	Emmet
+US	26	049	Genesee
+US	26	051	Gladwin
+US	26	053	Gogebic
+US	26	055	Grand Traverse
+US	26	057	Gratiot
+US	26	059	Hillsdale
+US	26	061	Houghton
+US	26	063	Huron
+US	26	065	Ingham
+US	26	067	Ionia
+US	26	069	Iosco
+US	26	071	Iron
+US	26	073	Isabella
+US	26	075	Jackson
+US	26	077	Kalamazoo
+US	26	079	Kalkaska
+US	26	081	Kent
+US	26	083	Keweenaw
+US	26	085	Lake
+US	26	087	Lapeer
+US	26	089	Leelanau
+US	26	091	Lenawee
+US	26	093	Livingston
+US	26	095	Luce
+US	26	097	Mackinac
+US	26	099	Macomb
+US	26	101	Manistee
+US	26	103	Marquette
+US	26	105	Mason
+US	26	107	Mecosta
+US	26	109	Menominee
+US	26	111	Midland
+US	26	113	Missaukee
+US	26	115	Monroe
+US	26	117	Montcalm
+US	26	119	Montmorency
+US	26	121	Muskegon
+US	26	123	Newaygo
+US	26	125	Oakland
+US	26	127	Oceana
+US	26	129	Ogemaw
+US	26	131	Ontonagon
+US	26	133	Osceola
+US	26	135	Oscoda
+US	26	137	Otsego
+US	26	139	Ottawa
+US	26	141	Presque Isle
+US	26	143	Roscommon
+US	26	145	Saginaw
+US	26	147	St. Clair
+US	26	149	St. Joseph
+US	26	151	Sanilac
+US	26	153	Schoolcraft
+US	26	155	Shiawassee
+US	26	157	Tuscola
+US	26	159	Van Buren
+US	26	161	Washtenaw
+US	26	163	Wayne
+US	26	165	Wexford
+US	27	001	Aitkin
+US	27	003	Anoka
+US	27	005	Becker
+US	27	007	Beltrami
+US	27	009	Benton
+US	27	011	Big Stone
+US	27	013	Blue Earth
+US	27	015	Brown
+US	27	017	Carlton
+US	27	019	Carver
+US	27	021	Cass
+US	27	023	Chippewa
+US	27	025	Chisago
+US	27	027	Clay
+US	27	029	Clearwater
+US	27	031	Cook
+US	27	033	Cottonwood
+US	27	035	Crow Wing
+US	27	037	Dakota
+US	27	039	Dodge
+US	27	041	Douglas
+US	27	043	Faribault
+US	27	045	Fillmore
+US	27	047	Freeborn
+US	27	049	Goodhue
+US	27	051	Grant
+US	27	053	Hennepin
+US	27	055	Houston
+US	27	057	Hubbard
+US	27	059	Isanti
+US	27	061	Itasca
+US	27	063	Jackson
+US	27	065	Kanabec
+US	27	067	Kandiyohi
+US	27	069	Kittson
+US	27	071	Koochiching
+US	27	073	Lac Qui Parle
+US	27	075	Lake
+US	27	077	Lake Of The Woods
+US	27	079	Le Sueur
+US	27	081	Lincoln
+US	27	083	Lyon
+US	27	085	Mcleod
+US	27	087	Mahnomen
+US	27	089	Marshall
+US	27	091	Martin
+US	27	093	Meeker
+US	27	095	Mille Lacs
+US	27	097	Morrison
+US	27	099	Mower
+US	27	101	Murray
+US	27	103	Nicollet
+US	27	105	Nobles
+US	27	107	Norman
+US	27	109	Olmsted
+US	27	111	Otter Tail
+US	27	113	Pennington
+US	27	115	Pine
+US	27	117	Pipestone
+US	27	119	Polk
+US	27	121	Pope
+US	27	123	Ramsey
+US	27	125	Red Lake
+US	27	127	Redwood
+US	27	129	Renville
+US	27	131	Rice
+US	27	133	Rock
+US	27	135	Roseau
+US	27	137	St. Louis
+US	27	139	Scott
+US	27	141	Sherburne
+US	27	143	Sibley
+US	27	145	Stearns
+US	27	147	Steele
+US	27	149	Stevens
+US	27	151	Swift
+US	27	153	Todd
+US	27	155	Traverse
+US	27	157	Wabasha
+US	27	159	Wadena
+US	27	161	Waseca
+US	27	163	Washington
+US	27	165	Watonwan
+US	27	167	Wilkin
+US	27	169	Winona
+US	27	171	Wright
+US	27	173	Yellow Medicine
+US	28	001	Adams
+US	28	003	Alcorn
+US	28	005	Amite
+US	28	007	Attala
+US	28	009	Benton
+US	28	011	Bolivar
+US	28	013	Calhoun
+US	28	015	Carroll
+US	28	017	Chickasaw
+US	28	019	Choctaw
+US	28	021	Claiborne
+US	28	023	Clarke
+US	28	025	Clay
+US	28	027	Coahoma
+US	28	029	Copiah
+US	28	031	Covington
+US	28	033	Desoto
+US	28	035	Forrest
+US	28	037	Franklin
+US	28	039	George
+US	28	041	Greene
+US	28	043	Grenada
+US	28	045	Hancock
+US	28	047	Harrison
+US	28	049	Hinds
+US	28	051	Holmes
+US	28	053	Humphreys
+US	28	055	Issaquena
+US	28	057	Itawamba
+US	28	059	Jackson
+US	28	061	Jasper
+US	28	063	Jefferson
+US	28	065	Jefferson Davis
+US	28	067	Jones
+US	28	069	Kemper
+US	28	071	Lafayette
+US	28	073	Lamar
+US	28	075	Lauderdale
+US	28	077	Lawrence
+US	28	079	Leake
+US	28	081	Lee
+US	28	083	Leflore
+US	28	085	Lincoln
+US	28	087	Lowndes
+US	28	089	Madison
+US	28	091	Marion
+US	28	093	Marshall
+US	28	095	Monroe
+US	28	097	Montgomery
+US	28	099	Neshoba
+US	28	101	Newton
+US	28	103	Noxubee
+US	28	105	Oktibbeha
+US	28	107	Panola
+US	28	109	Pearl River
+US	28	111	Perry
+US	28	113	Pike
+US	28	115	Pontotoc
+US	28	117	Prentiss
+US	28	119	Quitman
+US	28	121	Rankin
+US	28	123	Scott
+US	28	125	Sharkey
+US	28	127	Simpson
+US	28	129	Smith
+US	28	131	Stone
+US	28	133	Sunflower
+US	28	135	Tallahatchie
+US	28	137	Tate
+US	28	139	Tippah
+US	28	141	Tishomingo
+US	28	143	Tunica
+US	28	145	Union
+US	28	147	Walthall
+US	28	149	Warren
+US	28	151	Washington
+US	28	153	Wayne
+US	28	155	Webster
+US	28	157	Wilkinson
+US	28	159	Winston
+US	28	161	Yalobusha
+US	28	163	Yazoo
+US	29	001	Adair
+US	29	003	Andrew
+US	29	005	Atchison
+US	29	007	Audrain
+US	29	009	Barry
+US	29	011	Barton
+US	29	013	Bates
+US	29	015	Benton
+US	29	017	Bollinger
+US	29	019	Boone
+US	29	021	Buchanan
+US	29	023	Butler
+US	29	025	Caldwell
+US	29	027	Callaway
+US	29	029	Camden
+US	29	031	Cape Girardeau
+US	29	033	Carroll
+US	29	035	Carter
+US	29	037	Cass
+US	29	039	Cedar
+US	29	041	Chariton
+US	29	043	Christian
+US	29	045	Clark
+US	29	047	Clay
+US	29	049	Clinton
+US	29	051	Cole
+US	29	053	Cooper
+US	29	055	Crawford
+US	29	057	Dade
+US	29	059	Dallas
+US	29	061	Daviess
+US	29	063	Dekalb
+US	29	065	Dent
+US	29	067	Douglas
+US	29	069	Dunklin
+US	29	071	Franklin
+US	29	073	Gasconade
+US	29	075	Gentry 
+US	29	077	Greene
+US	29	079	Grundy
+US	29	081	Harrison
+US	29	083	Henry
+US	29	085	Hickory
+US	29	087	Holt
+US	29	089	Howard
+US	29	091	Howell
+US	29	093	Iron
+US	29	095	Jackson
+US	29	097	Jasper
+US	29	099	Jefferson
+US	29	101	Johnson
+US	29	103	Knox
+US	29	105	Laclede
+US	29	107	Lafayette
+US	29	109	Lawrence
+US	29	111	Lewis
+US	29	113	Lincoln
+US	29	115	Linn
+US	29	117	Livingston
+US	29	119	Mcdonald
+US	29	121	Macon
+US	29	123	Madison
+US	29	125	Maries
+US	29	127	Marion
+US	29	129	Mercer
+US	29	131	Miller
+US	29	133	Mississippi
+US	29	135	Moniteau
+US	29	137	Monroe
+US	29	139	Montgomery
+US	29	141	Morgan
+US	29	143	New Madrid
+US	29	145	Newton
+US	29	147	Nodaway
+US	29	149	Oregon
+US	29	151	Osage
+US	29	153	Ozark
+US	29	155	Pemiscot
+US	29	157	Perry
+US	29	159	Pettis
+US	29	161	Phelps
+US	29	163	Pike
+US	29	165	Platte
+US	29	167	Polk
+US	29	169	Pulaski
+US	29	171	Putnam
+US	29	173	Ralls
+US	29	175	Randolph
+US	29	177	Ray
+US	29	179	Reynolds
+US	29	181	Ripley
+US	29	183	St. Charles
+US	29	185	St. Clair
+US	29	186	Ste. Genevieve
+US	29	187	St. Francois
+US	29	189	St. Louis
+US	29	195	Saline
+US	29	197	Schuyler
+US	29	199	Scotland
+US	29	201	Scott
+US	29	203	Shannon
+US	29	205	Shelby
+US	29	207	Stoddard
+US	29	209	Stone
+US	29	211	Sullivan
+US	29	213	Taney
+US	29	215	Texas
+US	29	217	Vernon
+US	29	219	Warren
+US	29	221	Washington
+US	29	223	Wayne
+US	29	225	Webster
+US	29	227	Worth
+US	29	229	Wright
+US	29	510	St. Louis City
+US	30	001	Beaverhead
+US	30	003	Big Horn
+US	30	005	Blaine
+US	30	007	Broadwater
+US	30	009	Carbon
+US	30	011	Carter
+US	30	013	Cascade
+US	30	015	Chouteau
+US	30	017	Custer
+US	30	019	Daniels
+US	30	021	Dawson
+US	30	023	Deer Lodge
+US	30	025	Fallon
+US	30	027	Fergus
+US	30	029	Flathead
+US	30	031	Gallatin
+US	30	033	Garfield
+US	30	035	Glacier
+US	30	037	Golden Valley
+US	30	039	Granite
+US	30	041	Hill
+US	30	043	Jefferson
+US	30	045	Judith Basin
+US	30	047	Lake
+US	30	049	Lewis And Clark
+US	30	051	Liberty
+US	30	053	Lincoln
+US	30	055	Mccone
+US	30	057	Madison
+US	30	059	Meagher
+US	30	061	Mineral
+US	30	063	Missoula
+US	30	065	Musselshell
+US	30	067	Park
+US	30	069	Petroleum
+US	30	071	Phillips
+US	30	073	Pondera
+US	30	075	Powder River
+US	30	077	Powell
+US	30	079	Prairie
+US	30	081	Ravalli
+US	30	083	Richland
+US	30	085	Roosevelt
+US	30	087	Rosebud
+US	30	089	Sanders
+US	30	091	Sheridan
+US	30	093	Silver Bow
+US	30	095	Stillwater
+US	30	097	Sweet Grass
+US	30	099	Teton
+US	30	101	Toole
+US	30	103	Treasure
+US	30	105	Valley
+US	30	107	Wheatland
+US	30	109	Wibaux
+US	30	111	Yellowstone
+US	30	113	Yellowstone National Park - Part
+US	31	001	Adams
+US	31	003	Antelope
+US	31	005	Arthur
+US	31	007	Banner
+US	31	009	Blaine
+US	31	011	Boone
+US	31	013	Box Butte
+US	31	015	Boyd
+US	31	017	Brown
+US	31	019	Buffalo
+US	31	021	Burt
+US	31	023	Butler
+US	31	025	Cass
+US	31	027	Cedar
+US	31	029	Chase
+US	31	031	Cherry
+US	31	033	Cheyenne
+US	31	035	Clay
+US	31	037	Colfax
+US	31	039	Cuming
+US	31	041	Custer
+US	31	043	Dakota
+US	31	045	Dawes
+US	31	047	Dawson
+US	31	049	Deuel
+US	31	051	Dixon
+US	31	053	Dodge
+US	31	055	Douglas
+US	31	057	Dundy
+US	31	059	Fillmore
+US	31	061	Franklin
+US	31	063	Frontier
+US	31	065	Furnas
+US	31	067	Gage
+US	31	069	Garden
+US	31	071	Garfield
+US	31	073	Gosper
+US	31	075	Grant
+US	31	077	Greeley
+US	31	079	Hall
+US	31	081	Hamilton
+US	31	083	Harlan
+US	31	085	Hayes
+US	31	087	Hitchcock
+US	31	089	Holt
+US	31	091	Hooker
+US	31	093	Howard
+US	31	095	Jefferson
+US	31	097	Johnson
+US	31	099	Kearney
+US	31	101	Keith
+US	31	103	Keya Paha
+US	31	105	Kimball
+US	31	107	Knox
+US	31	109	Lancaster
+US	31	111	Lincoln
+US	31	113	Logan
+US	31	115	Loup
+US	31	117	Mcpherson
+US	31	119	Madison
+US	31	121	Merrick
+US	31	123	Morrill
+US	31	125	Nance
+US	31	127	Nemaha
+US	31	129	Nuckolls
+US	31	131	Otoe
+US	31	133	Pawnee
+US	31	135	Perkins
+US	31	137	Phelps
+US	31	139	Pierce
+US	31	141	Platte
+US	31	143	Polk
+US	31	145	Red Willow
+US	31	147	Richardson
+US	31	149	Rock
+US	31	151	Saline
+US	31	153	Sarpy
+US	31	155	Saunders
+US	31	157	Scotts Bluff
+US	31	159	Seward
+US	31	161	Sheridan
+US	31	163	Sherman
+US	31	165	Sioux
+US	31	167	Stanton
+US	31	169	Thayer
+US	31	171	Thomas
+US	31	173	Thurston
+US	31	175	Valley
+US	31	177	Washington
+US	31	179	Wayne
+US	31	181	Webster
+US	31	183	Wheeler
+US	31	185	York
+US	32	001	Churchill
+US	32	003	Clark
+US	32	005	Douglas
+US	32	007	Elko
+US	32	009	Esmeralda
+US	32	011	Eureka
+US	32	013	Humboldt
+US	32	015	Lander
+US	32	017	Lincoln
+US	32	019	Lyon
+US	32	021	Mineral
+US	32	023	Nye
+US	32	027	Pershing
+US	32	029	Storey
+US	32	031	Washoe
+US	32	033	White Pine
+US	32	510	Carson City
+US	33	001	Belknap
+US	33	003	Carroll
+US	33	005	Cheshire
+US	33	007	Coos
+US	33	009	Grafton
+US	33	011	Hillsborough
+US	33	013	Merrimack
+US	33	015	Rockingham
+US	33	017	Strafford
+US	33	019	Sullivan
+US	34	001	Atlantic
+US	34	003	Bergen
+US	34	005	Burlington
+US	34	007	Camden
+US	34	009	Cape May
+US	34	011	Cumberland
+US	34	013	Essex
+US	34	015	Gloucester
+US	34	017	Hudson
+US	34	019	Hunterdon
+US	34	021	Mercer
+US	34	023	Middlesex
+US	34	025	Monmouth
+US	34	027	Morris
+US	34	029	Ocean
+US	34	031	Passaic
+US	34	033	Salem
+US	34	035	Somerset
+US	34	037	Sussex
+US	34	039	Union
+US	34	041	Warren
+US	35	001	Bernalillo
+US	35	003	Catron
+US	35	005	Chaves
+US	35	006	Cibola
+US	35	007	Colfax
+US	35	009	Curry
+US	35	011	De Baca
+US	35	013	Dona Ana
+US	35	015	Eddy
+US	35	017	Grant
+US	35	019	Guadalupe
+US	35	021	Harding
+US	35	023	Hidalgo
+US	35	025	Lea
+US	35	027	Lincoln
+US	35	028	Los Alamos
+US	35	029	Luna
+US	35	031	Mckinley
+US	35	033	Mora
+US	35	035	Otero
+US	35	037	Quay
+US	35	039	Rio Arriba
+US	35	041	Roosevelt
+US	35	043	Sandoval
+US	35	045	San Juan
+US	35	047	San Miguel
+US	35	049	Santa Fe
+US	35	051	Sierra
+US	35	053	Socorro
+US	35	055	Taos
+US	35	057	Torrance
+US	35	059	Union
+US	35	061	Valencia
+US	36	001	Albany
+US	36	003	Allegany
+US	36	005	Bronx
+US	36	007	Broome
+US	36	009	Cattaraugus
+US	36	011	Cayuga
+US	36	013	Chautauqua
+US	36	015	Chemung
+US	36	017	Chenango
+US	36	019	Clinton
+US	36	021	Columbia
+US	36	023	Cortland
+US	36	025	Delaware
+US	36	027	Dutchess
+US	36	029	Erie
+US	36	031	Essex
+US	36	033	Franklin
+US	36	035	Fulton
+US	36	037	Genesee
+US	36	039	Greene
+US	36	041	Hamilton
+US	36	043	Herkimer
+US	36	045	Jefferson
+US	36	047	Kings
+US	36	049	Lewis
+US	36	051	Livingston
+US	36	053	Madison
+US	36	055	Monroe
+US	36	057	Montgomery
+US	36	059	Nassau
+US	36	061	New York
+US	36	063	Niagara
+US	36	065	Oneida
+US	36	067	Onondaga
+US	36	069	Ontario
+US	36	071	Orange
+US	36	073	Orleans
+US	36	075	Oswego
+US	36	077	Otsego
+US	36	079	Putnam
+US	36	081	Queens
+US	36	083	Rensselaer
+US	36	085	Richmond
+US	36	087	Rockland
+US	36	089	St. Lawrence
+US	36	091	Saratoga
+US	36	093	Schenectady
+US	36	095	Schoharie
+US	36	097	Schuyler
+US	36	099	Seneca
+US	36	101	Steuben
+US	36	103	Suffolk
+US	36	105	Sullivan
+US	36	107	Tioga
+US	36	109	Tompkins
+US	36	111	Ulster
+US	36	113	Warren
+US	36	115	Washington
+US	36	117	Wayne
+US	36	119	Westchester
+US	36	121	Wyoming
+US	36	123	Yates
+US	37	001	Alamance
+US	37	003	Alexander
+US	37	005	Alleghany
+US	37	007	Anson
+US	37	009	Ashe
+US	37	011	Avery
+US	37	013	Beaufort
+US	37	015	Bertie
+US	37	017	Bladen
+US	37	019	Brunswick
+US	37	021	Buncombe
+US	37	023	Burke
+US	37	025	Cabarrus
+US	37	027	Caldwell
+US	37	029	Camden
+US	37	031	Carteret
+US	37	033	Caswell
+US	37	035	Catawba
+US	37	037	Chatham
+US	37	039	Cherokee
+US	37	041	Chowan
+US	37	043	Clay
+US	37	045	Cleveland
+US	37	047	Columbus
+US	37	049	Craven
+US	37	051	Cumberland
+US	37	053	Currituck
+US	37	055	Dare
+US	37	057	Davidson
+US	37	059	Davie
+US	37	061	Duplin
+US	37	063	Durham
+US	37	065	Edgecombe
+US	37	067	Forsyth
+US	37	069	Franklin
+US	37	071	Gaston
+US	37	073	Gates
+US	37	075	Graham
+US	37	077	Granville
+US	37	079	Greene
+US	37	081	Guilford
+US	37	083	Halifax
+US	37	085	Harnett
+US	37	087	Haywood
+US	37	089	Henderson
+US	37	091	Hertford
+US	37	093	Hoke
+US	37	095	Hyde
+US	37	097	Iredell
+US	37	099	Jackson
+US	37	101	Johnston
+US	37	103	Jones
+US	37	105	Lee
+US	37	107	Lenoir
+US	37	109	Lincoln
+US	37	111	Mcdowell
+US	37	113	Macon
+US	37	115	Madison
+US	37	117	Martin
+US	37	119	Mecklenburg
+US	37	121	Mitchell
+US	37	123	Montgomery
+US	37	125	Moore
+US	37	127	Nash
+US	37	129	New Hanover
+US	37	131	Northampton
+US	37	133	Onslow
+US	37	135	Orange
+US	37	137	Pamlico
+US	37	139	Pasquotank
+US	37	141	Pender
+US	37	143	Perquimans
+US	37	145	Person
+US	37	147	Pitt
+US	37	149	Polk
+US	37	151	Randolph
+US	37	153	Richmond
+US	37	155	Robeson
+US	37	157	Rockingham
+US	37	159	Rowan
+US	37	161	Rutherford
+US	37	163	Sampson
+US	37	165	Scotland
+US	37	167	Stanly
+US	37	169	Stokes
+US	37	171	Surry
+US	37	173	Swain
+US	37	175	Transylvania
+US	37	177	Tyrrell
+US	37	179	Union
+US	37	181	Vance
+US	37	183	Wake
+US	37	185	Warren
+US	37	187	Washington
+US	37	189	Watauga
+US	37	191	Wayne
+US	37	193	Wilkes
+US	37	195	Wilson
+US	37	197	Yadkin
+US	37	199	Yancey
+US	38	001	Adams
+US	38	003	Barnes
+US	38	005	Benson
+US	38	007	Billings
+US	38	009	Bottineau
+US	38	011	Bowman
+US	38	013	Burke
+US	38	015	Burleigh
+US	38	017	Cass
+US	38	019	Cavalier
+US	38	021	Dickey
+US	38	023	Divide
+US	38	025	Dunn
+US	38	027	Eddy
+US	38	029	Emmons
+US	38	031	Foster
+US	38	033	Golden Valley
+US	38	035	Grand Forks
+US	38	037	Grant
+US	38	039	Griggs
+US	38	041	Hettinger
+US	38	043	Kidder
+US	38	045	Lamoure
+US	38	047	Logan
+US	38	049	Mchenry
+US	38	051	Mcintosh
+US	38	053	Mckenzie
+US	38	055	Mclean
+US	38	057	Mercer
+US	38	059	Morton
+US	38	061	Mountrail
+US	38	063	Nelson
+US	38	065	Oliver
+US	38	067	Pembina
+US	38	069	Pierce
+US	38	071	Ramsey
+US	38	073	Ransom
+US	38	075	Renville
+US	38	077	Richland
+US	38	079	Rolette
+US	38	081	Sargent
+US	38	083	Sheridan
+US	38	085	Sioux
+US	38	087	Slope
+US	38	089	Stark
+US	38	091	Steele
+US	38	093	Stutsman
+US	38	095	Towner
+US	38	097	Traill
+US	38	099	Walsh
+US	38	101	Ward
+US	38	103	Wells
+US	38	105	Williams
+US	39	001	Adams
+US	39	003	Allen
+US	39	005	Ashland
+US	39	007	Ashtabula
+US	39	009	Athens
+US	39	011	Auglaize
+US	39	013	Belmont
+US	39	015	Brown
+US	39	017	Butler
+US	39	019	Carroll
+US	39	021	Champaign
+US	39	023	Clark
+US	39	025	Clermont
+US	39	027	Clinton
+US	39	029	Columbiana
+US	39	031	Coshocton
+US	39	033	Crawford
+US	39	035	Cuyahoga
+US	39	037	Darke
+US	39	039	Defiance
+US	39	041	Delaware
+US	39	043	Erie
+US	39	045	Fairfield
+US	39	047	Fayette
+US	39	049	Franklin
+US	39	051	Fulton
+US	39	053	Gallia
+US	39	055	Geauga
+US	39	057	Greene
+US	39	059	Guernsey
+US	39	061	Hamilton
+US	39	063	Hancock
+US	39	065	Hardin
+US	39	067	Harrison
+US	39	069	Henry
+US	39	071	Highland
+US	39	073	Hocking
+US	39	075	Holmes
+US	39	077	Huron
+US	39	079	Jackson
+US	39	081	Jefferson
+US	39	083	Knox
+US	39	085	Lake
+US	39	087	Lawrence
+US	39	089	Licking
+US	39	091	Logan
+US	39	093	Lorain
+US	39	095	Lucas
+US	39	097	Madison
+US	39	099	Mahoning
+US	39	101	Marion
+US	39	103	Medina
+US	39	105	Meigs
+US	39	107	Mercer
+US	39	109	Miami
+US	39	111	Monroe
+US	39	113	Montgomery
+US	39	115	Morgan
+US	39	117	Morrow
+US	39	119	Muskingum
+US	39	121	Noble
+US	39	123	Ottawa
+US	39	125	Paulding
+US	39	127	Perry
+US	39	129	Pickaway
+US	39	131	Pike
+US	39	133	Portage
+US	39	135	Preble
+US	39	137	Putnam
+US	39	139	Richland
+US	39	141	Ross
+US	39	143	Sandusky
+US	39	145	Scioto
+US	39	147	Seneca
+US	39	149	Shelby
+US	39	151	Stark
+US	39	153	Summit
+US	39	155	Trumbull
+US	39	157	Tuscarawas
+US	39	159	Union
+US	39	161	Van Wert
+US	39	163	Vinton
+US	39	165	Warren
+US	39	167	Washington
+US	39	169	Wayne
+US	39	171	Williams
+US	39	173	Wood
+US	39	175	Wyandot
+US	40	001	Adair
+US	40	003	Alfalfa
+US	40	005	Atoka
+US	40	007	Beaver
+US	40	009	Beckham
+US	40	011	Blaine
+US	40	013	Bryan
+US	40	015	Caddo
+US	40	017	Canadian
+US	40	019	Carter
+US	40	021	Cherokee
+US	40	023	Choctaw
+US	40	025	Cimarron
+US	40	027	Cleveland
+US	40	029	Coal
+US	40	031	Comanche
+US	40	033	Cotton
+US	40	035	Craig
+US	40	037	Creek
+US	40	039	Custer
+US	40	041	Delaware
+US	40	043	Dewey
+US	40	045	Ellis
+US	40	047	Garfield
+US	40	049	Garvin
+US	40	051	Grady
+US	40	053	Grant
+US	40	055	Greer
+US	40	057	Harmon
+US	40	059	Harper
+US	40	061	Haskell
+US	40	063	Hughes
+US	40	065	Jackson
+US	40	067	Jefferson
+US	40	069	Johnston
+US	40	071	Kay
+US	40	073	Kingfisher
+US	40	075	Kiowa
+US	40	077	Latimer
+US	40	079	Le Flore
+US	40	081	Lincoln
+US	40	083	Logan
+US	40	085	Love
+US	40	087	Mcclain
+US	40	089	Mccurtain
+US	40	091	Mcintosh
+US	40	093	Major
+US	40	095	Marshall
+US	40	097	Mayes
+US	40	099	Murray
+US	40	101	Muskogee
+US	40	103	Noble
+US	40	105	Nowata
+US	40	107	Okfuskee
+US	40	109	Oklahoma
+US	40	111	Okmulgee
+US	40	113	Osage
+US	40	115	Ottawa
+US	40	117	Pawnee
+US	40	119	Payne
+US	40	121	Pittsburg
+US	40	123	Pontotoc
+US	40	125	Pottawatomie
+US	40	127	Pushmataha
+US	40	129	Roger Mills
+US	40	131	Rogers
+US	40	133	Seminole
+US	40	135	Sequoyah
+US	40	137	Stephens
+US	40	139	Texas
+US	40	141	Tillman
+US	40	143	Tulsa
+US	40	145	Wagoner
+US	40	147	Washington
+US	40	149	Washita
+US	40	151	Woods
+US	40	153	Woodward
+US	41	001	Baker
+US	41	003	Benton
+US	41	005	Clackamas
+US	41	007	Clatsop
+US	41	009	Columbia
+US	41	011	Coos
+US	41	013	Crook
+US	41	015	Curry
+US	41	017	Deschutes
+US	41	019	Douglas
+US	41	021	Gilliam
+US	41	023	Grant
+US	41	025	Harney
+US	41	027	Hood River
+US	41	029	Jackson
+US	41	031	Jefferson
+US	41	033	Josephine
+US	41	035	Klamath
+US	41	037	Lake
+US	41	039	Lane
+US	41	041	Lincoln
+US	41	043	Linn
+US	41	045	Malheur
+US	41	047	Marion
+US	41	049	Morrow
+US	41	051	Multnomah
+US	41	053	Polk
+US	41	055	Sherman
+US	41	057	Tillamook
+US	41	059	Umatilla
+US	41	061	Union
+US	41	063	Wallowa
+US	41	065	Wasco
+US	41	067	Washington
+US	41	069	Wheeler
+US	41	071	Yamhill
+US	42	001	Adams
+US	42	003	Allegheny
+US	42	005	Armstrong
+US	42	007	Beaver
+US	42	009	Bedford
+US	42	011	Berks
+US	42	013	Blair
+US	42	015	Bradford
+US	42	017	Bucks
+US	42	019	Butler
+US	42	021	Cambria
+US	42	023	Cameron
+US	42	025	Carbon
+US	42	027	Centre
+US	42	029	Chester
+US	42	031	Clarion
+US	42	033	Clearfield
+US	42	035	Clinton
+US	42	037	Columbia
+US	42	039	Crawford
+US	42	041	Cumberland
+US	42	043	Dauphin
+US	42	045	Delaware
+US	42	047	Elk
+US	42	049	Erie
+US	42	051	Fayette
+US	42	053	Forest
+US	42	055	Franklin
+US	42	057	Fulton
+US	42	059	Greene
+US	42	061	Huntingdon
+US	42	063	Indiana
+US	42	065	Jefferson
+US	42	067	Juniata
+US	42	069	Lackawanna
+US	42	071	Lancaster
+US	42	073	Lawrence
+US	42	075	Lebanon
+US	42	077	Lehigh
+US	42	079	Luzerne
+US	42	081	Lycoming
+US	42	083	Mckean
+US	42	085	Mercer
+US	42	087	Mifflin
+US	42	089	Monroe
+US	42	091	Montgomery
+US	42	093	Montour
+US	42	095	Northampton
+US	42	097	Northumberland
+US	42	099	Perry
+US	42	101	Philadelphia
+US	42	103	Pike
+US	42	105	Potter
+US	42	107	Schuylkill
+US	42	109	Snyder
+US	42	111	Somerset
+US	42	113	Sullivan
+US	42	115	Susquehanna
+US	42	117	Tioga
+US	42	119	Union
+US	42	121	Venango
+US	42	123	Warren
+US	42	125	Washington
+US	42	127	Wayne
+US	42	129	Westmoreland
+US	42	131	Wyoming
+US	42	133	York
+US	44	001	Bristol
+US	44	003	Kent
+US	44	005	Newport
+US	44	007	Providence
+US	44	009	Washington
+US	45	001	Abbeville
+US	45	003	Aiken
+US	45	005	Allendale
+US	45	007	Anderson
+US	45	009	Bamberg
+US	45	011	Barnwell
+US	45	013	Beaufort
+US	45	015	Berkeley
+US	45	017	Calhoun
+US	45	019	Charleston
+US	45	021	Cherokee
+US	45	023	Chester
+US	45	025	Chesterfield
+US	45	027	Clarendon
+US	45	029	Colleton
+US	45	031	Darlington
+US	45	033	Dillon
+US	45	035	Dorchester
+US	45	037	Edgefield
+US	45	039	Fairfield
+US	45	041	Florence
+US	45	043	Georgetown
+US	45	045	Greenville
+US	45	047	Greenwood
+US	45	049	Hampton
+US	45	051	Horry
+US	45	053	Jasper
+US	45	055	Kershaw
+US	45	057	Lancaster
+US	45	059	Laurens
+US	45	061	Lee
+US	45	063	Lexington
+US	45	065	Mccormick
+US	45	067	Marion
+US	45	069	Marlboro
+US	45	071	Newberry
+US	45	073	Oconee
+US	45	075	Orangeburg
+US	45	077	Pickens
+US	45	079	Richland
+US	45	081	Saluda
+US	45	083	Spartanburg
+US	45	085	Sumter
+US	45	087	Union
+US	45	089	Williamsburg
+US	45	091	York
+US	46	003	Aurora
+US	46	005	Beadle
+US	46	007	Bennett
+US	46	009	Bon Homme
+US	46	011	Brookings
+US	46	013	Brown
+US	46	015	Brule
+US	46	017	Buffalo
+US	46	019	Butte
+US	46	021	Campbell
+US	46	023	Charles Mix
+US	46	025	Clark
+US	46	027	Clay
+US	46	029	Codington
+US	46	031	Corson
+US	46	033	Custer
+US	46	035	Davison
+US	46	037	Day
+US	46	039	Deuel
+US	46	041	Dewey
+US	46	043	Douglas
+US	46	045	Edmunds
+US	46	047	Fall River
+US	46	049	Faulk
+US	46	051	Grant
+US	46	053	Gregory
+US	46	055	Haakon
+US	46	057	Hamlin
+US	46	059	Hand
+US	46	061	Hanson
+US	46	063	Harding
+US	46	065	Hughes
+US	46	067	Hutchinson
+US	46	069	Hyde
+US	46	071	Jackson
+US	46	073	Jerauld
+US	46	075	Jones
+US	46	077	Kingsbury
+US	46	079	Lake
+US	46	081	Lawrence
+US	46	083	Lincoln
+US	46	085	Lyman
+US	46	087	Mccook
+US	46	089	Mcpherson
+US	46	091	Marshall
+US	46	093	Meade
+US	46	095	Mellette
+US	46	097	Miner
+US	46	099	Minnehaha
+US	46	101	Moody
+US	46	102	Oglala Lakota
+US	46	103	Pennington
+US	46	105	Perkins
+US	46	107	Potter
+US	46	109	Roberts
+US	46	111	Sanborn
+US	46	113	Shannon
+US	46	115	Spink
+US	46	117	Stanley
+US	46	119	Sully
+US	46	121	Todd
+US	46	123	Tripp
+US	46	125	Turner
+US	46	127	Union
+US	46	129	Walworth
+US	46	135	Yankton
+US	46	137	Ziebach
+US	47	001	Anderson
+US	47	003	Bedford
+US	47	005	Benton
+US	47	007	Bledsoe
+US	47	009	Blount
+US	47	011	Bradley
+US	47	013	Campbell
+US	47	015	Cannon
+US	47	017	Carroll
+US	47	019	Carter
+US	47	021	Cheatham
+US	47	023	Chester
+US	47	025	Claiborne
+US	47	027	Clay
+US	47	029	Cocke
+US	47	031	Coffee
+US	47	033	Crockett
+US	47	035	Cumberland
+US	47	037	Davidson
+US	47	039	Decatur
+US	47	041	Dekalb
+US	47	043	Dickson
+US	47	045	Dyer
+US	47	047	Fayette
+US	47	049	Fentress
+US	47	051	Franklin
+US	47	053	Gibson
+US	47	055	Giles
+US	47	057	Grainger
+US	47	059	Greene
+US	47	061	Grundy
+US	47	063	Hamblen
+US	47	065	Hamilton
+US	47	067	Hancock
+US	47	069	Hardeman
+US	47	071	Hardin
+US	47	073	Hawkins
+US	47	075	Haywood
+US	47	077	Henderson
+US	47	079	Henry
+US	47	081	Hickman
+US	47	083	Houston
+US	47	085	Humphreys
+US	47	087	Jackson
+US	47	089	Jefferson
+US	47	091	Johnson
+US	47	093	Knox
+US	47	095	Lake
+US	47	097	Lauderdale
+US	47	099	Lawrence
+US	47	101	Lewis
+US	47	103	Lincoln
+US	47	105	Loudon
+US	47	107	Mcminn
+US	47	109	Mcnairy
+US	47	111	Macon
+US	47	113	Madison
+US	47	115	Marion
+US	47	117	Marshall
+US	47	119	Maury
+US	47	121	Meigs
+US	47	123	Monroe
+US	47	125	Montgomery
+US	47	127	Moore
+US	47	129	Morgan
+US	47	131	Obion
+US	47	133	Overton
+US	47	135	Perry
+US	47	137	Pickett
+US	47	139	Polk
+US	47	141	Putnam
+US	47	143	Rhea
+US	47	145	Roane
+US	47	147	Robertson
+US	47	149	Rutherford
+US	47	151	Scott
+US	47	153	Sequatchie
+US	47	155	Sevier
+US	47	157	Shelby
+US	47	159	Smith
+US	47	161	Stewart
+US	47	163	Sullivan
+US	47	165	Sumner
+US	47	167	Tipton
+US	47	169	Trousdale
+US	47	171	Unicoi
+US	47	173	Union
+US	47	175	Van Buren
+US	47	177	Warren
+US	47	179	Washington
+US	47	181	Wayne
+US	47	183	Weakley
+US	47	185	White
+US	47	187	Williamson
+US	47	189	Wilson
+US	48	001	Anderson
+US	48	003	Andrews
+US	48	005	Angelina
+US	48	007	Aransas
+US	48	009	Archer
+US	48	011	Armstrong
+US	48	013	Atascosa
+US	48	015	Austin
+US	48	017	Bailey
+US	48	019	Bandera
+US	48	021	Bastrop
+US	48	023	Baylor
+US	48	025	Bee
+US	48	027	Bell
+US	48	029	Bexar
+US	48	031	Blanco
+US	48	033	Borden
+US	48	035	Bosque
+US	48	037	Bowie
+US	48	039	Brazoria
+US	48	041	Brazos
+US	48	043	Brewster
+US	48	045	Briscoe
+US	48	047	Brooks
+US	48	049	Brown
+US	48	051	Burleson
+US	48	053	Burnet
+US	48	055	Caldwell
+US	48	057	Calhoun
+US	48	059	Callahan
+US	48	061	Cameron
+US	48	063	Camp
+US	48	065	Carson
+US	48	067	Cass
+US	48	069	Castro
+US	48	071	Chambers
+US	48	073	Cherokee
+US	48	075	Childress
+US	48	077	Clay
+US	48	079	Cochran
+US	48	081	Coke
+US	48	083	Coleman
+US	48	085	Collin
+US	48	087	Collingsworth
+US	48	089	Colorado
+US	48	091	Comal
+US	48	093	Comanche
+US	48	095	Concho
+US	48	097	Cooke
+US	48	099	Coryell
+US	48	101	Cottle
+US	48	103	Crane
+US	48	105	Crockett
+US	48	107	Crosby
+US	48	109	Culberson
+US	48	111	Dallam
+US	48	113	Dallas
+US	48	115	Dawson
+US	48	117	Deaf Smith
+US	48	119	Delta
+US	48	121	Denton
+US	48	123	Dewitt
+US	48	125	Dickens
+US	48	127	Dimmit
+US	48	129	Donley
+US	48	131	Duval
+US	48	133	Eastland
+US	48	135	Ector
+US	48	137	Edwards
+US	48	139	Ellis
+US	48	141	El Paso
+US	48	143	Erath
+US	48	145	Falls
+US	48	147	Fannin
+US	48	149	Fayette
+US	48	151	Fisher
+US	48	153	Floyd
+US	48	155	Foard
+US	48	157	Fort Bend
+US	48	159	Franklin
+US	48	161	Freestone
+US	48	163	Frio
+US	48	165	Gaines
+US	48	167	Galveston
+US	48	169	Garza
+US	48	171	Gillespie
+US	48	173	Glasscock
+US	48	175	Goliad
+US	48	177	Gonzales
+US	48	179	Gray
+US	48	181	Grayson
+US	48	183	Gregg
+US	48	185	Grimes
+US	48	187	Guadalupe
+US	48	189	Hale
+US	48	191	Hall
+US	48	193	Hamilton
+US	48	195	Hansford
+US	48	197	Hardeman
+US	48	199	Hardin
+US	48	201	Harris
+US	48	203	Harrison
+US	48	205	Hartley
+US	48	207	Haskell
+US	48	209	Hays
+US	48	211	Hemphill
+US	48	213	Henderson
+US	48	215	Hidalgo
+US	48	217	Hill
+US	48	219	Hockley
+US	48	221	Hood
+US	48	223	Hopkins
+US	48	225	Houston
+US	48	227	Howard
+US	48	229	Hudspeth
+US	48	231	Hunt
+US	48	233	Hutchinson
+US	48	235	Irion
+US	48	237	Jack
+US	48	239	Jackson
+US	48	241	Jasper
+US	48	243	Jeff Davis
+US	48	245	Jefferson
+US	48	247	Jim Hogg
+US	48	249	Jim Wells
+US	48	251	Johnson
+US	48	253	Jones
+US	48	255	Karnes
+US	48	257	Kaufman
+US	48	259	Kendall
+US	48	261	Kenedy
+US	48	263	Kent
+US	48	265	Kerr
+US	48	267	Kimble
+US	48	269	King
+US	48	271	Kinney
+US	48	273	Kleberg
+US	48	275	Knox
+US	48	277	Lamar
+US	48	279	Lamb
+US	48	281	Lampasas
+US	48	283	La Salle
+US	48	285	Lavaca
+US	48	287	Lee
+US	48	289	Leon
+US	48	291	Liberty
+US	48	293	Limestone
+US	48	295	Lipscomb
+US	48	297	Live Oak
+US	48	299	Llano
+US	48	301	Loving
+US	48	303	Lubbock
+US	48	305	Lynn
+US	48	307	Mcculloch
+US	48	309	Mclennan
+US	48	311	Mcmullen
+US	48	313	Madison
+US	48	315	Marion
+US	48	317	Martin
+US	48	319	Mason
+US	48	321	Matagorda
+US	48	323	Maverick
+US	48	325	Medina
+US	48	327	Menard
+US	48	329	Midland
+US	48	331	Milam
+US	48	333	Mills
+US	48	335	Mitchell
+US	48	337	Montague
+US	48	339	Montgomery
+US	48	341	Moore
+US	48	343	Morris
+US	48	345	Motley
+US	48	347	Nacogdoches
+US	48	349	Navarro
+US	48	351	Newton
+US	48	353	Nolan
+US	48	355	Nueces
+US	48	357	Ochiltree
+US	48	359	Oldham
+US	48	361	Orange
+US	48	363	Palo Pinto
+US	48	365	Panola
+US	48	367	Parker
+US	48	369	Parmer
+US	48	371	Pecos
+US	48	373	Polk
+US	48	375	Potter
+US	48	377	Presidio
+US	48	379	Rains
+US	48	381	Randall
+US	48	383	Reagan
+US	48	385	Real
+US	48	387	Red River
+US	48	389	Reeves
+US	48	391	Refugio
+US	48	393	Roberts
+US	48	395	Robertson
+US	48	397	Rockwall
+US	48	399	Runnels
+US	48	401	Rusk
+US	48	403	Sabine
+US	48	405	San Augustine
+US	48	407	San Jacinto
+US	48	409	San Patricio
+US	48	411	San Saba
+US	48	413	Schleicher
+US	48	415	Scurry
+US	48	417	Shackelford
+US	48	419	Shelby
+US	48	421	Sherman
+US	48	423	Smith
+US	48	425	Somervell
+US	48	427	Starr
+US	48	429	Stephens
+US	48	431	Sterling
+US	48	433	Stonewall
+US	48	435	Sutton
+US	48	437	Swisher
+US	48	439	Tarrant
+US	48	441	Taylor
+US	48	443	Terrell
+US	48	445	Terry
+US	48	447	Throckmorton
+US	48	449	Titus
+US	48	451	Tom Green
+US	48	453	Travis
+US	48	455	Trinity
+US	48	457	Tyler
+US	48	459	Upshur
+US	48	461	Upton
+US	48	463	Uvalde
+US	48	465	Val Verde
+US	48	467	Van Zandt
+US	48	469	Victoria
+US	48	471	Walker
+US	48	473	Waller
+US	48	475	Ward
+US	48	477	Washington
+US	48	479	Webb
+US	48	481	Wharton
+US	48	483	Wheeler
+US	48	485	Wichita
+US	48	487	Wilbarger
+US	48	489	Willacy
+US	48	491	Williamson
+US	48	493	Wilson
+US	48	495	Winkler
+US	48	497	Wise
+US	48	499	Wood
+US	48	501	Yoakum
+US	48	503	Young
+US	48	505	Zapata
+US	48	507	Zavala
+US	49	001	Beaver
+US	49	003	Box Elder
+US	49	005	Cache
+US	49	007	Carbon
+US	49	009	Daggett
+US	49	011	Davis
+US	49	013	Duchesne
+US	49	015	Emery
+US	49	017	Garfield
+US	49	019	Grand
+US	49	021	Iron
+US	49	023	Juab
+US	49	025	Kane
+US	49	027	Millard
+US	49	029	Morgan
+US	49	031	Piute
+US	49	033	Rich
+US	49	035	Salt Lake
+US	49	037	San Juan
+US	49	039	Sanpete
+US	49	041	Sevier
+US	49	043	Summit
+US	49	045	Tooele
+US	49	047	Uintah
+US	49	049	Utah
+US	49	051	Wasatch
+US	49	053	Washington
+US	49	055	Wayne
+US	49	057	Weber
+US	50	001	Addison
+US	50	003	Bennington
+US	50	005	Caledonia
+US	50	007	Chittenden
+US	50	009	Essex
+US	50	011	Franklin
+US	50	013	Grand Isle
+US	50	015	Lamoille
+US	50	017	Orange
+US	50	019	Orleans
+US	50	021	Rutland
+US	50	023	Washington
+US	50	025	Windham
+US	50	027	Windsor
+US	51	001	Accomack
+US	51	003	Albemarle
+US	51	005	Alleghany
+US	51	007	Amelia
+US	51	009	Amherst
+US	51	011	Appomattox
+US	51	013	Arlington
+US	51	015	Augusta
+US	51	017	Bath
+US	51	019	Bedford
+US	51	021	Bland
+US	51	023	Botetourt
+US	51	025	Brunswick
+US	51	027	Buchanan
+US	51	029	Buckingham
+US	51	031	Campbell
+US	51	033	Caroline
+US	51	035	Carroll
+US	51	036	Charles City
+US	51	037	Charlotte
+US	51	041	Chesterfield
+US	51	043	Clarke
+US	51	045	Craig
+US	51	047	Culpeper
+US	51	049	Cumberland
+US	51	051	Dickenson
+US	51	053	Dinwiddie
+US	51	057	Essex
+US	51	059	Fairfax
+US	51	061	Fauquier
+US	51	063	Floyd
+US	51	065	Fluvanna
+US	51	067	Franklin
+US	51	069	Frederick
+US	51	071	Giles
+US	51	073	Gloucester
+US	51	075	Goochland
+US	51	077	Grayson
+US	51	079	Greene
+US	51	081	Greensville
+US	51	083	Halifax
+US	51	085	Hanover
+US	51	087	Henrico
+US	51	089	Henry
+US	51	091	Highland
+US	51	093	Isle Of Wight
+US	51	095	James City
+US	51	097	King And Queen
+US	51	099	King George
+US	51	101	King William
+US	51	103	Lancaster
+US	51	105	Lee
+US	51	107	Loudoun
+US	51	109	Louisa
+US	51	111	Lunenburg
+US	51	113	Madison
+US	51	115	Mathews
+US	51	117	Mecklenburg
+US	51	119	Middlesex
+US	51	121	Montgomery
+US	51	125	Nelson
+US	51	127	New Kent
+US	51	131	Northampton
+US	51	133	Northumberland
+US	51	135	Nottoway
+US	51	137	Orange
+US	51	139	Page
+US	51	141	Patrick
+US	51	143	Pittsylvania
+US	51	145	Powhatan
+US	51	147	Prince Edward
+US	51	149	Prince George
+US	51	153	Prince William
+US	51	155	Pulaski
+US	51	157	Rappahannock
+US	51	159	Richmond
+US	51	161	Roanoke
+US	51	163	Rockbridge
+US	51	165	Rockingham
+US	51	167	Russell
+US	51	169	Scott
+US	51	171	Shenandoah
+US	51	173	Smyth
+US	51	175	Southampton
+US	51	177	Spotsylvania
+US	51	179	Stafford
+US	51	181	Surry
+US	51	183	Sussex
+US	51	185	Tazewell
+US	51	187	Warren
+US	51	191	Washington
+US	51	193	Westmoreland
+US	51	195	Wise
+US	51	197	Wythe
+US	51	199	York
+US	51	510	Alexandria City
+US	51	520	Bristol City
+US	51	530	Buena Vista City
+US	51	540	Charlottesville City
+US	51	550	Chesapeake City
+US	51	560	Clifton Forge City
+US	51	570	Colonial Heights City
+US	51	580	Covington City
+US	51	590	Danville City
+US	51	595	Emporia City
+US	51	600	Fairfax City
+US	51	610	Falls Church City
+US	51	620	Franklin City
+US	51	630	Fredericksburg City
+US	51	640	Galax City
+US	51	650	Hampton City
+US	51	660	Harrisonburg City
+US	51	670	Hopewell City
+US	51	678	Lexington City
+US	51	680	Lynchburg City
+US	51	683	Manassas City
+US	51	685	Manassas Park City
+US	51	690	Martinsville City
+US	51	700	Newport News City
+US	51	710	Norfolk City
+US	51	720	Norton City
+US	51	730	Petersburg City
+US	51	735	Poquoson City
+US	51	740	Portsmouth City
+US	51	750	Radford City
+US	51	760	Richmond City
+US	51	770	Roanoke City
+US	51	775	Salem City
+US	51	780	South Boston City
+US	51	790	Staunton City
+US	51	800	Suffolk City
+US	51	810	Virginia Beach City
+US	51	820	Waynesboro City
+US	51	830	Williamsburg City
+US	51	840	Winchester City
+US	53	001	Adams
+US	53	003	Asotin
+US	53	005	Benton
+US	53	007	Chelan
+US	53	009	Clallam
+US	53	011	Clark
+US	53	013	Columbia
+US	53	015	Cowlitz
+US	53	017	Douglas
+US	53	019	Ferry
+US	53	021	Franklin
+US	53	023	Garfield
+US	53	025	Grant
+US	53	027	Grays Harbor
+US	53	029	Island
+US	53	031	Jefferson
+US	53	033	King
+US	53	035	Kitsap
+US	53	037	Kittitas
+US	53	039	Klickitat
+US	53	041	Lewis
+US	53	043	Lincoln
+US	53	045	Mason
+US	53	047	Okanogan
+US	53	049	Pacific
+US	53	051	Pend Oreille
+US	53	053	Pierce
+US	53	055	San Juan
+US	53	057	Skagit
+US	53	059	Skamania
+US	53	061	Snohomish
+US	53	063	Spokane
+US	53	065	Stevens
+US	53	067	Thurston
+US	53	069	Wahkiakum
+US	53	071	Walla Walla
+US	53	073	Whatcom
+US	53	075	Whitman
+US	53	077	Yakima
+US	54	001	Barbour
+US	54	003	Berkeley
+US	54	005	Boone
+US	54	007	Braxton
+US	54	009	Brooke
+US	54	011	Cabell
+US	54	013	Calhoun
+US	54	015	Clay
+US	54	017	Doddridge
+US	54	019	Fayette
+US	54	021	Gilmer
+US	54	023	Grant
+US	54	025	Greenbrier
+US	54	027	Hampshire
+US	54	029	Hancock
+US	54	031	Hardy
+US	54	033	Harrison
+US	54	035	Jackson
+US	54	037	Jefferson
+US	54	039	Kanawha
+US	54	041	Lewis
+US	54	043	Lincoln
+US	54	045	Logan
+US	54	047	Mcdowell
+US	54	049	Marion
+US	54	051	Marshall
+US	54	053	Mason
+US	54	055	Mercer
+US	54	057	Mineral
+US	54	059	Mingo
+US	54	061	Monongalia
+US	54	063	Monroe
+US	54	065	Morgan
+US	54	067	Nicholas
+US	54	069	Ohio
+US	54	071	Pendleton
+US	54	073	Pleasants
+US	54	075	Pocahontas
+US	54	077	Preston
+US	54	079	Putnam
+US	54	081	Raleigh
+US	54	083	Randolph
+US	54	085	Ritchie
+US	54	087	Roane
+US	54	089	Summers
+US	54	091	Taylor
+US	54	093	Tucker
+US	54	095	Tyler
+US	54	097	Upshur
+US	54	099	Wayne
+US	54	101	Webster
+US	54	103	Wetzel
+US	54	105	Wirt
+US	54	107	Wood
+US	54	109	Wyoming
+US	55	001	Adams
+US	55	003	Ashland
+US	55	005	Barron
+US	55	007	Bayfield
+US	55	009	Brown
+US	55	011	Buffalo
+US	55	013	Burnett
+US	55	015	Calumet
+US	55	017	Chippewa
+US	55	019	Clark
+US	55	021	Columbia
+US	55	023	Crawford
+US	55	025	Dane
+US	55	027	Dodge
+US	55	029	Door
+US	55	031	Douglas
+US	55	033	Dunn
+US	55	035	Eau Claire
+US	55	037	Florence
+US	55	039	Fond Du Lac
+US	55	041	Forest
+US	55	043	Grant
+US	55	045	Green
+US	55	047	Green Lake
+US	55	049	Iowa
+US	55	051	Iron
+US	55	053	Jackson
+US	55	055	Jefferson
+US	55	057	Juneau
+US	55	059	Kenosha
+US	55	061	Kewaunee
+US	55	063	La Crosse
+US	55	065	Lafayette
+US	55	067	Langlade
+US	55	069	Lincoln
+US	55	071	Manitowoc
+US	55	073	Marathon
+US	55	075	Marinette
+US	55	077	Marquette
+US	55	078	Menominee
+US	55	079	Milwaukee
+US	55	081	Monroe
+US	55	083	Oconto
+US	55	085	Oneida
+US	55	087	Outagamie
+US	55	089	Ozaukee
+US	55	091	Pepin
+US	55	093	Pierce
+US	55	095	Polk
+US	55	097	Portage
+US	55	099	Price
+US	55	101	Racine
+US	55	103	Richland
+US	55	105	Rock
+US	55	107	Rusk
+US	55	109	St. Croix
+US	55	111	Sauk
+US	55	113	Sawyer
+US	55	115	Shawano
+US	55	117	Sheboygan
+US	55	119	Taylor
+US	55	121	Trempealeau
+US	55	123	Vernon
+US	55	125	Vilas
+US	55	127	Walworth
+US	55	129	Washburn
+US	55	131	Washington
+US	55	133	Waukesha
+US	55	135	Waupaca
+US	55	137	Waushara
+US	55	139	Winnebago
+US	55	141	Wood
+US	56	001	Albany
+US	56	003	Big Horn
+US	56	005	Campbell
+US	56	007	Carbon
+US	56	009	Converse
+US	56	011	Crook
+US	56	013	Fremont
+US	56	015	Goshen
+US	56	017	Hot Springs
+US	56	019	Johnson
+US	56	021	Laramie
+US	56	023	Lincoln
+US	56	025	Natrona
+US	56	027	Niobrara
+US	56	029	Park
+US	56	031	Platte
+US	56	033	Sheridan
+US	56	035	Sublette
+US	56	037	Sweetwater
+US	56	039	Teton
+US	56	041	Uinta
+US	56	043	Washakie
+US	56	045	Weston
+US	60	010	Eastern District
+US	60	020	Manu'A District
+US	60	030	Rose Island
+US	60	040	Swains Island
+US	60	050	Western District
+FM	64	005	Kosrae
+FM	64	040	Pohnpei
+FM	64	050	Chuuk
+FM	64	060	Yap
+US	66	010	Guam
+RM	68	010	Ailinglaplap
+RM	68	030	Ailuk
+RM	68	040	Arno
+RM	68	050	Aur
+RM	68	070	Bikini And Kili
+RM	68	080	Ebon
+RM	68	090	Enewetak And Ujelang
+RM	68	110	Jabat
+RM	68	120	Jaluit
+RM	68	150	Kwajalein
+RM	68	160	Lae
+RM	68	170	Lib
+RM	68	180	Likiep
+RM	68	190	Majuro
+RM	68	300	Maloelap
+RM	68	310	Mejit
+RM	68	320	Mili
+RM	68	330	Namorik
+RM	68	340	Namu
+RM	68	350	Rongelap
+RM	68	390	Ujae
+RM	68	410	Utrik
+RM	68	420	Wotho
+RM	68	430	Wotje
+US	69	085	Northern Islands Municipality
+US	69	100	Rota Municipality
+US	69	110	Saipan Municipality
+US	69	120	Tinian Municipality
+PS	70	002	Aimeliik
+PS	70	004	Airai
+PS	70	010	Angaur
+PS	70	100	Kayangel
+PS	70	150	Koror
+PS	70	212	Melekeok
+PS	70	214	Ngaraard
+PS	70	218	Ngarchelong
+PS	70	222	Ngardmau
+PS	70	223	Ngaremlengui
+PS	70	224	Ngatpang
+PS	70	226	Ngchesar
+PS	70	228	Ngiwal
+PS	70	300	Palau-Unorg.
+PS	70	350	Peleiu
+PS	70	370	Sonsorol
+PS	70	380	Tobi
+US	72	001	Adjuntas Municipio
+US	72	003	Aguada Municipio
+US	72	005	Aguadilla Municipio
+US	72	007	Aguas Buenas Municipio
+US	72	009	Aibonito Municipio
+US	72	011	Anasco Municipio
+US	72	013	Arecibo Municipio
+US	72	015	Arroyo Municipio
+US	72	017	Barceloneta Municipio
+US	72	019	Barranquitas Municipio
+US	72	021	Bayamon Municipio
+US	72	023	Cabo Rojo Municipio
+US	72	025	Caguas Municipio
+US	72	027	Camuy Municipio
+US	72	029	Canovanas Municipio
+US	72	031	Carolina Municipio
+US	72	033	Catano Municipio
+US	72	035	Cayey Municipio
+US	72	037	Ceiba Municipio
+US	72	039	Ciales Municipio
+US	72	041	Cidra Municipio
+US	72	043	Coamo Municipio
+US	72	045	Comerio Municipio
+US	72	047	Corozal Municipio
+US	72	049	Culebra Municipio
+US	72	051	Dorado Municipio
+US	72	053	Fajardo Municipio
+US	72	054	Florida Municipio
+US	72	055	Guanica Municipio
+US	72	057	Guayama Municipio
+US	72	059	Guayanilla Municipio
+US	72	061	Guaynabo Municipio
+US	72	063	Gurabo Municipio
+US	72	065	Hatillo Municipio
+US	72	067	Hormigueros Municipio
+US	72	069	Humacao Municipio
+US	72	071	Isabela Municipio
+US	72	073	Jayuya Municipio
+US	72	075	Juana Diaz Municipio
+US	72	077	Juncos Municipio
+US	72	079	Lajas Municipio
+US	72	081	Lares Municipio
+US	72	083	Las Marias Municipio
+US	72	085	Las Piedras Municipio
+US	72	087	Loiza Municipio
+US	72	089	Luquillo Municipio
+US	72	091	Manati Municipio
+US	72	093	Maricao Municipio
+US	72	095	Maunabo Municipio
+US	72	097	Mayaquez Municipio
+US	72	099	Moca Municipio
+US	72	101	Morovis Municipio
+US	72	103	Naguabo Municipio
+US	72	105	Naranjito Municipio
+US	72	107	Orocovis Municipio
+US	72	109	Patillas Municipio
+US	72	111	Penuelas Municipio
+US	72	113	Ponce Municipio
+US	72	115	Quebradillas Municipio
+US	72	117	Rincon Municipio
+US	72	119	Rio Grande Municipio
+US	72	121	Sabana Grande Municipio
+US	72	123	Salinas Municipio
+US	72	125	San German Municipio
+US	72	127	San Juan Municipio
+US	72	129	San Lorenzo Municipio
+US	72	131	San Sebastian Municipio
+US	72	133	Santa Isabel Municipio
+US	72	135	Toa Alta Municipio
+US	72	137	Toa Baja Municipio
+US	72	139	Trujillo Alto Municipio
+US	72	141	Utuado Municipio
+US	72	143	Vega Alta Municipio
+US	72	145	Vega Baja Municipio
+US	72	147	Vieques Municipio
+US	72	149	Villalba Municipio
+US	72	151	Yabucoa Municipio
+US	72	153	Yauco Municipio
+US	78	010	St. Croix Island
+US	78	020	St. John Island
+US	78	030	St. Thomas Island
