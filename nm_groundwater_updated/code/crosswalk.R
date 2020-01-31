@@ -14,7 +14,7 @@ library(rgdal); library(maps);
 #read in data--------------------------------------------------------------------------------
 #
 ####################################################################################################################################################################
-setwd("C:/Users/lap19/Documents/GitHub/nm_groundwater/")
+setwd("C:/Users/lap19/Documents/GitHub/IS-NM-groundwater/nm_groundwater_updated/")
 options(scipen=999) #changes scientific notation to numeric (needed for usgs site_no)
 
 #National groundwater monitoring portal----------------------------------------------------------------------------------------------------------------------------------------
@@ -168,7 +168,6 @@ usgs.site <- merge(usgs.site, usgs.national, by.x="nat_aqfr_cd", by.y="nat_aqfr_
 usgs.site <- merge(usgs.site, usgs.local, by.x="aqfr_cd", by.y="aqfr_cd", all.x=TRUE)
 
 #70 do not have a basin code
-usgs.site$DecLongVa2 <- usgs.site$DecLongVa;    usgs.site$DecLatVa2 <- usgs.site$DecLatVa;
 usgs.site <-  st_as_sf(usgs.site, coords = c("DecLongVa2", "DecLatVa2"), crs = 4269)
 usgs.site <- st_intersection(usgs.site, huc.data); #takes a moment
 
@@ -341,7 +340,7 @@ plot(st_geometry(county)); plot(st_geometry(ose.site), col="red", pch=19, cex=0.
 #add county and huc info
 ose.site <- st_intersection(ose.site, county); #takes a moment
 ose.site <- st_intersection(ose.site, huc.data); #takes a moment
-
+bk2 <- ose.site
 #remove spatial component
 st_geometry(ose.site) <- NULL
 ose.site$DataSource <- "OSE"
