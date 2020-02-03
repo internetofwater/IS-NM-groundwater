@@ -168,6 +168,7 @@ usgs.site <- merge(usgs.site, usgs.national, by.x="nat_aqfr_cd", by.y="nat_aqfr_
 usgs.site <- merge(usgs.site, usgs.local, by.x="aqfr_cd", by.y="aqfr_cd", all.x=TRUE)
 
 #70 do not have a basin code
+usgs.site$DecLongVa2 <- usgs.site$dec_long_va;    usgs.site$DecLatVa2 <- usgs.site$dec_lat_va;
 usgs.site <-  st_as_sf(usgs.site, coords = c("DecLongVa2", "DecLatVa2"), crs = 4269)
 usgs.site <- st_intersection(usgs.site, huc.data); #takes a moment
 
@@ -218,7 +219,6 @@ all.gwl <- all.gwl[complete.cases(all.gwl), ]
 
 
 # NM Geology Data---------------------------------------------------------------------------------------------------------------------------------------------------
-# Will do CKAN crosswalk in bit
 #sites data
 #remove sites without a location
 geology.site <- geology.site %>% filter(is.na(easting)==FALSE & is.na(northing)==FALSE) %>% as.data.frame()
@@ -374,8 +374,7 @@ st_geometry(huc.data) <- NULL
 all.sites <- merge(all.sites, huc.data, by.x="BasinCd", by.y="HUC8", all.x=TRUE)
 all.sites$BasinNm <- all.sites$NAME;
 
-all.sites <- all.sites %>%  dplyr::select(AgencyCd, AgencyNm, SiteNo,	DecLatVa,	DecLongVa,	HorzDatum, WellDepth, SiteType, StateCd, StateNm, 
-                        CountyCd, CountyNm, BasinCd, BasinNm, DataSource)
+all.sites <- all.sites %>%  dplyr::select(-NAME)
 
 #strip extra space from county names to fix one error
 all.sites$CountyNm <- trimws(all.sites$CountyNm, "both");
